@@ -20,6 +20,8 @@ import {
   type RoomRecord,
 } from "./registry";
 import { signToken, verifyToken } from "./tokens";
+import { getMedia } from "./content/media";
+import { settings } from "./settings";
 
 const VERSION = "0.1.0";
 const TOKEN_TTL_MS = 12 * 60 * 60_000;
@@ -47,7 +49,8 @@ function rateLimit(max: number) {
   };
 }
 
-export async function startServer(port = Number(process.env.PORT ?? 2567)) {
+export async function startServer(port = Number(process.env.PORT ?? 2567), opts: { timeScale?: number } = {}) {
+  if (opts.timeScale) settings.timeScale = opts.timeScale;
   const app = express();
   const origins = (process.env.ALLOWED_ORIGINS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
   if (origins.length === 0) console.warn("[http] ALLOWED_ORIGINS vacío: se aceptan todos los orígenes (solo desarrollo)");
@@ -159,6 +162,29 @@ export async function startServer(port = Number(process.env.PORT ?? 2567)) {
       alias: identity.alias,
       waiting: (room?.state.phase ?? "LOBBY") !== "LOBBY",
     });
+  });
+
+  // Imágenes por etapa: id opaco + credencial de pantalla + comprobación contra el estado vivo.
+  app.get("/api/media/:id", (req, res) => {
+    res.setHeader("Cache-Control", "no-store");
+    const claims = verifyToken(bearer(req));
+    if (!claims) return err(res, 401, "UNAUTHORIZED");
+    const m = getMedia(req.params.id);
+    if (!m) return err(res, 404, "NOT_FOUND");
+    if (claims.role !== "screen" || claims.roomId !== m.roomId) return err(res, 403, "FORBIDDEN");
+    const room = matchMaker.getLocalRoomById(m.roomId) as LogoRoom | undefined;
+    const rec = room && getByCode(room.state.roomCode);
+    if (!room || !rec || claims.gen !== rec.screenGen) return err(res, 403, "FORBIDDEN");
+    const st = room.state;
+    const phase = st.phase === "PAUSED" ? st.previousPhase : st.phase;
+    const sameRound = st.roundId === m.roundId;
+    const allowed =
+      sameRound &&
+      (m.kind === "stage"
+        ? ["ROUND_ACTIVE", "ROUND_RESULTS"].includes(phase) && m.stage <= st.revealStage
+        : phase === "ROUND_RESULTS");
+    if (!allowed) return err(res, 403, "FORBIDDEN");
+    res.type("image/webp").send(m.data);
   });
 
   await gameServer.listen(port);
