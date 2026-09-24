@@ -28,7 +28,7 @@ export function PlayerView(p: PlayerViewProps) {
   const [text, setText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const phase = p.s?.phase ?? "LOBBY";
-  const canAnswer = phase === "ROUND_ACTIVE" && !!me && !me.answeredThisRound && !me.waiting && p.connection !== "closed";
+  const canAnswer = phase === "ROUND_ACTIVE" && !!me && !me.answeredThisRound && !me.waiting && (p.connection === "connected" || p.connection === "demo");
   const result = p.lastResult && p.lastResult.roundId === p.s?.roundId ? p.lastResult : null;
   const feedback = result ? ATTEMPT_TEXT[result.status] : null;
 
