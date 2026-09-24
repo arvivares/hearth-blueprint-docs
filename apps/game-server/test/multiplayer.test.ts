@@ -79,7 +79,7 @@ after(async () => {
     try { await r?.leave(); } catch {}
   }
   await server.close();
-  setTimeout(() => process.exit(0), 200).unref();
+
 });
 
 test("salas distintas tienen códigos e ids distintos", () => {
