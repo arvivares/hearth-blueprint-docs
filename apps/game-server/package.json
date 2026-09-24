@@ -9,6 +9,7 @@
     "start": "tsx src/index.ts",
     "test": "node --import tsx --test --test-force-exit --test-concurrency=1 test/rules.test.ts test/content.test.ts test/multiplayer.test.ts test/game.test.ts test/audit.test.ts",
     "simulate": "tsx scripts/simulate.ts",
+    "loadtest": "tsx scripts/loadtest.ts",
     "db:migrate": "tsx scripts/migrate.ts",
     "content:build-demo": "tsx scripts/build-demo-pack.ts",
     "content:import": "tsx scripts/import-content.ts",

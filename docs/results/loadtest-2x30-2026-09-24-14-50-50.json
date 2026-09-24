@@ -1,0 +1,60 @@
+{
+  "date": "2026-09-24T14:50:50.266Z",
+  "env": {
+    "node": "v22.22.0",
+    "cpus": 16,
+    "cpuModel": "unknown",
+    "memGB": 32,
+    "platform": "Linux 4.19.0-gvisor",
+    "network": "loopback (mismo host, sin Wi-Fi ni Internet)"
+  },
+  "params": {
+    "rooms": 2,
+    "playersPerRoom": 30,
+    "roundsPerRoom": 3,
+    "timeScale": 0.1,
+    "roundSeconds": 12,
+    "clientsTotal": 64
+  },
+  "rooms": [
+    {
+      "roomCode": "WR42Y",
+      "final": "FINAL_RESULTS",
+      "roundsSeen": 3,
+      "answerRevealed": true
+    },
+    {
+      "roomCode": "59X6E",
+      "final": "FINAL_RESULTS",
+      "roundsSeen": 3,
+      "answerRevealed": true
+    }
+  ],
+  "durationS": 41.181,
+  "attempts": {
+    "sent": 504,
+    "confirmed": 504,
+    "unconfirmed": 0
+  },
+  "confirmLatencyMs": {
+    "n": 504,
+    "p50": 2.7,
+    "p95": 27.1,
+    "p99": 40.8,
+    "max": 43.2
+  },
+  "joinMs": {
+    "n": 60,
+    "p50": 230.1,
+    "p95": 308.8,
+    "max": 312.2
+  },
+  "errors": {},
+  "unexpectedLeaves": 0,
+  "answerLeaks": 0,
+  "server": {
+    "peakRssMB": 270.8,
+    "avgCpuPct": 10.8,
+    "peakCpuPct": 146
+  }
+}

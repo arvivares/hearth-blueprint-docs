@@ -81,8 +81,8 @@ async function runRoom(idx: number) {
     players.push(p);
   }));
 
-  // Oráculo solo del script: la respuesta de cada ronda se lee del servidor vía el revelado de la ronda
-  // anterior NO sirve; se usa el catálogo en BD para simular aciertos realistas sin tocar el protocolo.
+  // Oráculo exclusivo del script de carga: lee la respuesta de la ronda en PostgreSQL (acceso de operador)
+  // para simular aciertos realistas. Los clientes de juego nunca tienen esta vía.
   const db = new pg.Client({ connectionString: DB }); await db.connect();
   host.send("host:start", {});
   let roundsSeen = 0, roundId = "";
@@ -91,7 +91,7 @@ async function runRoom(idx: number) {
     if (host.state.phase === "ROUND_ACTIVE" && host.state.roundId !== roundId) {
       roundId = host.state.roundId; roundsSeen++;
       const row = (await db.query(
-        `SELECT v.answer FROM play.game_round r JOIN content.catalog_version v ON v.item_id=r.item_id AND v.version=r.item_version WHERE r.id=$1`, [roundId])).rows[0];
+        `SELECT v.answer FROM play.game_round r JOIN content.catalog_version v ON v.id=r.catalog_version_id WHERE r.id=$1`, [roundId])).rows[0];
       const correct: string = row?.answer ?? "?";
       const secret = correct.toLowerCase();
       const ends = host.state.phaseEndsAt as number;
