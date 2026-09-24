@@ -8,8 +8,30 @@ import { useGameRoom, useRemaining } from "@/game/useGameRoom";
 import { Button, ErrorBox, Input } from "@/game/ui";
 import { PlayerView } from "@/game/views/PlayerView";
 
+export function safeUUID(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    try {
+      return crypto.randomUUID();
+    } catch {}
+  }
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c: any) =>
+    (
+      c ^
+      ((typeof crypto !== "undefined" && crypto.getRandomValues
+        ? crypto.getRandomValues(new Uint8Array(1))[0]
+        : Math.floor(Math.random() * 256)) &
+        (15 >> (c / 4)))
+    ).toString(16),
+  );
+}
+
 export const Route = createFileRoute("/play")({
-  validateSearch: z.object({ room: z.string().optional() }),
+  validateSearch: (search: Record<string, unknown>): { room?: string } => {
+    const raw = search.room;
+    if (raw === undefined || raw === null || raw === "") return {};
+    const clean = String(raw).replace(/['"]/g, "").trim().toUpperCase();
+    return clean ? { room: clean } : {};
+  },
   head: () => ({
     meta: [
       { title: "Entrar a jugar — PeekRush" },
@@ -57,7 +79,7 @@ function EntryLayout({ title, subtitle, children }: { title: string; subtitle?: 
 function PlayPage() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const code = (search.room ?? "").toUpperCase();
+  const code = String(search.room ?? "").replace(/['"]/g, "").trim().toUpperCase();
   const [codeInput, setCodeInput] = useState(code);
   const [alias, setAlias] = useState("");
   const [session, setSession] = useState<StoredSession | null>(null);
@@ -182,7 +204,7 @@ function PlayPage() {
       errorCode={recentError}
       onSubmit={(text) => {
         if (!room.state) return;
-        const attemptId = crypto.randomUUID();
+        const attemptId = safeUUID();
         setPending(attemptId);
         room.send("player:attempt", { attemptId, roundId: room.state.roundId, text });
       }}

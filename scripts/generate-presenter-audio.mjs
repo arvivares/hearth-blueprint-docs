@@ -8,31 +8,27 @@ const VOICE_ID = process.env.ELEVENLABS_VOICE_ID || "EXAVITQu4vr4xnSDxMaL";
 const SCRIPTS = {
   es: {
     file: "public/audio/presentadora-es.mp3",
-    text: `¡Hola! Te doy la bienvenida a PeekRush. Jugar es facilísimo y muy divertido. Te cuento cómo funciona.
+    text: `¡Hola! Te doy la bienvenida a PeekRush. Jugar es facilísimo y muy emocionante. Te cuento cómo funciona:
 
-PeekRush se juega en grupo frente a una pantalla principal compartida, como una televisión o un proyector, mientras cada jugador responde desde su propio teléfono móvil.
+Puedes jugar en grupo con tus amigos o tú solo directamente desde el navegador.
 
-Si vas a organizar la partida, pulsa en "Crear sala". Obtendrás el código de tu partida y un código de vinculación para la televisión.
+Para jugar en grupo, pulsa en "Crear sala". Tu pantalla se convertirá en la pantalla principal del juego y mostrará un código QR gigante. Tus amigos solo tienen que escanear el código QR con la cámara de su móvil y escribir su nombre para unirse al instante.
 
-En la pantalla de la televisión, abre "Vincular pantalla" e introduce ese código. Verás aparecer un código QR gigante y el estado de la sala.
+Si estás solo, simplemente pulsa en "Jugar solo" para empezar una partida individual y responder directamente con tu teclado.
 
-Para uniros como jugadores, solo tenéis que escanear el código QR con el móvil o entrar en peekrush.inmerzion.io, introducir el código de sala y elegir vuestro alias.
-
-Cuando empiece la partida, en la pantalla grande aparecerá un logotipo que se irá revelando por etapas. ¡El objetivo es adivinar la marca antes que nadie! Cuanto más rápido escribas el nombre correcto en tu móvil, más puntos conseguirás. Al final de las rondas conoceremos al ganador. ¡Mucha suerte y a jugar!`,
+Cuando empiece la partida, aparecerá un logotipo que se irá revelando poco a poco. ¡Tu objetivo es adivinar la marca antes que nadie! Cuanto más rápido aciertes, más puntos conseguirás. Al final veremos el podio de la partida y la tabla de récords globales. ¡Mucha suerte y a jugar!`,
   },
   en: {
     file: "public/audio/presentadora-en.mp3",
-    text: `Hello and welcome to PeekRush! Playing is super easy and lots of fun. Let me explain how it works.
+    text: `Hello and welcome to PeekRush! Playing is super easy and lots of fun. Here is how it works:
 
-PeekRush is played in a group in front of a shared main screen, such as a TV or projector, while every player submits their answers directly from their own mobile phone.
+You can play in a group with friends or by yourself directly from your browser.
 
-If you are hosting the game, click on "Create room". You will get your room code and a pairing code for the TV screen.
+To play with friends, click on "Create room". Your screen will turn into the main game screen, displaying a giant QR code. Your friends simply scan the QR code with their phone cameras and enter their nickname to join instantly.
 
-On the TV screen, open "Link screen" and enter that code. A giant QR code will appear along with the room status.
+If you are playing alone, just click on "Play solo" to start a single-player game and type your answers right on your keyboard.
 
-To join as a player, simply scan the QR code with your phone camera or visit peekrush.inmerzion.io, enter the room code, and choose your nickname.
-
-Once the host starts the game, a logo will appear on the big screen, gradually revealing itself in stages. Your goal is to guess the brand before anyone else! The faster you enter the correct name on your mobile phone, the more points you score. At the end of all rounds, we will crown the champion. Good luck and enjoy the game!`,
+Once the game starts, a brand logo will gradually reveal itself in stages. Your goal is to guess the brand before anyone else! The faster you guess correctly, the more points you score. At the end, we will reveal the podium and the global leaderboard. Good luck and have fun!`,
   },
 };
 

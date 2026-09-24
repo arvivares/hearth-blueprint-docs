@@ -17,6 +17,38 @@ export function loadSession(role: string, code: string): StoredSession | null {
     return null;
   }
 }
-export const saveSession = (role: string, code: string, s: StoredSession) =>
-  localStorage.setItem(key(role, code), JSON.stringify(s));
-export const clearSession = (role: string, code: string) => localStorage.removeItem(key(role, code));
+export function saveSession(role: string, code: string, s: StoredSession): void {
+  try {
+    localStorage.setItem(key(role, code), JSON.stringify(s));
+  } catch (e) {
+    console.warn("No se pudo guardar la sesión:", e);
+  }
+}
+
+export function clearSession(role: string, code: string): void {
+  try {
+    localStorage.removeItem(key(role, code));
+  } catch (e) {
+    console.warn("No se pudo limpiar la sesión:", e);
+  }
+}
+
+/** Generador seguro de UUID v4 compatible con navegadores antiguos y WebView */
+export function safeUUID(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    try {
+      return crypto.randomUUID();
+    } catch {}
+  }
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c: any) =>
+    (
+      c ^
+      ((typeof crypto !== "undefined" && crypto.getRandomValues
+        ? crypto.getRandomValues(new Uint8Array(1))[0]
+        : Math.floor(Math.random() * 256)) &
+        (15 >> (c / 4)))
+    ).toString(16),
+  );
+}
+
+

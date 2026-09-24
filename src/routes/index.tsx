@@ -5,6 +5,7 @@ import {
   Tv,
   ArrowRight,
   Sparkles,
+  User,
 } from "lucide-react";
 import { api, errorText } from "@/game/api";
 import { saveSession } from "@/game/session";
@@ -23,8 +24,9 @@ const I18N = {
     roomCodePlaceholder: "Código de sala (ej. 7KX9P)",
     joinBtn: "Entrar",
     hostTitle: "Crear sala y empezar juego",
-    hostDesc: "Abre el tablero central en esta pantalla con el código QR para que todos jueguen desde su móvil.",
+    hostDesc: "Abre el tablero central en esta pantalla para jugar en grupo con móviles o en solitario desde este navegador.",
     createRoomBtn: "Crear sala",
+    playSoloBtn: "Jugar solo",
     creatingRoom: "Iniciando juego...",
     demoPrompt: "¿Quieres explorar la interfaz sin conectar dispositivos?",
     demoAction: "Abrir demostración",
@@ -40,8 +42,9 @@ const I18N = {
     roomCodePlaceholder: "Room code (e.g. 7KX9P)",
     joinBtn: "Join",
     hostTitle: "Create room & start game",
-    hostDesc: "Launch the main gameboard on this screen with the QR code so everyone can join from their phone.",
+    hostDesc: "Launch the main gameboard on this screen to play with friends or solo from this browser.",
     createRoomBtn: "Create room",
+    playSoloBtn: "Play solo",
     creatingRoom: "Starting game...",
     demoPrompt: "Want to preview the interface without connecting devices?",
     demoAction: "Open demo",
@@ -84,7 +87,7 @@ function Home() {
 
   const t = I18N[lang];
 
-  async function create() {
+  async function create(solo = false) {
     setBusy(true);
     setError(null);
     try {
@@ -95,6 +98,11 @@ function Home() {
       const pairing = await api.screenPairing(r.roomCode, r.hostToken);
       const screen = await api.linkScreen(r.roomCode, pairing.pairingCode);
       saveSession("screen", r.roomCode, { roomId: r.roomId, token: screen.screenToken });
+
+      if (solo) {
+        const p = await api.joinPlayer(r.roomCode, "Tú");
+        saveSession("player", r.roomCode, { roomId: r.roomId, token: p.playerToken, alias: p.alias, playerId: p.playerId });
+      }
 
       // Lanzar directamente la pantalla de juego
       navigate({ to: "/tv", search: { room: r.roomCode } });
@@ -238,24 +246,37 @@ function Home() {
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={create}
-            disabled={busy}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-7 py-4 font-semibold text-black text-sm transition-all hover:bg-zinc-200 active:scale-[0.98] disabled:opacity-40 shadow-md shadow-white/10 shrink-0"
-          >
-            {busy ? (
-              <>
-                <span className="h-4 w-4 animate-spin rounded-full border-2 border-black/30 border-t-black" />
-                <span>{t.creatingRoom}</span>
-              </>
-            ) : (
-              <>
-                <span>{t.createRoomBtn}</span>
-                <ArrowRight className="h-4 w-4" />
-              </>
-            )}
-          </button>
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
+            <button
+              type="button"
+              onClick={() => create(true)}
+              disabled={busy}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] px-6 py-4 font-semibold text-white text-sm transition-all active:scale-[0.98] disabled:opacity-40"
+              title="Juega tú solo desde este navegador"
+            >
+              <User className="h-4 w-4" />
+              <span>{t.playSoloBtn}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => create(false)}
+              disabled={busy}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-7 py-4 font-semibold text-black text-sm transition-all hover:bg-zinc-200 active:scale-[0.98] disabled:opacity-40 shadow-md shadow-white/10"
+            >
+              {busy ? (
+                <>
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-black/30 border-t-black" />
+                  <span>{t.creatingRoom}</span>
+                </>
+              ) : (
+                <>
+                  <span>{t.createRoomBtn}</span>
+                  <ArrowRight className="h-4 w-4" />
+                </>
+              )}
+            </button>
+          </div>
         </section>
 
         {/* Footer Minimalista */}

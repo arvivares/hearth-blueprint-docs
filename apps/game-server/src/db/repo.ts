@@ -108,3 +108,39 @@ export async function abortStaleGames(db: Db) {
   const r = await db.query("UPDATE play.game SET status='aborted', ended_at=now() WHERE status='in_progress' RETURNING id");
   return r.rowCount ?? 0;
 }
+
+export interface GlobalLeaderboardEntry {
+  alias: string;
+  bestScore: number;
+  totalCorrect: number;
+  gamesPlayed: number;
+  gamesWon: number;
+  lastPlayed: string;
+}
+
+export async function getGlobalLeaderboard(db: Db, limit = 10): Promise<GlobalLeaderboardEntry[]> {
+  const r = await db.query(
+    `SELECT gp.alias,
+            COALESCE(MAX(gp.final_score), 0) AS best_score,
+            COALESCE(SUM(gp.correct_count), 0) AS total_correct,
+            COUNT(DISTINCT gp.game_id) AS games_played,
+            COUNT(CASE WHEN gp.final_rank = 1 THEN 1 END) AS games_won,
+            MAX(g.ended_at) AS last_played
+       FROM play.game_player gp
+       JOIN play.game g ON g.id = gp.game_id
+      WHERE g.status = 'finished' AND gp.final_score IS NOT NULL
+      GROUP BY gp.alias
+      ORDER BY best_score DESC, total_correct DESC, games_won DESC
+      LIMIT $1`,
+    [limit],
+  );
+  return r.rows.map((row) => ({
+    alias: String(row.alias),
+    bestScore: Number(row.best_score),
+    totalCorrect: Number(row.total_correct),
+    gamesPlayed: Number(row.games_played),
+    gamesWon: Number(row.games_won),
+    lastPlayed: row.last_played ? new Date(row.last_played).toISOString() : "",
+  }));
+}
+

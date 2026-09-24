@@ -31,6 +31,15 @@ async function call(path: string, body?: unknown, token?: string) {
   return json;
 }
 
+export interface GlobalLeaderboardEntry {
+  alias: string;
+  bestScore: number;
+  totalCorrect: number;
+  gamesPlayed: number;
+  gamesWon: number;
+  lastPlayed: string;
+}
+
 export const api = {
   createRoom: async () => CreateRoomResponse.parse(await call("/api/rooms", {})),
   roomInfo: async (code: string) => RoomInfoResponse.parse(await call(`/api/rooms/${code}`)),
@@ -40,6 +49,9 @@ export const api = {
     ScreenLinkResponse.parse(await call(`/api/rooms/${code}/screen`, { pairingCode })),
   joinPlayer: async (code: string, alias: string, playerToken?: string) =>
     JoinPlayerResponse.parse(await call(`/api/rooms/${code}/players`, { alias, playerToken })),
+  leaderboard: async (): Promise<GlobalLeaderboardEntry[]> => {
+    return (await call("/api/leaderboard")) as GlobalLeaderboardEntry[];
+  },
 };
 
 export const ERROR_TEXT: Record<string, string> = {

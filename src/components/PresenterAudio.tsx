@@ -37,14 +37,13 @@ const CONTENT = {
     showTranscript: "Leer transcripción",
     hideTranscript: "Ocultar transcripción",
     chapters: [
-      { time: 0, title: "01 · Concepto", shortTitle: "Concepto", desc: "TV compartida y móviles para responder." },
-      { time: 13, title: "02 · Anfitrión", shortTitle: "Anfitrión", desc: "Crea sala y vincula la pantalla." },
-      { time: 22, title: "03 · Pantalla TV", shortTitle: "Pantalla TV", desc: "Muestra el QR gigante y los logos." },
-      { time: 31, title: "04 · Jugadores", shortTitle: "Jugadores", desc: "Escanea el QR y elige tu alias." },
-      { time: 42, title: "05 · Puntos", shortTitle: "Puntos", desc: "Adivina rápido para sumar más puntos." },
+      { time: 0, title: "01 · Bienvenida", shortTitle: "Bienvenida", desc: "En grupo o tú solo desde el navegador." },
+      { time: 12, title: "02 · Crear sala", shortTitle: "Crear sala", desc: "Pantalla principal con QR gigante para tus amigos." },
+      { time: 26, title: "03 · Jugar solo", shortTitle: "Jugar solo", desc: "Modo individual respondiendo con el teclado." },
+      { time: 35, title: "04 · Logotipos", shortTitle: "Logotipos", desc: "Adivina la marca mientras se revela." },
+      { time: 45, title: "05 · Podio y récords", shortTitle: "Récords", desc: "Clasificación de partida y tabla global." },
     ] as Chapter[],
-    fullTranscript: `¡Hola! Te doy la bienvenida a PeekRush. Jugar es facilísimo y muy divertido. Te cuento cómo funciona:
-PeekRush se juega en grupo frente a una pantalla principal compartida mientras cada jugador responde desde su propio teléfono móvil. Si vas a organizar la partida, pulsa en "Crear sala". En la televisión abre "Vincular pantalla" e introduce el código para ver el QR. Los jugadores solo tienen que escanear el QR con su móvil y elegir su alias. ¡El objetivo es adivinar la marca antes que nadie conforme se va revelando el logotipo!`,
+    fullTranscript: `¡Hola! Te doy la bienvenida a PeekRush. Jugar es facilísimo y muy emocionante. Te cuento cómo funciona: Puedes jugar en grupo con tus amigos o tú solo directamente desde el navegador. Para jugar en grupo, pulsa en "Crear sala". Tu pantalla se convertirá en la pantalla principal del juego y mostrará un código QR gigante. Tus amigos solo tienen que escanear el código QR con la cámara de su móvil y escribir su nombre para unirse al instante. Si estás solo, simplemente pulsa en "Jugar solo" para empezar una partida individual y responder directamente con tu teclado. Cuando empiece la partida, aparecerá un logotipo que se irá revelando poco a poco. ¡Tu objetivo es adivinar la marca antes que nadie! Cuanto más rápido aciertes, más puntos conseguirás. Al final veremos el podio de la partida y la tabla de récords globales. ¡Mucha suerte y a jugar!`,
   },
   en: {
     audioSrc: "/audio/presentadora-en.mp3",
@@ -61,14 +60,13 @@ PeekRush se juega en grupo frente a una pantalla principal compartida mientras c
     showTranscript: "Read transcript",
     hideTranscript: "Hide transcript",
     chapters: [
-      { time: 0, title: "01 · Concept", shortTitle: "Concept", desc: "Shared TV and smartphones as gamepads." },
-      { time: 12, title: "02 · Host Role", shortTitle: "Host", desc: "Create room and pair the TV." },
-      { time: 20, title: "03 · TV Screen", shortTitle: "TV Screen", desc: "Displays giant QR and multi-stage logos." },
-      { time: 28, title: "04 · Players", shortTitle: "Players", desc: "Scan QR and pick a nickname." },
-      { time: 38, title: "05 · Scoring", shortTitle: "Scoring", desc: "Guess early as the logo reveals to win." },
+      { time: 0, title: "01 · Welcome", shortTitle: "Welcome", desc: "Play with friends or solo in your browser." },
+      { time: 11, title: "02 · Create room", shortTitle: "Create room", desc: "Main screen with giant QR for your friends." },
+      { time: 24, title: "03 · Play solo", shortTitle: "Play solo", desc: "Single-player mode using your keyboard." },
+      { time: 32, title: "04 · Brand logos", shortTitle: "Brand logos", desc: "Guess the brand as it reveals in stages." },
+      { time: 41, title: "05 · Podium & records", shortTitle: "Leaderboard", desc: "Match podium and all-time global records." },
     ] as Chapter[],
-    fullTranscript: `Hello and welcome to PeekRush! Playing is super easy and lots of fun. Let me explain how it works:
-PeekRush is played in a group in front of a shared main screen, such as a TV or projector, while every player submits their answers directly from their own mobile phone. If you are hosting the game, click on "Create room". On the TV screen, open "Link screen" and enter that code to display the giant QR code. Players simply scan the QR code with their phones and choose a nickname. The faster you guess the brand, the more points you score!`,
+    fullTranscript: `Hello and welcome to PeekRush! Playing is super easy and lots of fun. Here is how it works: You can play in a group with friends or by yourself directly from your browser. To play with friends, click on "Create room". Your screen will turn into the main game screen, displaying a giant QR code. Your friends simply scan the QR code with their phone cameras and enter their nickname to join instantly. If you are playing alone, just click on "Play solo" to start a single-player game and type your answers right on your keyboard. Once the game starts, a brand logo will gradually reveal itself in stages. Your goal is to guess the brand before anyone else! The faster you guess correctly, the more points you score. At the end, we will reveal the podium and the global leaderboard. Good luck and have fun!`,
   },
 };
 

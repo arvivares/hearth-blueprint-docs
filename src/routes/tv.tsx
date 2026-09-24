@@ -1,14 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { z } from "zod";
 import { api, errorText, SERVER_URL } from "@/game/api";
-import { clearSession, loadSession, saveSession, type StoredSession } from "@/game/session";
+import { clearSession, loadSession, safeUUID, saveSession, type StoredSession } from "@/game/session";
 import { useGameRoom, useRemaining } from "@/game/useGameRoom";
 import { Button, Card, ErrorBox, Input, joinUrl, Shell } from "@/game/ui";
 import { TvView } from "@/game/views/TvView";
 
 export const Route = createFileRoute("/tv")({
-  validateSearch: z.object({ room: z.string().optional() }),
+  validateSearch: (search: Record<string, unknown>): { room?: string } => {
+    const raw = search.room;
+    if (raw === undefined || raw === null || raw === "") return {};
+    const clean = String(raw).replace(/['"]/g, "").trim().toUpperCase();
+    return clean ? { room: clean } : {};
+  },
   head: () => ({
     meta: [
       { title: "Pantalla TV — PeekRush" },
@@ -23,11 +27,12 @@ export const Route = createFileRoute("/tv")({
 function TvPage() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const roomCode = (search.room ?? "").toUpperCase();
+  const roomCode = String(search.room ?? "").replace(/['"]/g, "").trim().toUpperCase();
   const [code, setCode] = useState(roomCode);
   const [pairingCode, setPairingCode] = useState("");
   const [session, setSession] = useState<StoredSession | null>(null);
   const [hostSession, setHostSession] = useState<StoredSession | null>(null);
+  const [playerSession, setPlayerSession] = useState<StoredSession | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mediaSrc, setMediaSrc] = useState<string | null>(null);
 
@@ -35,7 +40,9 @@ function TvPage() {
     if (!roomCode) return;
     const s = loadSession("screen", roomCode);
     const h = loadSession("host", roomCode);
+    const p = loadSession("player", roomCode);
     setHostSession(h);
+    if (p) setPlayerSession(p);
     if (s) {
       setSession(s);
     } else if (h) {
@@ -54,6 +61,7 @@ function TvPage() {
 
   const room = useGameRoom(session?.roomId ?? null, session?.token ?? null);
   const hostRoom = useGameRoom(hostSession?.roomId ?? null, hostSession?.token ?? null);
+  const playerRoom = useGameRoom(playerSession?.roomId ?? null, playerSession?.token ?? null);
   const remaining = useRemaining(room.state?.phaseEndsAt || undefined, room.clockOffset);
 
   // Confirmar al servidor que la pantalla puede mostrar la ronda preparada.
@@ -175,6 +183,24 @@ function TvPage() {
   const isHost = !!hostSession;
   const activePlayers = Object.values(room.state.players).filter((p) => p.connected).length;
 
+  async function handleStartSolo() {
+    setError(null);
+    try {
+      let pSess = playerSession;
+      if (!pSess) {
+        const p = await api.joinPlayer(c, "Jugador 1");
+        pSess = { roomId: p.roomId, token: p.playerToken, alias: p.alias, playerId: p.playerId };
+        saveSession("player", c, pSess);
+        setPlayerSession(pSess);
+      }
+      hostRoom.send("host:start", {});
+    } catch (e) {
+      setError(errorText(e));
+    }
+  }
+
+  const soloMe = playerSession?.playerId && room.state ? room.state.players[playerSession.playerId] : undefined;
+
   return (
     <TvView
       s={room.state}
@@ -185,12 +211,31 @@ function TvPage() {
       mediaSrc={mediaSrc}
       revealAnswer={room.reveal && room.reveal.roundId === room.state.roundId ? room.reveal.answer : null}
       connection={room.status}
+      soloPlayer={
+        playerSession?.playerId
+          ? {
+              playerId: playerSession.playerId,
+              alias: playerSession.alias ?? "Jugador 1",
+              score: soloMe?.score ?? 0,
+              correctCount: soloMe?.correctCount ?? 0,
+              answeredThisRound: !!soloMe?.answeredThisRound,
+              pending: false,
+              lastResult: playerRoom.lastAttempt,
+              onSubmit: (text: string) => {
+                if (!room.state) return;
+                const attemptId = safeUUID();
+                playerRoom.send("player:attempt", { attemptId, roundId: room.state.roundId, text });
+              },
+            }
+          : undefined
+      }
       host={
         isHost
           ? {
-              canStart: room.state.phase === "LOBBY" && activePlayers > 0,
+              canStart: room.state.phase === "LOBBY" && (activePlayers > 0 || !!playerSession),
               playerCount: activePlayers,
               onStart: () => hostRoom.send("host:start", {}),
+              onStartSolo: handleStartSolo,
               onPause: () => hostRoom.send("host:pause", {}),
               onResume: () => hostRoom.send("host:resume", {}),
               onNext: () => hostRoom.send("host:next", {}),
@@ -202,3 +247,4 @@ function TvPage() {
     />
   );
 }
+

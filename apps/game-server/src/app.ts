@@ -24,7 +24,7 @@ import { getMedia } from "./content/media";
 import { settings } from "./settings";
 import { createDb } from "./db/pool";
 import { migrate } from "./db/migrate";
-import { abortStaleGames, activeCatalogCount } from "./db/repo";
+import { abortStaleGames, activeCatalogCount, getGlobalLeaderboard } from "./db/repo";
 
 const VERSION = "0.1.0";
 const TOKEN_TTL_MS = 12 * 60 * 60_000;
@@ -76,6 +76,16 @@ export async function startServer(port = Number(process.env.PORT ?? 2567), opts:
   gameServer.define("logo", LogoRoom);
 
   app.get("/health", (_req, res) => res.json({ ok: true, version: VERSION }));
+
+  app.get("/api/leaderboard", async (_req, res) => {
+    try {
+      const top = await getGlobalLeaderboard(db, 15);
+      res.json(top);
+    } catch (e) {
+      console.error("[http] error al obtener clasificación global", e);
+      res.status(500).json({ error: "INTERNAL" });
+    }
+  });
 
   app.post("/api/rooms", rateLimit(Number(process.env.CREATE_ROOM_LIMIT ?? 30)), async (req, res) => {
     const parsed = CreateRoomRequest.safeParse(req.body ?? {});

@@ -510,7 +510,14 @@ export class LogoRoom extends Room<LogoState> {
       p.score += points;
       p.correctCount += 1;
       p.answeredThisRound = true;
-      return record("correct", { points });
+      record("correct", { points });
+
+      // Si todos los jugadores activos ya acertaron (o si se juega de a uno), avanzar la ronda
+      const active = this.activePlayers();
+      if (active.length > 0 && active.every(([, pl]) => pl.answeredThisRound)) {
+        this.endRound();
+      }
+      return;
     }
     return record("incorrect");
   }

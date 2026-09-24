@@ -135,5 +135,11 @@ export function RoomQR({ url, size = 240, className }: { url: string; size?: num
 }
 
 export function joinUrl(code: string) {
-  return `${window.location.origin}/play?room=${code}`;
+  const clean = String(code || "").replace(/['"]/g, "").trim().toUpperCase();
+  const origin =
+    typeof window !== "undefined" && window.location?.origin
+      ? window.location.origin
+      : "https://peekrush.inmerzion.io";
+  return `${origin}/play?room=${encodeURIComponent(clean)}`;
 }
+
