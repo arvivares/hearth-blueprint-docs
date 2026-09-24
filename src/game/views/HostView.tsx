@@ -15,7 +15,7 @@ export interface HostViewProps {
   pairingError: string | null;
   onPair: () => void;
   onConfigure: (cfg: { rounds: number; roundSeconds: number; maxPlayers: number }) => void;
-  onCommand: (type: "host:start" | "host:pause" | "host:resume" | "host:next" | "host:abort") => void;
+  onCommand: (type: "host:start" | "host:pause" | "host:resume" | "host:next" | "host:abort" | "host:reset") => void;
   onKick: (playerId: string) => void;
 }
 
@@ -67,7 +67,10 @@ export function HostView(p: HostViewProps) {
           <Button onClick={() => p.onCommand("host:start")} disabled={!can.start}>Iniciar partida</Button>
           <Button variant="ghost" onClick={() => p.onCommand("host:pause")} disabled={!can.pause}>Pausar</Button>
           <Button variant="ghost" onClick={() => p.onCommand("host:resume")} disabled={!can.resume}>Reanudar</Button>
-          <Button variant="ghost" onClick={() => p.onCommand("host:next")} disabled={!can.next}>Siguiente</Button>
+          <Button variant="ghost" onClick={() => p.onCommand("host:next")} disabled={!can.next}>{phase === "ROUND_ACTIVE" ? "Cerrar ronda" : "Siguiente"}</Button>
+          {(phase === "FINAL_RESULTS" || phase === "ABORTED") && (
+            <Button onClick={() => p.onCommand("host:reset")}>Nueva partida</Button>
+          )}
           <Button variant="danger" onClick={() => confirm("¿Interrumpir la partida?") && p.onCommand("host:abort")} disabled={!can.abort}>Interrumpir</Button>
         </div>
       </Card>

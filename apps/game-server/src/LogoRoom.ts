@@ -1,9 +1,15 @@
+import { randomUUID } from "node:crypto";
 import { Room, ServerError, type Client } from "colyseus";
 import { ArraySchema, MapSchema, Schema, type } from "@colyseus/schema";
 import { ClientMessages, MessageRole, type ClientMessageType } from "../../../packages/contracts/src/messages";
 import type { ErrorCode, GameConfig } from "../../../packages/contracts/src/common";
 import { verifyToken, type TokenClaims } from "./tokens";
 import { getById, unregisterRoom, type RoomRecord } from "./registry";
+import { DEMO_CATALOG, type CatalogItem } from "./content/catalog";
+import { dropRoundMedia, prepareRoundMedia } from "./content/media";
+import { isCorrectAnswer, normalizeAnswer } from "./rules/normalize";
+import { computeRanking, pointsForStage, stageForElapsed } from "./rules/scoring";
+import { scaled, settings } from "./settings";
 
 export class PlayerState extends Schema {
   @type("string") alias = "";
@@ -37,24 +43,57 @@ export class LogoState extends Schema {
   @type([RankEntry]) ranking = new ArraySchema<RankEntry>();
 }
 
+type AttemptStatus = "correct" | "incorrect" | "already_scored" | "round_closed" | "rate_limited" | "duplicate";
+interface AttemptRecord {
+  attemptId: string;
+  roundId: string;
+  playerId: string;
+  status: AttemptStatus;
+  points?: number;
+  retryAt?: number;
+  normalized: string;
+  stage: number;
+  receivedAt: number;
+}
+
+interface RoundData {
+  roundId: string;
+  item: CatalogItem;
+  stageIds: string[];
+  fullId: string;
+}
+
 const MAX_MESSAGE_BYTES = 2048;
 const IDLE_DISPOSE_MS = 10 * 60_000;
+const TICK_MS = 50;
+const ACTIVE_PHASES = ["PREPARING", "COUNTDOWN", "ROUND_ACTIVE", "ROUND_RESULTS"];
 
 export class LogoRoom extends Room<LogoState> {
   private rec!: RoomRecord;
   private leaveTimers = new Map<string, NodeJS.Timeout>();
   private lastActivity = Date.now();
 
-  onCreate(options: { roomId?: string }) {
+  // --- Motor de juego (solo servidor) ---
+  private questions: CatalogItem[] = [];
+  /** Visible para pruebas en proceso; nunca se envía a clientes antes del cierre. */
+  round: RoundData | null = null;
+  private attempts = new Map<string, AttemptRecord>(); // attemptId -> resultado (idempotencia)
+  private lastAttemptAt = new Map<string, number>(); // playerId -> ms
+  private pausedRemainingMs = 0;
+  private pausedAt = 0;
+  private roundMs = 0;
+  private preparing = false;
+  /** Registro de partida (se persistirá en PostgreSQL en la etapa de persistencia). */
+  history: { roundId: string; itemId: string; version: number; attempts: AttemptRecord[] }[] = [];
+
+  onCreate() {
     this.autoDispose = false;
     this.setState(new LogoState());
-    // El registro se completa desde la API HTTP justo tras crear la sala.
     this.clock.setInterval(() => this.housekeeping(), 5_000);
-
+    this.clock.setInterval(() => this.tick(), TICK_MS);
     this.onMessage("*", (client, type, payload) => this.handleMessage(client, String(type), payload));
   }
 
-  /** Vincula el registro HTTP con esta instancia (llamado por la API). */
   attach(rec: RoomRecord) {
     this.rec = rec;
     this.state.roomCode = rec.roomCode;
@@ -63,10 +102,12 @@ export class LogoRoom extends Room<LogoState> {
 
   private applyConfig(c: GameConfig) {
     this.state.maxPlayers = c.maxPlayers;
-    this.state.totalRounds = c.rounds;
+    this.state.totalRounds = Math.min(c.rounds, DEMO_CATALOG.length);
     this.state.roundSeconds = c.roundSeconds;
     this.state.totalStages = c.revealStages;
   }
+
+  // ---------------- Conexiones ----------------
 
   onAuth(_client: Client, options: { token?: unknown }): TokenClaims {
     const claims = verifyToken(options?.token);
@@ -82,7 +123,6 @@ export class LogoRoom extends Room<LogoState> {
   onJoin(client: Client, _options: unknown, auth: TokenClaims) {
     this.lastActivity = Date.now();
     client.userData = auth;
-    // Una sola conexión activa por identidad: la nueva sustituye a la anterior.
     for (const other of this.clients) {
       const o = other.userData as TokenClaims | undefined;
       if (other !== client && o && o.role === auth.role && o.sub === auth.sub) other.leave(4000, "REPLACED");
@@ -90,7 +130,10 @@ export class LogoRoom extends Room<LogoState> {
     }
 
     if (auth.role === "host") this.state.hostConnected = true;
-    if (auth.role === "screen") this.state.screenConnected = true;
+    if (auth.role === "screen") {
+      this.state.screenConnected = true;
+      this.sendCurrentMediaTo(client);
+    }
     if (auth.role === "player") {
       const identity = this.rec.players.get(auth.sub)!;
       clearTimeout(this.leaveTimers.get(auth.sub));
@@ -103,6 +146,15 @@ export class LogoRoom extends Room<LogoState> {
         this.state.players.set(auth.sub, p);
       }
       p.connected = true;
+      // Reconexión: reenviar los resultados ya procesados de la ronda vigente, sin repetir efectos.
+      if (this.round) {
+        for (const a of this.attempts.values()) {
+          if (a.playerId === auth.sub && a.roundId === this.round.roundId) client.send("attempt:result", this.publicResult(a));
+        }
+      }
+      if (this.state.phase === "ROUND_RESULTS" && this.round) {
+        client.send("round:reveal", { roundId: this.round.roundId, answer: this.round.item.answer, mediaId: "" });
+      }
     }
     client.send("session", { role: auth.role, playerId: auth.role === "player" ? auth.sub : undefined });
   }
@@ -116,12 +168,14 @@ export class LogoRoom extends Room<LogoState> {
     );
     if (stillConnected) return;
     if (auth.role === "host") this.state.hostConnected = false;
-    if (auth.role === "screen" && !this.clients.some((c) => c !== client && (c.userData as TokenClaims)?.role === "screen"))
+    if (auth.role === "screen" && !this.clients.some((c) => c !== client && (c.userData as TokenClaims)?.role === "screen")) {
       this.state.screenConnected = false;
+      // Sin pantalla nadie ve la partida: pausa automática.
+      if (ACTIVE_PHASES.includes(this.state.phase)) this.pause();
+    }
     if (auth.role === "player") {
       const p = this.state.players.get(auth.sub);
       if (p) p.connected = false;
-      // En LOBBY se libera la plaza si no vuelve dentro de la ventana de reconexión.
       const t = setTimeout(() => {
         const cur = this.state.players.get(auth.sub);
         if (cur && !cur.connected && this.state.phase === "LOBBY") this.removePlayer(auth.sub);
@@ -132,6 +186,7 @@ export class LogoRoom extends Room<LogoState> {
 
   onDispose() {
     for (const t of this.leaveTimers.values()) clearTimeout(t);
+    dropRoundMedia(this.roomId);
     unregisterRoom(this.roomId);
   }
 
@@ -140,18 +195,264 @@ export class LogoRoom extends Room<LogoState> {
     this.rec.players.delete(playerId);
     clearTimeout(this.leaveTimers.get(playerId));
     this.leaveTimers.delete(playerId);
+    this.updateRanking();
   }
 
   private housekeeping() {
     if (!this.rec) return;
     const now = Date.now();
     const graceMs = this.rec.config.reconnectSeconds * 1000;
-    // Reservas HTTP que nunca llegaron a conectarse.
     for (const [id, identity] of this.rec.players) {
       if (!this.state.players.has(id) && now - identity.reservedAt > graceMs) this.rec.players.delete(id);
     }
     if (this.clients.length === 0 && now - this.lastActivity > IDLE_DISPOSE_MS) this.disconnect();
   }
+
+  // ---------------- Motor ----------------
+
+  private screens() {
+    return this.clients.filter((c) => (c.userData as TokenClaims)?.role === "screen");
+  }
+
+  private activePlayers() {
+    return [...this.state.players.entries()].filter(([, p]) => !p.waiting);
+  }
+
+  private shuffle<T>(arr: T[]): T[] {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j]!, a[i]!];
+    }
+    return a;
+  }
+
+  private startGame() {
+    for (const p of this.state.players.values()) {
+      p.score = 0;
+      p.correctCount = 0;
+      p.answeredThisRound = false;
+      p.waiting = false;
+    }
+    this.attempts.clear();
+    this.lastAttemptAt.clear();
+    this.history = [];
+    this.questions = this.shuffle(DEMO_CATALOG).slice(0, this.state.totalRounds);
+    this.state.roundIndex = -1;
+    this.updateRanking();
+    void this.prepareRound(0);
+  }
+
+  private async prepareRound(index: number) {
+    if (this.round) dropRoundMedia(this.roomId, this.round.roundId);
+    const item = this.questions[index]!;
+    const roundId = randomUUID();
+    this.state.roundIndex = index;
+    this.state.roundId = roundId;
+    this.state.revealStage = 0;
+    this.state.phase = "PREPARING";
+    this.state.phaseEndsAt = 0;
+    this.round = null;
+    this.preparing = true;
+    for (const p of this.state.players.values()) p.answeredThisRound = false;
+    const media = await prepareRoundMedia(this.roomId, roundId, item, this.state.totalStages);
+    if (this.state.roundId !== roundId || this.state.phase === "ABORTED") return dropRoundMedia(this.roomId, roundId);
+    this.round = { roundId, item, ...media };
+    this.history.push({ roundId, itemId: item.id, version: item.version, attempts: [] });
+    this.preparing = false;
+    // Plazo para que la pantalla confirme que puede mostrar el estado inicial.
+    if (this.state.phase === "PREPARING") this.state.phaseEndsAt = Date.now() + scaled(settings.prepareTimeoutMs);
+  }
+
+  private startCountdown() {
+    this.state.phase = "COUNTDOWN";
+    this.state.phaseEndsAt = Date.now() + scaled(settings.countdownMs);
+  }
+
+  private startRound() {
+    this.roundMs = scaled(this.state.roundSeconds * 1000);
+    this.state.phase = "ROUND_ACTIVE";
+    this.state.phaseEndsAt = Date.now() + this.roundMs;
+    this.setStage(1);
+  }
+
+  private setStage(stage: number) {
+    if (!this.round || stage === this.state.revealStage) return;
+    this.state.revealStage = stage;
+    for (const s of this.screens()) this.sendCurrentMediaTo(s);
+  }
+
+  private sendCurrentMediaTo(client: Client) {
+    if (!this.round) return;
+    if (this.state.phase === "ROUND_ACTIVE" || (this.state.phase === "PAUSED" && this.state.previousPhase === "ROUND_ACTIVE")) {
+      const stage = this.state.revealStage;
+      if (stage >= 1) client.send("round:media", { roundId: this.round.roundId, stage, mediaId: this.round.stageIds[stage - 1] });
+    }
+    if (this.state.phase === "ROUND_RESULTS" || (this.state.phase === "PAUSED" && this.state.previousPhase === "ROUND_RESULTS")) {
+      client.send("round:reveal", { roundId: this.round.roundId, answer: this.round.item.answer, mediaId: this.round.fullId });
+    }
+  }
+
+  private endRound() {
+    if (!this.round) return;
+    this.state.phase = "ROUND_RESULTS";
+    this.state.phaseEndsAt = Date.now() + scaled(settings.resultsMs);
+    this.updateRanking();
+    const { roundId, item, fullId } = this.round;
+    // La solución solo se revela al cerrar la ronda. Los móviles no reciben la imagen.
+    for (const c of this.clients) {
+      const role = (c.userData as TokenClaims)?.role;
+      c.send("round:reveal", { roundId, answer: item.answer, mediaId: role === "screen" ? fullId : "" });
+    }
+  }
+
+  private nextAfterResults() {
+    const next = this.state.roundIndex + 1;
+    if (next >= this.questions.length) {
+      this.state.phase = "FINAL_RESULTS";
+      this.state.phaseEndsAt = 0;
+      this.updateRanking();
+    } else void this.prepareRound(next);
+  }
+
+  private updateRanking() {
+    const standings = this.activePlayers().map(([playerId, p]) => ({ playerId, score: p.score, correctCount: p.correctCount }));
+    const ranking = computeRanking(standings);
+    this.state.ranking.clear();
+    for (const r of ranking) {
+      const e = new RankEntry();
+      e.playerId = r.playerId;
+      e.rank = r.rank;
+      this.state.ranking.push(e);
+    }
+  }
+
+  private pause() {
+    if (!ACTIVE_PHASES.includes(this.state.phase)) return;
+    this.state.previousPhase = this.state.phase;
+    this.pausedRemainingMs = this.state.phaseEndsAt ? Math.max(0, this.state.phaseEndsAt - Date.now()) : 0;
+    this.pausedAt = Date.now();
+    this.state.phase = "PAUSED";
+    this.state.phaseEndsAt = 0;
+  }
+
+  private resume() {
+    const prev = this.state.previousPhase;
+    this.state.previousPhase = "";
+    if (prev === "PREPARING") {
+      this.state.phase = "PREPARING";
+      this.state.phaseEndsAt = this.round ? Date.now() + scaled(settings.prepareTimeoutMs) : 0;
+      return;
+    }
+    this.state.phase = prev;
+    this.state.phaseEndsAt = Date.now() + this.pausedRemainingMs;
+    for (const s of this.screens()) this.sendCurrentMediaTo(s);
+  }
+
+  private abort() {
+    this.state.phase = "ABORTED";
+    this.state.phaseEndsAt = 0;
+    if (this.round) dropRoundMedia(this.roomId, this.round.roundId);
+    this.round = null;
+  }
+
+  private resetToLobby() {
+    if (this.round) dropRoundMedia(this.roomId, this.round.roundId);
+    this.round = null;
+    this.state.phase = "LOBBY";
+    this.state.previousPhase = "";
+    this.state.roundIndex = 0;
+    this.state.roundId = "";
+    this.state.revealStage = 0;
+    this.state.phaseEndsAt = 0;
+    for (const [id, p] of [...this.state.players.entries()]) {
+      if (!p.connected) this.removePlayer(id);
+      else {
+        p.score = 0;
+        p.correctCount = 0;
+        p.answeredThisRound = false;
+        p.waiting = false;
+      }
+    }
+    this.state.ranking.clear();
+  }
+
+  /** Reloj autoritativo: todas las transiciones temporizadas ocurren aquí. */
+  private tick() {
+    const now = Date.now();
+    const s = this.state;
+    switch (s.phase) {
+      case "PREPARING":
+        if (!this.preparing && s.phaseEndsAt && now >= s.phaseEndsAt) this.pause();
+        break;
+      case "COUNTDOWN":
+        if (now >= s.phaseEndsAt) this.startRound();
+        break;
+      case "ROUND_ACTIVE": {
+        const elapsed = this.roundMs - (s.phaseEndsAt - now);
+        this.setStage(stageForElapsed(elapsed, this.roundMs, s.totalStages));
+        if (now >= s.phaseEndsAt) this.endRound();
+        break;
+      }
+      case "ROUND_RESULTS":
+        if (now >= s.phaseEndsAt) this.nextAfterResults();
+        break;
+      case "PAUSED":
+        if (now - this.pausedAt > scaled(settings.maxPauseMs)) this.abort();
+        break;
+    }
+  }
+
+  private publicResult(a: AttemptRecord) {
+    return { attemptId: a.attemptId, roundId: a.roundId, status: a.status, points: a.points, retryAt: a.retryAt };
+  }
+
+  private handleAttempt(client: Client, playerId: string, data: { attemptId: string; roundId: string; text: string }) {
+    const now = Date.now();
+    const prev = this.attempts.get(data.attemptId);
+    if (prev) {
+      // Idempotencia: un reenvío no vuelve a evaluarse ni a puntuar.
+      if (prev.playerId !== playerId) return this.fail(client, "INVALID_INPUT", "player:attempt");
+      return client.send("attempt:result", { ...this.publicResult(prev), status: "duplicate", points: prev.points });
+    }
+    const p = this.state.players.get(playerId);
+    if (!p || p.waiting) return this.fail(client, "INVALID_PHASE", "player:attempt");
+
+    const record = (status: AttemptStatus, extra: Partial<AttemptRecord> = {}) => {
+      const a: AttemptRecord = {
+        attemptId: data.attemptId,
+        roundId: data.roundId,
+        playerId,
+        status,
+        normalized: normalizeAnswer(data.text),
+        stage: this.state.revealStage,
+        receivedAt: now,
+        ...extra,
+      };
+      this.attempts.set(a.attemptId, a);
+      this.history.at(-1)?.attempts.push(a);
+      client.send("attempt:result", this.publicResult(a));
+    };
+
+    const open = this.state.phase === "ROUND_ACTIVE" && this.round && data.roundId === this.round.roundId && now < this.state.phaseEndsAt;
+    if (!open) return record("round_closed");
+    if (p.answeredThisRound) return record("already_scored");
+    const cooldown = scaled(this.rec.config.attemptCooldownMs);
+    const last = this.lastAttemptAt.get(playerId) ?? 0;
+    if (now - last < cooldown) return record("rate_limited", { retryAt: last + cooldown });
+    this.lastAttemptAt.set(playerId, now);
+
+    if (isCorrectAnswer(data.text, this.round!.item.answer, this.round!.item.aliases)) {
+      const points = pointsForStage(this.state.revealStage, this.rec.config.pointsByStage);
+      p.score += points;
+      p.correctCount += 1;
+      p.answeredThisRound = true;
+      return record("correct", { points });
+    }
+    return record("incorrect");
+  }
+
+  // ---------------- Mensajes ----------------
 
   private fail(client: Client, code: ErrorCode, ref?: string) {
     client.send("error", { code, ref });
@@ -166,11 +467,12 @@ export class LogoRoom extends Room<LogoState> {
     if (needed !== "any" && needed !== auth.role) return this.fail(client, "FORBIDDEN", t);
     const parsed = ClientMessages[t].safeParse(payload ?? {});
     if (!parsed.success) return this.fail(client, "INVALID_INPUT", t);
+    const phase = this.state.phase;
+    const bad = () => this.fail(client, "INVALID_PHASE", t);
 
     switch (t) {
       case "clock:sync":
-        client.send("clock:pong", { clientSentAt: (parsed.data as { clientSentAt: number }).clientSentAt, serverNow: Date.now() });
-        return;
+        return client.send("clock:pong", { clientSentAt: (parsed.data as { clientSentAt: number }).clientSentAt, serverNow: Date.now() });
       case "host:kick": {
         const { playerId } = parsed.data as { playerId: string };
         if (!this.rec.players.has(playerId)) return this.fail(client, "INVALID_INPUT", t);
@@ -182,7 +484,7 @@ export class LogoRoom extends Room<LogoState> {
         return;
       }
       case "host:configure": {
-        if (this.state.phase !== "LOBBY") return this.fail(client, "INVALID_PHASE", t);
+        if (phase !== "LOBBY") return bad();
         const next = { ...this.rec.config, ...(parsed.data as Partial<GameConfig>) };
         if (next.maxPlayers < this.rec.players.size) return this.fail(client, "INVALID_INPUT", t);
         if (next.pointsByStage.length !== next.revealStages) {
@@ -193,9 +495,29 @@ export class LogoRoom extends Room<LogoState> {
         this.applyConfig(next);
         return;
       }
-      default:
-        // Resto de mensajes: se implementan en etapas posteriores.
-        return this.fail(client, "INVALID_PHASE", t);
+      case "host:start":
+        if (phase !== "LOBBY" || !this.state.screenConnected || this.activePlayers().length === 0) return bad();
+        return this.startGame();
+      case "host:pause":
+        return ACTIVE_PHASES.includes(phase) ? this.pause() : bad();
+      case "host:resume":
+        if (phase !== "PAUSED" || !this.state.screenConnected) return bad();
+        return this.resume();
+      case "host:next":
+        if (phase === "ROUND_ACTIVE") return this.endRound();
+        if (phase === "ROUND_RESULTS") return this.nextAfterResults();
+        return bad();
+      case "host:abort":
+        return phase === "FINAL_RESULTS" || phase === "ABORTED" || phase === "LOBBY" ? bad() : this.abort();
+      case "host:reset":
+        return phase === "FINAL_RESULTS" || phase === "ABORTED" ? this.resetToLobby() : bad();
+      case "screen:ready": {
+        const { roundId } = parsed.data as { roundId: string };
+        if (phase !== "PREPARING" || !this.round || roundId !== this.round.roundId) return bad();
+        return this.startCountdown();
+      }
+      case "player:attempt":
+        return this.handleAttempt(client, auth.sub, parsed.data as { attemptId: string; roundId: string; text: string });
     }
   }
 }

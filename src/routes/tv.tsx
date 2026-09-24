@@ -34,9 +34,20 @@ function TvPage() {
   const room = useGameRoom(session?.roomId ?? null, session?.token ?? null);
   const remaining = useRemaining(room.state?.phaseEndsAt || undefined, room.clockOffset);
 
+  // Confirmar al servidor que la pantalla puede mostrar la ronda preparada.
+  const st = room.state;
+  useEffect(() => {
+    if (st?.phase === "PREPARING" && st.phaseEndsAt > 0 && st.roundId) {
+      setMediaSrc(null);
+      room.send("screen:ready", { roundId: st.roundId });
+    }
+  }, [st?.phase, st?.phaseEndsAt, st?.roundId, room.send]);
+
   // La imagen de cada etapa se pide al servidor con la credencial de pantalla (nunca una URL pública).
   useEffect(() => {
-    const id = room.reveal?.mediaId ?? room.media?.mediaId;
+    const cur = room.state?.roundId;
+    const id =
+      room.reveal?.roundId === cur && room.reveal?.mediaId ? room.reveal.mediaId : room.media?.roundId === cur ? room.media?.mediaId : undefined;
     if (!id || !session) return;
     let url: string | null = null;
     fetch(`${SERVER_URL}/api/media/${id}`, { headers: { authorization: `Bearer ${session.token}` } })
@@ -46,7 +57,7 @@ function TvPage() {
     return () => {
       if (url) URL.revokeObjectURL(url);
     };
-  }, [room.media?.mediaId, room.reveal?.mediaId, session]);
+  }, [room.media?.mediaId, room.reveal?.mediaId, room.state?.roundId, session]);
 
   async function link(e: React.FormEvent) {
     e.preventDefault();
