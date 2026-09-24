@@ -54,3 +54,30 @@ SERVER_URL=https://tu-servidor npm run simulate   # contra un servidor desplegad
 ```
 
 `GAME_TIME_SCALE=0.3 npm start` acelera los tiempos del servidor para probar a mano con la TV y móviles.
+
+## PostgreSQL (etapa 5)
+
+`DATABASE_URL` es obligatorio. Al arrancar, el servidor aplica migraciones y marca como interrumpidas las partidas que quedaron a medias.
+
+| Esquema | Contenido | Visibilidad |
+|---|---|---|
+| `content` | `catalog_item`, `catalog_version` (respuesta, alias, categoría, dificultad, versión, procedencia), `catalog_image` (bytes originales) | Privado, solo servidor |
+| `play` | `game`, `game_player`, `game_round`, `attempt` | Servidor; textos enviados nunca salen |
+| `play.public_game_results` | Vista sin respuestas ni textos | Proyección segura para futuros listados |
+
+Restricciones: una versión activa por elemento; versiones **inmutables** (disparador: solo se puede desactivar); `UNIQUE(game_id, item_id)` impide repetir preguntas; `UNIQUE(game_id, round_index)`; `UNIQUE(game_id, alias)`; intento con id único (idempotente) y un solo acierto por jugador y ronda; intentos solo de jugadores inscritos en la partida.
+
+```sh
+export DATABASE_URL=postgres://usuario:clave@host:5432/logos
+npm run db:migrate                              # aplica migraciones
+npm run db:seed                                 # importa el paquete ficticio content/demo
+npm run content:import -- ruta/al/paquete --check   # valida sin escribir
+npm run content:import -- ruta/al/paquete       # importa (idempotente)
+npm run content:build-demo                      # regenera el paquete ficticio
+```
+
+Formato de paquete: `manifest.json` (`pack`, `items[]` con `id`, `answer`, `aliases`, `category`, `difficulty` 1–5, `image`, `source{author, license, url?, notes?}`) y carpeta `images/` (PNG, WebP o SVG sin scripts, ≤2 MB). La validación rechaza ids repetidos, respuestas o alias ambiguos entre empresas (tras normalizar) e imágenes inválidas. Cambiar un elemento crea la versión N+1; las partidas antiguas siguen apuntando a la versión con la que se jugaron.
+
+Pruebas: usan un PostgreSQL real y crean una base aislada por archivo (`TEST_DATABASE_URL`, por defecto `postgres://postgres@localhost:5433/postgres`).
+
+Despliegue: `deploy/docker-compose.yml` (PostgreSQL 17 + servidor) con `deploy/.env.example`. Tras el primer arranque: `docker compose exec game npm run db:seed`.

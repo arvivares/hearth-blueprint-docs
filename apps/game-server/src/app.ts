@@ -22,6 +22,9 @@ import {
 import { signToken, verifyToken } from "./tokens";
 import { getMedia } from "./content/media";
 import { settings } from "./settings";
+import { createDb } from "./db/pool";
+import { migrate } from "./db/migrate";
+import { abortStaleGames, activeCatalogCount } from "./db/repo";
 
 const VERSION = "0.1.0";
 const TOKEN_TTL_MS = 12 * 60 * 60_000;
@@ -49,8 +52,17 @@ function rateLimit(max: number) {
   };
 }
 
-export async function startServer(port = Number(process.env.PORT ?? 2567), opts: { timeScale?: number } = {}) {
+export async function startServer(port = Number(process.env.PORT ?? 2567), opts: { timeScale?: number; databaseUrl?: string } = {}) {
   if (opts.timeScale) settings.timeScale = opts.timeScale;
+  const databaseUrl = opts.databaseUrl ?? process.env.DATABASE_URL;
+  if (!databaseUrl) throw new Error("DATABASE_URL es obligatorio (PostgreSQL)");
+  const db = createDb(databaseUrl);
+  settings.db = db;
+  await migrate(db);
+  const stale = await abortStaleGames(db);
+  if (stale) console.warn(`[db] ${stale} partidas a medias marcadas como interrumpidas tras reinicio`);
+  const available = await activeCatalogCount(db);
+  if (available === 0) console.warn("[db] catálogo vacío: ejecuta npm run db:seed");
   const app = express();
   const origins = (process.env.ALLOWED_ORIGINS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
   if (origins.length === 0) console.warn("[http] ALLOWED_ORIGINS vacío: se aceptan todos los orígenes (solo desarrollo)");
@@ -191,6 +203,10 @@ export async function startServer(port = Number(process.env.PORT ?? 2567), opts:
   const actualPort = (httpServer.address() as AddressInfo).port;
   return {
     port: actualPort,
-    close: () => gameServer.gracefullyShutdown(false),
+    db,
+    close: async () => {
+      await gameServer.gracefullyShutdown(false);
+      await db.end();
+    },
   };
 }

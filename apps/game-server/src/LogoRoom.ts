@@ -5,7 +5,8 @@ import { ClientMessages, MessageRole, type ClientMessageType } from "../../../pa
 import type { ErrorCode, GameConfig } from "../../../packages/contracts/src/common";
 import { verifyToken, type TokenClaims } from "./tokens";
 import { getById, unregisterRoom, type RoomRecord } from "./registry";
-import { DEMO_CATALOG, type CatalogItem } from "./content/catalog";
+import * as repo from "./db/repo";
+import type { Question } from "./db/repo";
 import { dropRoundMedia, prepareRoundMedia } from "./content/media";
 import { isCorrectAnswer, normalizeAnswer } from "./rules/normalize";
 import { computeRanking, pointsForStage, stageForElapsed } from "./rules/scoring";
@@ -58,7 +59,7 @@ interface AttemptRecord {
 
 interface RoundData {
   roundId: string;
-  item: CatalogItem;
+  item: Question;
   stageIds: string[];
   fullId: string;
 }
@@ -74,7 +75,9 @@ export class LogoRoom extends Room<LogoState> {
   private lastActivity = Date.now();
 
   // --- Motor de juego (solo servidor) ---
-  private questions: CatalogItem[] = [];
+  private questions: Question[] = [];
+  gameId: string | null = null;
+  private starting = false;
   /** Visible para pruebas en proceso; nunca se envía a clientes antes del cierre. */
   round: RoundData | null = null;
   private attempts = new Map<string, AttemptRecord>(); // attemptId -> resultado (idempotencia)
@@ -83,8 +86,17 @@ export class LogoRoom extends Room<LogoState> {
   private pausedAt = 0;
   private roundMs = 0;
   private preparing = false;
-  /** Registro de partida (se persistirá en PostgreSQL en la etapa de persistencia). */
+  /** Resumen en memoria de la partida actual (lo durable está en PostgreSQL). */
   history: { roundId: string; itemId: string; version: number; attempts: AttemptRecord[] }[] = [];
+
+  private get db() {
+    if (!settings.db) throw new Error("Base de datos no configurada");
+    return settings.db;
+  }
+
+  private persist(what: string, p: Promise<unknown>) {
+    p.catch((e) => console.error(`[db] fallo al guardar ${what} (sala ${this.state.roomCode})`, e));
+  }
 
   onCreate() {
     this.autoDispose = false;
@@ -102,7 +114,7 @@ export class LogoRoom extends Room<LogoState> {
 
   private applyConfig(c: GameConfig) {
     this.state.maxPlayers = c.maxPlayers;
-    this.state.totalRounds = Math.min(c.rounds, DEMO_CATALOG.length);
+    this.state.totalRounds = c.rounds;
     this.state.roundSeconds = c.roundSeconds;
     this.state.totalStages = c.revealStages;
   }
@@ -227,20 +239,42 @@ export class LogoRoom extends Room<LogoState> {
     return a;
   }
 
-  private startGame() {
-    for (const p of this.state.players.values()) {
-      p.score = 0;
-      p.correctCount = 0;
-      p.answeredThisRound = false;
-      p.waiting = false;
+  private async startGame() {
+    if (this.starting) return;
+    this.starting = true;
+    try {
+      const questions = await repo.selectQuestions(this.db, this.rec.config.rounds);
+      if (questions.length === 0) throw new Error("Catálogo vacío");
+      const players = this.activePlayers();
+      if (this.state.phase !== "LOBBY" || players.length === 0) return;
+      const gameId = randomUUID();
+      await repo.createGame(this.db, {
+        id: gameId,
+        roomCode: this.state.roomCode,
+        config: { ...this.rec.config, rounds: questions.length },
+        players: players.map(([id, p]) => ({ id, alias: p.alias })),
+      });
+      this.gameId = gameId;
+      for (const p of this.state.players.values()) {
+        p.score = 0;
+        p.correctCount = 0;
+        p.answeredThisRound = false;
+        p.waiting = false;
+      }
+      this.attempts.clear();
+      this.lastAttemptAt.clear();
+      this.history = [];
+      this.questions = questions;
+      this.state.totalRounds = questions.length;
+      this.state.roundIndex = -1;
+      this.updateRanking();
+      await this.prepareRound(0);
+    } catch (e) {
+      console.error("[motor] no se pudo iniciar la partida", e);
+      for (const c of this.clients) if ((c.userData as TokenClaims)?.role === "host") this.fail(c, "INTERNAL", "host:start");
+    } finally {
+      this.starting = false;
     }
-    this.attempts.clear();
-    this.lastAttemptAt.clear();
-    this.history = [];
-    this.questions = this.shuffle(DEMO_CATALOG).slice(0, this.state.totalRounds);
-    this.state.roundIndex = -1;
-    this.updateRanking();
-    void this.prepareRound(0);
   }
 
   private async prepareRound(index: number) {
@@ -255,10 +289,11 @@ export class LogoRoom extends Room<LogoState> {
     this.round = null;
     this.preparing = true;
     for (const p of this.state.players.values()) p.answeredThisRound = false;
-    const media = await prepareRoundMedia(this.roomId, roundId, item, this.state.totalStages);
+    await repo.createRound(this.db, { id: roundId, gameId: this.gameId!, index, itemId: item.itemId, versionId: item.versionId });
+    const media = await prepareRoundMedia(this.roomId, roundId, item.image.bytes, this.state.totalStages);
     if (this.state.roundId !== roundId || this.state.phase === "ABORTED") return dropRoundMedia(this.roomId, roundId);
     this.round = { roundId, item, ...media };
-    this.history.push({ roundId, itemId: item.id, version: item.version, attempts: [] });
+    this.history.push({ roundId, itemId: item.itemId, version: item.version, attempts: [] });
     this.preparing = false;
     // Plazo para que la pantalla confirme que puede mostrar el estado inicial.
     if (this.state.phase === "PREPARING") this.state.phaseEndsAt = Date.now() + scaled(settings.prepareTimeoutMs);
@@ -299,6 +334,7 @@ export class LogoRoom extends Room<LogoState> {
     this.state.phaseEndsAt = Date.now() + scaled(settings.resultsMs);
     this.updateRanking();
     const { roundId, item, fullId } = this.round;
+    this.persist("cierre de ronda", repo.endRound(this.db, roundId));
     // La solución solo se revela al cerrar la ronda. Los móviles no reciben la imagen.
     for (const c of this.clients) {
       const role = (c.userData as TokenClaims)?.role;
@@ -312,6 +348,13 @@ export class LogoRoom extends Room<LogoState> {
       this.state.phase = "FINAL_RESULTS";
       this.state.phaseEndsAt = 0;
       this.updateRanking();
+      if (this.gameId) {
+        const results = this.state.ranking.map((r) => {
+          const p = this.state.players.get(r.playerId)!;
+          return { playerId: r.playerId, score: p.score, correctCount: p.correctCount, rank: r.rank };
+        });
+        this.persist("resultados finales", repo.finishGame(this.db, this.gameId, results));
+      }
     } else void this.prepareRound(next);
   }
 
@@ -350,6 +393,7 @@ export class LogoRoom extends Room<LogoState> {
   }
 
   private abort() {
+    if (this.gameId) this.persist("interrupción", repo.abortGame(this.db, this.gameId));
     this.state.phase = "ABORTED";
     this.state.phaseEndsAt = 0;
     if (this.round) dropRoundMedia(this.roomId, this.round.roundId);
@@ -357,6 +401,8 @@ export class LogoRoom extends Room<LogoState> {
   }
 
   private resetToLobby() {
+    if (this.gameId && this.state.phase === "ABORTED") this.persist("interrupción", repo.abortGame(this.db, this.gameId));
+    this.gameId = null;
     if (this.round) dropRoundMedia(this.roomId, this.round.roundId);
     this.round = null;
     this.state.phase = "LOBBY";
@@ -431,6 +477,12 @@ export class LogoRoom extends Room<LogoState> {
       };
       this.attempts.set(a.attemptId, a);
       this.history.at(-1)?.attempts.push(a);
+      if (this.gameId && this.round && a.roundId === this.round.roundId) {
+        this.persist(
+          "intento",
+          repo.recordAttempt(this.db, { id: a.attemptId, gameId: this.gameId, roundId: a.roundId, playerId, status: a.status, normalized: a.normalized, stage: a.stage, points: a.points ?? 0, receivedAt: a.receivedAt }),
+        );
+      }
       client.send("attempt:result", this.publicResult(a));
     };
 
@@ -497,7 +549,7 @@ export class LogoRoom extends Room<LogoState> {
       }
       case "host:start":
         if (phase !== "LOBBY" || !this.state.screenConnected || this.activePlayers().length === 0) return bad();
-        return this.startGame();
+        return void this.startGame();
       case "host:pause":
         return ACTIVE_PHASES.includes(phase) ? this.pause() : bad();
       case "host:resume":

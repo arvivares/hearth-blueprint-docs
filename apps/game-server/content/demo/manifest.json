@@ -1,0 +1,180 @@
+{
+  "pack": "demo-ficticio",
+  "items": [
+    {
+      "id": "demo-c01",
+      "answer": "Zentrova",
+      "aliases": [
+        "Zentrova Labs"
+      ],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "img-001.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c02",
+      "answer": "Pulmar",
+      "aliases": [],
+      "category": "alimentación",
+      "difficulty": 2,
+      "image": "img-002.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c03",
+      "answer": "Ondalia Café",
+      "aliases": [
+        "Ondalia",
+        "Café Ondalia"
+      ],
+      "category": "hostelería",
+      "difficulty": 3,
+      "image": "img-003.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c04",
+      "answer": "Kravik & Sons",
+      "aliases": [
+        "Kravik and Sons",
+        "Kravik y Sons",
+        "Kravik"
+      ],
+      "category": "industria",
+      "difficulty": 4,
+      "image": "img-004.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c05",
+      "answer": "Lumbre",
+      "aliases": [],
+      "category": "energía",
+      "difficulty": 5,
+      "image": "img-005.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c06",
+      "answer": "Nébula Móvil",
+      "aliases": [
+        "Nebula"
+      ],
+      "category": "telecomunicaciones",
+      "difficulty": 1,
+      "image": "img-006.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c07",
+      "answer": "Tramuntana Bikes",
+      "aliases": [
+        "Tramuntana"
+      ],
+      "category": "transporte",
+      "difficulty": 2,
+      "image": "img-007.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c08",
+      "answer": "Gorrión",
+      "aliases": [
+        "Gorrion Express"
+      ],
+      "category": "logística",
+      "difficulty": 3,
+      "image": "img-008.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c09",
+      "answer": "Arkeon",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 4,
+      "image": "img-009.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c10",
+      "answer": "Vélez Hogar",
+      "aliases": [
+        "Velez"
+      ],
+      "category": "hogar",
+      "difficulty": 5,
+      "image": "img-010.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c11",
+      "answer": "Quasmo",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "img-011.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    },
+    {
+      "id": "demo-c12",
+      "answer": "Brisamar",
+      "aliases": [
+        "Brisamar Viajes"
+      ],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "img-012.svg",
+      "source": {
+        "author": "Proyecto Logos (generado por código)",
+        "license": "MIT",
+        "notes": "Empresa y logo ficticios creados para pruebas."
+      }
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import { Client, type Room } from "colyseus.js";
 import { matchMaker } from "colyseus";
 import { startServer } from "../src/app";
 import type { LogoRoom } from "../src/LogoRoom";
+import { createTestDb } from "./db-helper";
+let testDb: Awaited<ReturnType<typeof createTestDb>>;
 
 const SCALE = 0.02; // 120 s de ronda -> 2,4 s; enfriamiento 2 s -> 40 ms
 let base = "";
@@ -63,7 +65,8 @@ const mediaStatus = async (id: string, token = screenToken) => {
 };
 
 before(async () => {
-  server = await startServer(0, { timeScale: SCALE });
+  testDb = await createTestDb();
+  server = await startServer(0, { timeScale: SCALE, databaseUrl: testDb.url });
   base = `http://localhost:${server.port}`;
   const c = await api("/api/rooms", { config: { rounds: 2, roundSeconds: 120 } });
   ({ roomId, roomCode } = c.json);
@@ -89,6 +92,7 @@ before(async () => {
 
 after(async () => {
   await Promise.race([server.close(), wait(1500)]);
+  await testDb.drop();
 });
 
 test("no se puede responder ni iniciar sin permisos o fuera de fase", async () => {
@@ -217,6 +221,27 @@ test("fin por tiempo, clasificación final con empate compartido", async () => {
   assert.equal(rankOf(P[1]!), 1); // mismos puntos y aciertos -> posición compartida
   assert.equal(rankOf(P[2]!), 3);
   assert.equal(live().history.length, 2);
+});
+
+test("persistencia: partida, rondas sin repetir, intentos únicos y clasificación guardada", async () => {
+  const gameId = live().gameId!;
+  const db = testDb.db;
+  await waitFor(() => true);
+  await wait(200);
+  const g = (await db.query("SELECT status, ended_at FROM play.game WHERE id = $1", [gameId])).rows[0];
+  assert.equal(g.status, "finished");
+  const rounds = (await db.query("SELECT item_id, ended_at FROM play.game_round WHERE game_id = $1 ORDER BY round_index", [gameId])).rows;
+  assert.equal(rounds.length, 2);
+  assert.notEqual(rounds[0].item_id, rounds[1].item_id);
+  assert.ok(rounds.every((r) => r.ended_at));
+  const players = (await db.query("SELECT player_id, final_score, final_rank FROM play.game_player WHERE game_id = $1", [gameId])).rows;
+  assert.equal(players.length, 3);
+  for (const p of P) {
+    const row = players.find((x) => x.player_id === p.playerId)!;
+    assert.equal(row.final_score, host.state.players.get(p.playerId).score);
+  }
+  const correct = (await db.query("SELECT count(*)::int AS n FROM play.attempt WHERE game_id = $1 AND status = 'correct'", [gameId])).rows[0].n;
+  assert.equal(correct, 3); // Ana, Luis y Marta en la ronda 1; el duplicado no se guardó dos veces
 });
 
 test("nueva partida: el anfitrión vuelve a la sala de espera con marcadores a cero", async () => {

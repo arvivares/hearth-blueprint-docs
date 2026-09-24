@@ -1,6 +1,5 @@
 import { randomBytes } from "node:crypto";
 import sharp from "sharp";
-import { logoSvg, type CatalogItem } from "./catalog";
 
 /**
  * Almacén en memoria de imágenes por etapa. Cada imagen tiene un id opaco
@@ -31,8 +30,8 @@ export function blockSizes(stages: number): number[] {
   return Array.from({ length: stages }, (_, i) => Math.round(max * Math.pow(min / max, i / (stages - 1))));
 }
 
-export async function prepareRoundMedia(roomId: string, roundId: string, item: CatalogItem, stages: number) {
-  const original = await sharp(Buffer.from(logoSvg(item))).png().toBuffer();
+export async function prepareRoundMedia(roomId: string, roundId: string, image: Buffer, stages: number) {
+  const original = await sharp(image).resize(512, 512, { fit: "contain", background: "#f8fafc" }).png().toBuffer();
   const size = 512;
   const stageIds: string[] = [];
   for (const [i, block] of blockSizes(stages).entries()) {

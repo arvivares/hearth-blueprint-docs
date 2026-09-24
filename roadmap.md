@@ -25,3 +25,9 @@
 - [x] Ciclo de ronda en servidor (preparación, cuenta atrás, etapas, cierre, final, pausa)
 - [x] Imágenes por etapa protegidas con catálogo ficticio propio
 - [x] Pruebas de integración y simulación de partida completa
+
+## Etapa 5 (hecha) — PostgreSQL
+- [x] Migraciones (esquemas content/play, restricciones anti-duplicados, versiones inmutables)
+- [x] Importación y validación de contenido + paquete ficticio reproducible
+- [x] Persistencia de partidas, jugadores, rondas e intentos; selección sin repeticiones
+- [x] Pruebas con PostgreSQL real
