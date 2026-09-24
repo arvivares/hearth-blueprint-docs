@@ -168,6 +168,7 @@ test("error, límite de frecuencia y acierto por alias en etapa posterior", asyn
 
 test("reconexión durante la ronda: conserva puntos y recibe sus resultados sin repetir efectos", async () => {
   const p = P[2]!;
+  await waitFor(() => host.state.players.get(p.playerId).score > 0, 3000, "sincronía");
   const scoreBefore = host.state.players.get(p.playerId).score;
   const before = p.results.length;
   await p.room.leave();
