@@ -37,6 +37,8 @@ export interface ServerErrorMsg {
   at: number;
 }
 
+const MAX_RETRIES = 12;
+
 /** Conexión real al servidor Colyseus. Sin datos simulados ni respaldo local. */
 export function useGameRoom(roomId: string | null, token: string | null) {
   const [state, setState] = useState<RoomSnapshot | null>(null);
@@ -49,6 +51,34 @@ export function useGameRoom(roomId: string | null, token: string | null) {
   // Desfase estimado reloj servidor - reloj local (ms). Solo para mostrar el tiempo.
   const [clockOffset, setClockOffset] = useState(0);
   const roomRef = useRef<Room | null>(null);
+  // Reconexión automática: cada incremento de `gen` repite la conexión con el mismo token.
+  const [gen, setGen] = useState(0);
+  const tries = useRef(0);
+  const retryTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const scheduleRetry = useCallback((immediate = false) => {
+    clearTimeout(retryTimer.current);
+    if (tries.current >= MAX_RETRIES) return false;
+    const delay = immediate ? 0 : Math.min(1000 * 2 ** tries.current, 10_000);
+    tries.current += 1;
+    retryTimer.current = setTimeout(() => setGen((g) => g + 1), delay);
+    return true;
+  }, []);
+
+  // Al volver a primer plano (pantalla bloqueada en iOS/Android) o recuperar red, reintentar ya.
+  useEffect(() => {
+    const wake = () => {
+      if (document.visibilityState === "visible" && !roomRef.current && roomId && token) {
+        tries.current = 0;
+        scheduleRetry(true);
+      }
+    };
+    document.addEventListener("visibilitychange", wake);
+    window.addEventListener("online", wake);
+    return () => {
+      document.removeEventListener("visibilitychange", wake);
+      window.removeEventListener("online", wake);
+    };
+  }, [roomId, token, scheduleRetry]);
 
   useEffect(() => {
     if (!roomId || !token) return;
@@ -62,7 +92,9 @@ export function useGameRoom(roomId: string | null, token: string | null) {
         const room = await new Client(SERVER_URL).joinById(roomId, { token });
         if (cancelled) return void room.leave();
         roomRef.current = room;
+        tries.current = 0;
         setStatus("connected");
+        setError(null);
         room.onStateChange((s) => setState(s.toJSON() as RoomSnapshot));
         room.onMessage("error", (m: { code: string; ref?: string }) => setLastServerError({ ...m, at: Date.now() }));
         room.onMessage("attempt:result", (m: AttemptResult) => setLastAttempt(m));
@@ -78,15 +110,26 @@ export function useGameRoom(roomId: string | null, token: string | null) {
         syncTimer = setInterval(sync, 15_000);
         room.onLeave((code) => {
           clearInterval(syncTimer);
-          setStatus("closed");
-          if (code === 4003) setError("Has sido expulsado de la sala.");
-          else if (code === 4000) setError("Esta sesión se abrió en otra pestaña o dispositivo.");
-          else if (code !== 1000) setError("Conexión con el servidor perdida.");
+          if (roomRef.current === room) roomRef.current = null;
+          if (cancelled) return;
+          if (code === 4003) return setClosed("Has sido expulsado de la sala.");
+          if (code === 4000) return setClosed("Esta sesión se abrió en otra pestaña o dispositivo.");
+          if (code === 1000) return setClosed(null);
+          // Corte de red, servidor reiniciado o exceso de mensajes (4008): reintentar con espera creciente.
+          setStatus("connecting");
+          setError("Conexión perdida. Reconectando…");
+          if (!scheduleRetry()) setClosed("Conexión con el servidor perdida.");
         });
       } catch (e) {
         if (cancelled) return;
-        setStatus("error");
         const msg = e instanceof Error ? e.message : String(e);
+        const fatal = /FORBIDDEN|UNAUTHORIZED|ROOM_NOT_FOUND|not found/i.test(msg);
+        if (!fatal && tries.current > 0 && scheduleRetry()) {
+          setStatus("connecting");
+          setError("Conexión perdida. Reconectando…");
+          return;
+        }
+        setStatus("error");
         setError(
           msg.includes("FORBIDDEN") || msg.includes("UNAUTHORIZED")
             ? "Sesión no válida para esta sala."
@@ -94,13 +137,18 @@ export function useGameRoom(roomId: string | null, token: string | null) {
         );
       }
     })();
+    function setClosed(msg: string | null) {
+      setStatus("closed");
+      setError(msg);
+    }
     return () => {
       cancelled = true;
       clearInterval(syncTimer);
+      clearTimeout(retryTimer.current);
       roomRef.current?.leave();
       roomRef.current = null;
     };
-  }, [roomId, token]);
+  }, [roomId, token, gen, scheduleRetry]);
 
   const send = useCallback((type: string, payload: unknown = {}) => roomRef.current?.send(type, payload), []);
   return { state, status, error, lastServerError, lastAttempt, media, reveal, clockOffset, send };
