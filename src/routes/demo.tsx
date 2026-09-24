@@ -18,9 +18,7 @@ import { DEMO_PHASES, type DemoPhase } from "@/game/demo/fixtures";
 import { HostView } from "@/game/views/HostView";
 import { PlayerView } from "@/game/views/PlayerView";
 import { TvView } from "@/game/views/TvView";
-import type { RoomSnapshot } from "@/game/useGameRoom";
-
-import { ALL_100_BRANDS } from "@/game/brands100";
+import { ALL_BRANDS } from "@/game/brands";
 
 export const Route = createFileRoute("/demo")({
   validateSearch: z.object({
@@ -84,9 +82,9 @@ function DemoPage() {
   const { view, phase: urlPhase } = Route.useSearch();
   const navigate = useNavigate();
 
-  // Barajar las 100 marcas aleatoriamente para cada sesión de demo
+  // Barajar las 500 marcas globales aleatoriamente para cada sesión de demo
   const [brands] = useState(() => {
-    const list = [...ALL_100_BRANDS];
+    const list = [...ALL_BRANDS];
     for (let i = list.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [list[i], list[j]] = [list[j], list[i]];
@@ -150,8 +148,11 @@ function DemoPage() {
   const handlePlayerSubmit = (guess: string) => {
     const cleanGuess = guess.trim().toLowerCase();
     const correctName = activeBrand.name.toLowerCase();
+    const isAlias = activeBrand.aliases?.some(
+      (a) => a.toLowerCase() === cleanGuess || cleanGuess.includes(a.toLowerCase()),
+    );
 
-    if (cleanGuess === correctName || correctName.includes(cleanGuess)) {
+    if (cleanGuess === correctName || correctName.includes(cleanGuess) || isAlias) {
       const earned = Math.max(200, 1000 - (stage - 1) * 180);
       setUserScore((s) => s + earned);
       setUserAnswered(true);

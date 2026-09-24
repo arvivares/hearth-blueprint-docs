@@ -1,5 +1,5 @@
 {
-  "pack": "marcas-reales-100",
+  "pack": "marcas-reales-500",
   "items": [
     {
       "id": "brand-apple",
@@ -1362,6 +1362,5606 @@
       "source": {
         "author": "IKEA",
         "license": "Marca registrada / Fair Use",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airfrance",
+      "answer": "Air France",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-airfrance.png",
+      "source": {
+        "author": "Air France",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.airfrance.fr",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-aircanada",
+      "answer": "Air Canada",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 3,
+      "image": "brand-aircanada.png",
+      "source": {
+        "author": "Air Canada",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.aircanada.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airchina",
+      "answer": "Air China",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-airchina.png",
+      "source": {
+        "author": "Air China",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.airchina.com.cn/en/investor_relations",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airindia",
+      "answer": "Air India",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-airindia.png",
+      "source": {
+        "author": "Air India",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.airindia.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-aeromexico",
+      "answer": "Aeroméxico",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-aeromexico.png",
+      "source": {
+        "author": "Aeroméxico",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.aeromexico.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airasia",
+      "answer": "AirAsia",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 1,
+      "image": "brand-airasia.png",
+      "source": {
+        "author": "AirAsia",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.airasia.com/shop",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-americanairlines",
+      "answer": "American Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-americanairlines.png",
+      "source": {
+        "author": "American Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://news.aa.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ana",
+      "answer": "ANA",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-ana.png",
+      "source": {
+        "author": "ANA",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ana.co.jp/en/eur/the-ana-experience/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-britishairways",
+      "answer": "British Airways",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-britishairways.png",
+      "source": {
+        "author": "British Airways",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.britishairways.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-delta",
+      "answer": "Delta",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-delta.png",
+      "source": {
+        "author": "Delta",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://news.delta.com/delta-air-lines-logos-brand-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-easyjet",
+      "answer": "easyJet",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-easyjet.png",
+      "source": {
+        "author": "easyJet",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.easyjet.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-emirates",
+      "answer": "Emirates",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-emirates.png",
+      "source": {
+        "author": "Emirates",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.emirates.com/ie/english/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-etihadairways",
+      "answer": "Etihad Airways",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-etihadairways.png",
+      "source": {
+        "author": "Etihad Airways",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.etihad.com/en-ie/manage/duty-free",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-iberia",
+      "answer": "Iberia",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-iberia.png",
+      "source": {
+        "author": "Iberia",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://iberia.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-japanairlines",
+      "answer": "Japan Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-japanairlines.png",
+      "source": {
+        "author": "Japan Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.jal.co.jp",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-jetblue",
+      "answer": "JetBlue",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-jetblue.png",
+      "source": {
+        "author": "JetBlue",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.jetblue.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-klm",
+      "answer": "KLM",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-klm.png",
+      "source": {
+        "author": "KLM",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.klm.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-lufthansa",
+      "answer": "Lufthansa",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-lufthansa.png",
+      "source": {
+        "author": "Lufthansa",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.lufthansa.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-norwegian",
+      "answer": "Norwegian",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-norwegian.png",
+      "source": {
+        "author": "Norwegian",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.norwegian.com/ie/travel-info/on-board/in-flight-entertainment/magazine/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-qantas",
+      "answer": "Qantas",
+      "aliases": [],
+      "category": "moda",
+      "difficulty": 3,
+      "image": "brand-qantas.png",
+      "source": {
+        "author": "Qantas",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.qantas.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-qatarairways",
+      "answer": "Qatar Airways",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-qatarairways.png",
+      "source": {
+        "author": "Qatar Airways",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.qatarairways.com/press-releases/en-WW/media_kits",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ryanair",
+      "answer": "Ryanair",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-ryanair.png",
+      "source": {
+        "author": "Ryanair",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://corporate.ryanair.com/media-centre/stock-images-gallery/#album-container-3",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-singaporeairlines",
+      "answer": "Singapore Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 3,
+      "image": "brand-singaporeairlines.png",
+      "source": {
+        "author": "Singapore Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.singaporeair.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-southwestairlines",
+      "answer": "Southwest Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-southwestairlines.png",
+      "source": {
+        "author": "Southwest Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.southwest.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-turkishairlines",
+      "answer": "Turkish Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-turkishairlines.png",
+      "source": {
+        "author": "Turkish Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.turkishairlines.com/en-int/press-room/logo-archive/index.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-unitedairlines",
+      "answer": "United Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 3,
+      "image": "brand-unitedairlines.png",
+      "source": {
+        "author": "United Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.united.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-virginatlantic",
+      "answer": "Virgin Atlantic",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 1,
+      "image": "brand-virginatlantic.png",
+      "source": {
+        "author": "Virgin Atlantic",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.virginatlantic.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wizzair",
+      "answer": "Wizz Air",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-wizzair.png",
+      "source": {
+        "author": "Wizz Air",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://wizzair.com/en-gb/information-and-services/about-us/press-office/logos",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-chinaeasternairlines",
+      "answer": "China Eastern Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 3,
+      "image": "brand-chinaeasternairlines.png",
+      "source": {
+        "author": "China Eastern Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://uk.ceair.com/newCMS/uk/en/content/en_Footer/Support/201904/t20190404_5763.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-chinasouthernairlines",
+      "answer": "China Southern Airlines",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-chinasouthernairlines.png",
+      "source": {
+        "author": "China Southern Airlines",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.csair.com/en/about/investor/yejibaogao/2020/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-aeroflot",
+      "answer": "Aeroflot",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-aeroflot.png",
+      "source": {
+        "author": "Aeroflot",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.aeroflot.ru/ru-en/information/onboard/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airserbia",
+      "answer": "Air Serbia",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 3,
+      "image": "brand-airserbia.png",
+      "source": {
+        "author": "Air Serbia",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.airserbia.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airtransat",
+      "answer": "Air Transat",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-airtransat.png",
+      "source": {
+        "author": "Air Transat",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.airtransat.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-akasaair",
+      "answer": "Akasa Air",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-akasaair.png",
+      "source": {
+        "author": "Akasa Air",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.akasaair.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-astonmartin",
+      "answer": "Aston Martin",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-astonmartin.png",
+      "source": {
+        "author": "Aston Martin",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.astonmartin.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bentley",
+      "answer": "Bentley",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-bentley.png",
+      "source": {
+        "author": "Bentley",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://en.wikipedia.org/wiki/File:Bentley_logo_2.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bugatti",
+      "answer": "Bugatti",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-bugatti.png",
+      "source": {
+        "author": "Bugatti",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://newsroom.bugatti.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mclaren",
+      "answer": "McLaren",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-mclaren.png",
+      "source": {
+        "author": "McLaren",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://cars.mclaren.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-maserati",
+      "answer": "Maserati",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-maserati.png",
+      "source": {
+        "author": "Maserati",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.stellantis.com/en/brands/maserati",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-subaru",
+      "answer": "Subaru",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-subaru.png",
+      "source": {
+        "author": "Subaru",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Subaru_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-citroen",
+      "answer": "Citroën",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-citroen.png",
+      "source": {
+        "author": "Citroën",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.stellantis.com/en/brands/citroen",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-opel",
+      "answer": "Opel",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-opel.png",
+      "source": {
+        "author": "Opel",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.stellantis.com/en/brands/opel",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-seat",
+      "answer": "SEAT",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-seat.png",
+      "source": {
+        "author": "SEAT",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.seat.es",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-skoda",
+      "answer": "ŠKODA",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-skoda.png",
+      "source": {
+        "author": "ŠKODA",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.skoda-connect.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-rollsroyce",
+      "answer": "Rolls-Royce",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-rollsroyce.png",
+      "source": {
+        "author": "Rolls-Royce",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.rolls-roycemotorcars.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dacia",
+      "answer": "Dacia",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-dacia.png",
+      "source": {
+        "author": "Dacia",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Dacia-Logo-2021.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-infiniti",
+      "answer": "INFINITI",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-infiniti.png",
+      "source": {
+        "author": "INFINITI",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.infiniti.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-polestar",
+      "answer": "Polestar",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-polestar.png",
+      "source": {
+        "author": "Polestar",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Polestar_logo_2020.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-smart",
+      "answer": "smart",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-smart.png",
+      "source": {
+        "author": "smart",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://global.smart.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-iveco",
+      "answer": "IVECO",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-iveco.png",
+      "source": {
+        "author": "IVECO",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.iveco.com/global/welcome",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-scania",
+      "answer": "Scania",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-scania.png",
+      "source": {
+        "author": "Scania",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://digitaldesign.scania.com/resources/brand/logotype",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-man",
+      "answer": "MAN",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-man.png",
+      "source": {
+        "author": "MAN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://man.eu/corporate/en/homepage.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ducati",
+      "answer": "Ducati",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-ducati.png",
+      "source": {
+        "author": "Ducati",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brandlogos.net/ducati-logo-vector-svg-92931.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-acura",
+      "answer": "Acura",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-acura.png",
+      "source": {
+        "author": "Acura",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.acura.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-koenigsegg",
+      "answer": "Koenigsegg",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-koenigsegg.png",
+      "source": {
+        "author": "Koenigsegg",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.koenigsegg.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-chrysler",
+      "answer": "Chrysler",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-chrysler.png",
+      "source": {
+        "author": "Chrysler",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.stellantis.com/en/brands/chrysler",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-cadillac",
+      "answer": "Cadillac",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-cadillac.png",
+      "source": {
+        "author": "Cadillac",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.cadillac.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mini",
+      "answer": "Mini",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-mini.png",
+      "source": {
+        "author": "Mini",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://mini.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mitsubishi",
+      "answer": "Mitsubishi",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-mitsubishi.png",
+      "source": {
+        "author": "Mitsubishi",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.mitsubishi.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ktm",
+      "answer": "KTM",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-ktm.png",
+      "source": {
+        "author": "KTM",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://ktm.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-yamahamotorcorporation",
+      "answer": "Yamaha Motor",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-yamahamotorcorporation.png",
+      "source": {
+        "author": "Yamaha Motor",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Yamaha_Motor_Logo_(full).svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vespa",
+      "answer": "Vespa",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-vespa.png",
+      "source": {
+        "author": "Vespa",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.piaggiogroup.com/en/archive/document/logo-guide",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-husqvarna",
+      "answer": "Husqvarna",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-husqvarna.png",
+      "source": {
+        "author": "Husqvarna",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.husqvarna.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vauxhall",
+      "answer": "Vauxhall",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-vauxhall.png",
+      "source": {
+        "author": "Vauxhall",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.stellantis.com/en/brands/vauxhall",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-lyft",
+      "answer": "Lyft",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 3,
+      "image": "brand-lyft.png",
+      "source": {
+        "author": "Lyft",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.lyft.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-grab",
+      "answer": "Grab",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-grab.png",
+      "source": {
+        "author": "Grab",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://en.wikipedia.org/wiki/File:Grab_(application)_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-waze",
+      "answer": "Waze",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-waze.png",
+      "source": {
+        "author": "Waze",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.waze.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hilton",
+      "answer": "Hilton",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-hilton.png",
+      "source": {
+        "author": "Hilton",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.hilton.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-marriott",
+      "answer": "Marriott",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 1,
+      "image": "brand-marriott.png",
+      "source": {
+        "author": "Marriott",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://marriott-hotels.marriott.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-trivago",
+      "answer": "trivago",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-trivago.png",
+      "source": {
+        "author": "trivago",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://company.trivago.com/press-media",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-expedia",
+      "answer": "Expedia",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 3,
+      "image": "brand-expedia.png",
+      "source": {
+        "author": "Expedia",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brandfolder.com/portals/brand-expedia",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-boeing",
+      "answer": "Boeing",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-boeing.png",
+      "source": {
+        "author": "Boeing",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Boeing_full_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airbus",
+      "answer": "Airbus",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 2,
+      "image": "brand-airbus.png",
+      "source": {
+        "author": "Airbus",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.airbus.com/en/asset-library/airbus-logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-virgin",
+      "answer": "Virgin",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 3,
+      "image": "brand-virgin.png",
+      "source": {
+        "author": "Virgin",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.virgin.com/img/virgin-logo-square.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-abb",
+      "answer": "ABB",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 1,
+      "image": "brand-abb.png",
+      "source": {
+        "author": "ABB",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://global.abb",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-3m",
+      "answer": "3M",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 2,
+      "image": "brand-3m.png",
+      "source": {
+        "author": "3M",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.3m.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-irobot",
+      "answer": "iRobot",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 3,
+      "image": "brand-irobot.png",
+      "source": {
+        "author": "iRobot",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.irobot.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-justeat",
+      "answer": "Just Eat",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-justeat.png",
+      "source": {
+        "author": "Just Eat",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand-box.marketing.just-eat.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-doordash",
+      "answer": "DoorDash",
+      "aliases": [],
+      "category": "alimentación",
+      "difficulty": 2,
+      "image": "brand-doordash.png",
+      "source": {
+        "author": "DoorDash",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.doordash.com/about/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-postmates",
+      "answer": "Postmates",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-postmates.png",
+      "source": {
+        "author": "Postmates",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://postmates.com/press-and-media",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-foodpanda",
+      "answer": "foodpanda",
+      "aliases": [],
+      "category": "alimentación",
+      "difficulty": 1,
+      "image": "brand-foodpanda.png",
+      "source": {
+        "author": "foodpanda",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.foodpanda.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-zomato",
+      "answer": "Zomato",
+      "aliases": [],
+      "category": "alimentación",
+      "difficulty": 2,
+      "image": "brand-zomato.png",
+      "source": {
+        "author": "Zomato",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.zomato.com/business/apps",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-aldinord",
+      "answer": "Aldi Nord",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-aldinord.png",
+      "source": {
+        "author": "Aldi Nord",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Aldi_Nord_201x_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-aldisud",
+      "answer": "Aldi Süd",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-aldisud.png",
+      "source": {
+        "author": "Aldi Süd",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.aldi-sued.de",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-shell",
+      "answer": "Shell",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-shell.png",
+      "source": {
+        "author": "Shell",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://en.wikipedia.org/wiki/File:Shell_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-anta",
+      "answer": "Anta",
+      "aliases": [],
+      "category": "moda",
+      "difficulty": 3,
+      "image": "brand-anta.png",
+      "source": {
+        "author": "Anta",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.anta.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-peakdesign",
+      "answer": "Peak Design",
+      "aliases": [],
+      "category": "moda",
+      "difficulty": 1,
+      "image": "brand-peakdesign.png",
+      "source": {
+        "author": "Peak Design",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.peakdesign.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-beats",
+      "answer": "Beats",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-beats.png",
+      "source": {
+        "author": "Beats",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.elastic.co/beats",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-beatsbydre",
+      "answer": "Beats by Dre",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-beatsbydre.png",
+      "source": {
+        "author": "Beats by Dre",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.beatsbydre.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bose",
+      "answer": "Bose",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-bose.png",
+      "source": {
+        "author": "Bose",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.bose.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sennheiser",
+      "answer": "Sennheiser",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-sennheiser.png",
+      "source": {
+        "author": "Sennheiser",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://sennheiser.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-jbl",
+      "answer": "JBL",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-jbl.png",
+      "source": {
+        "author": "JBL",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.jbl.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sonos",
+      "answer": "Sonos",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-sonos.png",
+      "source": {
+        "author": "Sonos",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.sonos.com/en-gb/home",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-motorola",
+      "answer": "Motorola",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-motorola.png",
+      "source": {
+        "author": "Motorola",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://motorola-global-portal-de.custhelp.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-oneplus",
+      "answer": "OnePlus",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-oneplus.png",
+      "source": {
+        "author": "OnePlus",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.oneplus.com/ca_en/brand/asset",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-oppo",
+      "answer": "OPPO",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-oppo.png",
+      "source": {
+        "author": "OPPO",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.figma.com/community/file/832815970641696814/OPPO-Media-Kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vivo",
+      "answer": "vivo",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-vivo.png",
+      "source": {
+        "author": "vivo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.vivo.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-blackberry",
+      "answer": "Blackberry",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-blackberry.png",
+      "source": {
+        "author": "Blackberry",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.blackberry.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-htc",
+      "answer": "HTC",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-htc.png",
+      "source": {
+        "author": "HTC",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://htc.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-tplink",
+      "answer": "TP-Link",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-tplink.png",
+      "source": {
+        "author": "TP-Link",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.tp-link.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-netgear",
+      "answer": "NETGEAR",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-netgear.png",
+      "source": {
+        "author": "NETGEAR",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.powershift.netgear.de/images/powershift/collateral/logos-visio-icons/brandguideline_partner_2018.pdf",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ubiquiti",
+      "answer": "Ubiquiti",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-ubiquiti.png",
+      "source": {
+        "author": "Ubiquiti",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ui.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-synology",
+      "answer": "Synology",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-synology.png",
+      "source": {
+        "author": "Synology",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.synology.com/en-global/company/branding",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-qnap",
+      "answer": "QNAP",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 3,
+      "image": "brand-qnap.png",
+      "source": {
+        "author": "QNAP",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://marketing.qnap.com/resource/qnap-logo-k100",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-corsair",
+      "answer": "Corsair",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-corsair.png",
+      "source": {
+        "author": "Corsair",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.corsair.com/newsroom/company-logos",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-steelseries",
+      "answer": "Steelseries",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-steelseries.png",
+      "source": {
+        "author": "Steelseries",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://techblog.steelseries.com/ux-guide/index.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-kingstontechnology",
+      "answer": "Kingston Technology",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-kingstontechnology.png",
+      "source": {
+        "author": "Kingston Technology",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.kingston.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-seagate",
+      "answer": "Seagate",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-seagate.png",
+      "source": {
+        "author": "Seagate",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://branding.seagate.com/productpage/3fc51aba-c35a-4eff-a833-a258b0440bd2",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hyperx",
+      "answer": "HyperX",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-hyperx.png",
+      "source": {
+        "author": "HyperX",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://ca.hyperx.com/cdn/shop/files/image_placeholder.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-garmin",
+      "answer": "Garmin",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-garmin.png",
+      "source": {
+        "author": "Garmin",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://creative.garmin.com/styleguide/logo/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fitbit",
+      "answer": "Fitbit",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-fitbit.png",
+      "source": {
+        "author": "Fitbit",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.fitbit.com/uk/home",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-razer",
+      "answer": "Razer",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-razer.png",
+      "source": {
+        "author": "Razer",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://press.razer.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-msi",
+      "answer": "MSI",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-msi.png",
+      "source": {
+        "author": "MSI",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.msi.com/page/brochure",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-qualcomm",
+      "answer": "Qualcomm",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-qualcomm.png",
+      "source": {
+        "author": "Qualcomm",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.qualcomm.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-broadcom",
+      "answer": "Broadcom",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-broadcom.png",
+      "source": {
+        "author": "Broadcom",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.broadcom.com/support",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wacom",
+      "answer": "Wacom",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-wacom.png",
+      "source": {
+        "author": "Wacom",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://support.wacom.com/hc/en-us",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-nzxt",
+      "answer": "NZXT",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-nzxt.png",
+      "source": {
+        "author": "NZXT",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://nzxt.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-epson",
+      "answer": "Epson",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 2,
+      "image": "brand-epson.png",
+      "source": {
+        "author": "Epson",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://global.epson.com/IR/library/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fujifilm",
+      "answer": "Fujifilm",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-fujifilm.png",
+      "source": {
+        "author": "Fujifilm",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.fujifilm.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fujitsu",
+      "answer": "Fujitsu",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-fujitsu.png",
+      "source": {
+        "author": "Fujitsu",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.fujitsu.com/global/about/brandmanagement/logo/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-alienware",
+      "answer": "Alienware",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-alienware.png",
+      "source": {
+        "author": "Alienware",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.dell.com/en-us/gaming/alienware",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-elgato",
+      "answer": "Elgato",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-elgato.png",
+      "source": {
+        "author": "Elgato",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.elgato.com/en/media-room",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-boat",
+      "answer": "boAt",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-boat.png",
+      "source": {
+        "author": "boAt",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.boat-lifestyle.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-creality",
+      "answer": "Creality",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-creality.png",
+      "source": {
+        "author": "Creality",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.creality.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-elegoo",
+      "answer": "Elegoo",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-elegoo.png",
+      "source": {
+        "author": "Elegoo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.elegoo.com/pages/download",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-havells",
+      "answer": "Havells",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 1,
+      "image": "brand-havells.png",
+      "source": {
+        "author": "Havells",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://havells.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-audiotechnica",
+      "answer": "Audio-Technica",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 2,
+      "image": "brand-audiotechnica.png",
+      "source": {
+        "author": "Audio-Technica",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Audio-technica.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ea",
+      "answer": "EA",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-ea.png",
+      "source": {
+        "author": "EA",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ea.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-riotgames",
+      "answer": "Riot Games",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-riotgames.png",
+      "source": {
+        "author": "Riot Games",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.riotgames.com/en/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-valve",
+      "answer": "Valve",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-valve.png",
+      "source": {
+        "author": "Valve",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.valvesoftware.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-squareenix",
+      "answer": "Square Enix",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-squareenix.png",
+      "source": {
+        "author": "Square Enix",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.square-enix.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-konami",
+      "answer": "Konami",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-konami.png",
+      "source": {
+        "author": "Konami",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Konami_4th_logo_2.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-activision",
+      "answer": "Activision",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-activision.png",
+      "source": {
+        "author": "Activision",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.activision.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-supercell",
+      "answer": "Supercell",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-supercell.png",
+      "source": {
+        "author": "Supercell",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.supercell.com/media",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-cdprojekt",
+      "answer": "CD Projekt",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-cdprojekt.png",
+      "source": {
+        "author": "CD Projekt",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.cdprojekt.com/en/media/logotypes/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-gogdotcom",
+      "answer": "GOG.com",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-gogdotcom.png",
+      "source": {
+        "author": "GOG.com",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.cdprojekt.com/en/media/logotypes/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-itchdotio",
+      "answer": "Itch.io",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-itchdotio.png",
+      "source": {
+        "author": "Itch.io",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://itch.io/press-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-battledotnet",
+      "answer": "Battle.net",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-battledotnet.png",
+      "source": {
+        "author": "Battle.net",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://battle.net",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-unrealengine",
+      "answer": "Unreal Engine",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 2,
+      "image": "brand-unrealengine.png",
+      "source": {
+        "author": "Unreal Engine",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.unrealengine.com/en-US/branding",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-curseforge",
+      "answer": "CurseForge",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-curseforge.png",
+      "source": {
+        "author": "CurseForge",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.curseforge.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-gamemaker",
+      "answer": "Gamemaker",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-gamemaker.png",
+      "source": {
+        "author": "Gamemaker",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://gamemaker.io/en/legal/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-2k",
+      "answer": "2K",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-2k.png",
+      "source": {
+        "author": "2K",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://support.2k.com/hc/en-us/articles/203972113-Digital-Copies-of-2K-Manuals",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-steamdeck",
+      "answer": "Steam Deck",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 3,
+      "image": "brand-steamdeck.png",
+      "source": {
+        "author": "Steam Deck",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://partner.steamgames.com/doc/marketing/branding",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-leagueoflegends",
+      "answer": "League of Legends",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-leagueoflegends.png",
+      "source": {
+        "author": "League of Legends",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.leagueoflegends.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-faceit",
+      "answer": "FACEIT",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-faceit.png",
+      "source": {
+        "author": "FACEIT",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://corporate.faceit.com/branding/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-remedyentertainment",
+      "answer": "Remedy Entertainment",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-remedyentertainment.png",
+      "source": {
+        "author": "Remedy Entertainment",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.remedygames.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-artstation",
+      "answer": "ArtStation",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-artstation.png",
+      "source": {
+        "author": "ArtStation",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.artstation.com/about/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-pixiv",
+      "answer": "pixiv",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-pixiv.png",
+      "source": {
+        "author": "pixiv",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://policies.pixiv.net/en.html#brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sketchfab",
+      "answer": "Sketchfab",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-sketchfab.png",
+      "source": {
+        "author": "Sketchfab",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://sketchfab.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-turbosquid",
+      "answer": "TurboSquid",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-turbosquid.png",
+      "source": {
+        "author": "TurboSquid",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.brand.turbosquid.com/turbosquidicons",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-modrinth",
+      "answer": "Modrinth",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-modrinth.png",
+      "source": {
+        "author": "Modrinth",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://github.com/modrinth/art/blob/d5ab4f965b0b4cea7201967483885ecd8d04a562/Branding/Favicon/favicon.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-opencritic",
+      "answer": "OpenCritic",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-opencritic.png",
+      "source": {
+        "author": "OpenCritic",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:OpenCritic_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-igdb",
+      "answer": "IGDB",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-igdb.png",
+      "source": {
+        "author": "IGDB",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:IGDB_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-steamdb",
+      "answer": "SteamDB",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 2,
+      "image": "brand-steamdb.png",
+      "source": {
+        "author": "SteamDB",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://steamdb.info",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-protondb",
+      "answer": "ProtonDB",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-protondb.png",
+      "source": {
+        "author": "ProtonDB",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.protondb.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-anilist",
+      "answer": "AniList",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-anilist.png",
+      "source": {
+        "author": "AniList",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://anilist.co",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-kitsu",
+      "answer": "Kitsu",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-kitsu.png",
+      "source": {
+        "author": "Kitsu",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://kitsu.io",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dcentertainment",
+      "answer": "DC Entertainment",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-dcentertainment.png",
+      "source": {
+        "author": "DC Entertainment",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.readdc.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-imdb",
+      "answer": "IMDb",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-imdb.png",
+      "source": {
+        "author": "IMDb",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.imdb.com/imdb",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-rottentomatoes",
+      "answer": "Rotten Tomatoes",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-rottentomatoes.png",
+      "source": {
+        "author": "Rotten Tomatoes",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Rottentomatoesalternativelogo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-letterboxd",
+      "answer": "Letterboxd",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-letterboxd.png",
+      "source": {
+        "author": "Letterboxd",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://letterboxd.com/about/brand/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vimeo",
+      "answer": "Vimeo",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-vimeo.png",
+      "source": {
+        "author": "Vimeo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://press.vimeo.com/brand-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dailymotion",
+      "answer": "Dailymotion",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-dailymotion.png",
+      "source": {
+        "author": "Dailymotion",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://careers.dailymotion.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-shazam",
+      "answer": "Shazam",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-shazam.png",
+      "source": {
+        "author": "Shazam",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://shazam.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-soundcloud",
+      "answer": "SoundCloud",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-soundcloud.png",
+      "source": {
+        "author": "SoundCloud",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://press.soundcloud.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-deezer",
+      "answer": "Deezer",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-deezer.png",
+      "source": {
+        "author": "Deezer",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://deezerbrand.com/document/37#/-/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-tidal",
+      "answer": "TIDAL",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-tidal.png",
+      "source": {
+        "author": "TIDAL",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://tidal.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-audible",
+      "answer": "Audible",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-audible.png",
+      "source": {
+        "author": "Audible",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Audible_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-lastdotfm",
+      "answer": "Last.fm",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-lastdotfm.png",
+      "source": {
+        "author": "Last.fm",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Lastfm_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bandcamp",
+      "answer": "Bandcamp",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-bandcamp.png",
+      "source": {
+        "author": "Bandcamp",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://bandcamp.com/buttons",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mixcloud",
+      "answer": "Mixcloud",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-mixcloud.png",
+      "source": {
+        "author": "Mixcloud",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.mixcloud.com/about",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-genius",
+      "answer": "Genius",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-genius.png",
+      "source": {
+        "author": "Genius",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://genius.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-myanimelist",
+      "answer": "MyAnimeList",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-myanimelist.png",
+      "source": {
+        "author": "MyAnimeList",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://myanimelist.net/wrap-up/anime-logo-mobile.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-beatport",
+      "answer": "Beatport",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-beatport.png",
+      "source": {
+        "author": "Beatport",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.beatport.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-spreaker",
+      "answer": "Spreaker",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-spreaker.png",
+      "source": {
+        "author": "Spreaker",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.spreaker.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-iheartradio",
+      "answer": "iHeartRadio",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-iheartradio.png",
+      "source": {
+        "author": "iHeartRadio",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.iheart.com/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-goodreads",
+      "answer": "Goodreads",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-goodreads.png",
+      "source": {
+        "author": "Goodreads",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.goodreads.com/about/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vimeolivestream",
+      "answer": "Vimeo Livestream",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-vimeolivestream.png",
+      "source": {
+        "author": "Vimeo Livestream",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://livestream.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-animalplanet",
+      "answer": "Animal Planet",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-animalplanet.png",
+      "source": {
+        "author": "Animal Planet",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.animalplanet.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-antena3",
+      "answer": "Antena 3",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-antena3.png",
+      "source": {
+        "author": "Antena 3",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.antena3.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-plex",
+      "answer": "Plex",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-plex.png",
+      "source": {
+        "author": "Plex",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.plex.tv",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-cnn",
+      "answer": "CNN",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-cnn.png",
+      "source": {
+        "author": "CNN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://edition.cnn.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-nbc",
+      "answer": "NBC",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-nbc.png",
+      "source": {
+        "author": "NBC",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.nbcnews.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-cbs",
+      "answer": "CBS",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-cbs.png",
+      "source": {
+        "author": "CBS",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.cbs.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fox",
+      "answer": "FOX",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-fox.png",
+      "source": {
+        "author": "FOX",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.fox.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-theguardian",
+      "answer": "The Guardian",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-theguardian.png",
+      "source": {
+        "author": "The Guardian",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.theguardian.com/international",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-newyorktimes",
+      "answer": "New York Times",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-newyorktimes.png",
+      "source": {
+        "author": "New York Times",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.nytimes.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-techcrunch",
+      "answer": "TechCrunch",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-techcrunch.png",
+      "source": {
+        "author": "TechCrunch",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:TechCrunch_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-buzzfeed",
+      "answer": "BuzzFeed",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-buzzfeed.png",
+      "source": {
+        "author": "BuzzFeed",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.buzzfeed.com/press/assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ign",
+      "answer": "IGN",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-ign.png",
+      "source": {
+        "author": "IGN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ign.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-polygon",
+      "answer": "Polygon",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-polygon.png",
+      "source": {
+        "author": "Polygon",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.polygon.technology",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-metacritic",
+      "answer": "Metacritic",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-metacritic.png",
+      "source": {
+        "author": "Metacritic",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.metacritic.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-theweatherchannel",
+      "answer": "The Weather Channel",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-theweatherchannel.png",
+      "source": {
+        "author": "The Weather Channel",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://weather.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-nba",
+      "answer": "NBA",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 3,
+      "image": "brand-nba.png",
+      "source": {
+        "author": "NBA",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://nba.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mlb",
+      "answer": "MLB",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 1,
+      "image": "brand-mlb.png",
+      "source": {
+        "author": "MLB",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.mlb.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-nhl",
+      "answer": "NHL",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 2,
+      "image": "brand-nhl.png",
+      "source": {
+        "author": "NHL",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.nhl.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fifa",
+      "answer": "FIFA",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 3,
+      "image": "brand-fifa.png",
+      "source": {
+        "author": "FIFA",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://en.wikipedia.org/wiki/FIFA",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wwe",
+      "answer": "WWE",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 1,
+      "image": "brand-wwe.png",
+      "source": {
+        "author": "WWE",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:WWE_Network_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ufc",
+      "answer": "UFC",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 2,
+      "image": "brand-ufc.png",
+      "source": {
+        "author": "UFC",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ufc.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-premierleague",
+      "answer": "Premier League",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 3,
+      "image": "brand-premierleague.png",
+      "source": {
+        "author": "Premier League",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.premierleague.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dazn",
+      "answer": "DAZN",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 1,
+      "image": "brand-dazn.png",
+      "source": {
+        "author": "DAZN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://media.dazn.com/en/assets/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-duckduckgo",
+      "answer": "DuckDuckGo",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-duckduckgo.png",
+      "source": {
+        "author": "DuckDuckGo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://github.com/duckduckgo/duckduckgo-privacy-extension/blob/5c6ac8d6a07421adbfb97ee2ff855dd7655f8d71/shared/img/logo-small-grayscale.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-brave",
+      "answer": "Brave",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-brave.png",
+      "source": {
+        "author": "Brave",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brave.com/brave-branding-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-opera",
+      "answer": "Opera",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-opera.png",
+      "source": {
+        "author": "Opera",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.opera.com/1472-2/opera-logos/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vivaldi",
+      "answer": "Vivaldi",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-vivaldi.png",
+      "source": {
+        "author": "Vivaldi",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://vivaldi.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-torproject",
+      "answer": "Tor Project",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-torproject.png",
+      "source": {
+        "author": "Tor Project",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://styleguide.torproject.org/brand-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mozilla",
+      "answer": "Mozilla",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-mozilla.png",
+      "source": {
+        "author": "Mozilla",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.mozilla.com/document/36",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-firefox",
+      "answer": "Firefox",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-firefox.png",
+      "source": {
+        "author": "Firefox",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://mozilla.design/firefox/logos-usage/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-safari",
+      "answer": "Safari",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-safari.png",
+      "source": {
+        "author": "Safari",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://apps.apple.com/us/app/safari/id1146562112",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-googlechrome",
+      "answer": "Google Chrome",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-googlechrome.png",
+      "source": {
+        "author": "Google Chrome",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.google.com/chrome",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-nordvpn",
+      "answer": "NordVPN",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-nordvpn.png",
+      "source": {
+        "author": "NordVPN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://nordvpn.com/press-area/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-expressvpn",
+      "answer": "ExpressVPN",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 3,
+      "image": "brand-expressvpn.png",
+      "source": {
+        "author": "ExpressVPN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.expressvpn.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-surfshark",
+      "answer": "Surfshark",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-surfshark.png",
+      "source": {
+        "author": "Surfshark",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://surfshark.com/press/assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-proton",
+      "answer": "Proton",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-proton.png",
+      "source": {
+        "author": "Proton",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://proton.me/media/kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-protonmail",
+      "answer": "Proton Mail",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-protonmail.png",
+      "source": {
+        "author": "Proton Mail",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://proton.me/media/kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-protonvpn",
+      "answer": "Proton VPN",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-protonvpn.png",
+      "source": {
+        "author": "Proton VPN",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://proton.me/media/kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bitwarden",
+      "answer": "Bitwarden",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-bitwarden.png",
+      "source": {
+        "author": "Bitwarden",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://bitwarden.com/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-1password",
+      "answer": "1Password",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-1password.png",
+      "source": {
+        "author": "1Password",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://1password.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-lastpass",
+      "answer": "LastPass",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-lastpass.png",
+      "source": {
+        "author": "LastPass",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://lastpass.com/press-room/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dashlane",
+      "answer": "Dashlane",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-dashlane.png",
+      "source": {
+        "author": "Dashlane",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brandfolder.com/dashlane/brandkitpartners",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-avira",
+      "answer": "Avira",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-avira.png",
+      "source": {
+        "author": "Avira",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.avira.com/en/media-library",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-malwarebytes",
+      "answer": "Malwarebytes",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-malwarebytes.png",
+      "source": {
+        "author": "Malwarebytes",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.malwarebytes.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-kaspersky",
+      "answer": "Kaspersky",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-kaspersky.png",
+      "source": {
+        "author": "Kaspersky",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.kaspersky.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bitdefender",
+      "answer": "Bitdefender",
+      "aliases": [],
+      "category": "electrónica",
+      "difficulty": 3,
+      "image": "brand-bitdefender.png",
+      "source": {
+        "author": "Bitdefender",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.bitdefender.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-adblock",
+      "answer": "AdBlock",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-adblock.png",
+      "source": {
+        "author": "AdBlock",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://getadblock.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-adblockplus",
+      "answer": "Adblock Plus",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-adblockplus.png",
+      "source": {
+        "author": "Adblock Plus",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://adblockplus.org",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-adguard",
+      "answer": "AdGuard",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-adguard.png",
+      "source": {
+        "author": "AdGuard",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://adguard.com/en/media-materials.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-privateinternetaccess",
+      "answer": "Private Internet Access",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-privateinternetaccess.png",
+      "source": {
+        "author": "Private Internet Access",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.privateinternetaccess.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mullvad",
+      "answer": "Mullvad",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-mullvad.png",
+      "source": {
+        "author": "Mullvad",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://mullvad.net/press#logos",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-snyk",
+      "answer": "Snyk",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-snyk.png",
+      "source": {
+        "author": "Snyk",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://snyk.io/press-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hackerone",
+      "answer": "HackerOne",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-hackerone.png",
+      "source": {
+        "author": "HackerOne",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.hackerone.com/branding",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bugcrowd",
+      "answer": "Bugcrowd",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-bugcrowd.png",
+      "source": {
+        "author": "Bugcrowd",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.bugcrowd.com/about/press-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-threads",
+      "answer": "Threads",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-threads.png",
+      "source": {
+        "author": "Threads",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.meta.com/brand/resources/instagram/threads",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bluesky",
+      "answer": "Bluesky",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-bluesky.png",
+      "source": {
+        "author": "Bluesky",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://bsky.social/about/blog/press-faq",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mastodon",
+      "answer": "Mastodon",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-mastodon.png",
+      "source": {
+        "author": "Mastodon",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://github.com/mastodon/mastodon/blob/7ccf7a73f1c47a8c03712c39f7c591e837cf6d08/app/javascript/images/logo-symbol-icon.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-signal",
+      "answer": "Signal",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 3,
+      "image": "brand-signal.png",
+      "source": {
+        "author": "Signal",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://signal.org/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-line",
+      "answer": "LINE",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-line.png",
+      "source": {
+        "author": "LINE",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://line.me/en/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wechat",
+      "answer": "WeChat",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-wechat.png",
+      "source": {
+        "author": "WeChat",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://wechat.design/tool/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-viber",
+      "answer": "Viber",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 3,
+      "image": "brand-viber.png",
+      "source": {
+        "author": "Viber",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.viber.com/brand-center",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-tumblr",
+      "answer": "Tumblr",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-tumblr.png",
+      "source": {
+        "author": "Tumblr",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.tumblr.com/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-quora",
+      "answer": "Quora",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-quora.png",
+      "source": {
+        "author": "Quora",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.quora.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-medium",
+      "answer": "Medium",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 3,
+      "image": "brand-medium.png",
+      "source": {
+        "author": "Medium",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://medium.design/logos-and-brand-guidelines-f1a01a733592",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-teamspeak",
+      "answer": "TeamSpeak",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 1,
+      "image": "brand-teamspeak.png",
+      "source": {
+        "author": "TeamSpeak",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://teamspeak.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bereal",
+      "answer": "BeReal",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-bereal.png",
+      "source": {
+        "author": "BeReal",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://bereal.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wattpad",
+      "answer": "Wattpad",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 3,
+      "image": "brand-wattpad.png",
+      "source": {
+        "author": "Wattpad",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://company.wattpad.com/brandguideline",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-disqus",
+      "answer": "Disqus",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-disqus.png",
+      "source": {
+        "author": "Disqus",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://disqus.com/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bilibili",
+      "answer": "Bilibili",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-bilibili.png",
+      "source": {
+        "author": "Bilibili",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.bilibili.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-lineageos",
+      "answer": "LineageOS",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-lineageos.png",
+      "source": {
+        "author": "LineageOS",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.lineageos.org",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fandom",
+      "answer": "Fandom",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-fandom.png",
+      "source": {
+        "author": "Fandom",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://fandomdesignsystem.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vk",
+      "answer": "VK",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-vk.png",
+      "source": {
+        "author": "VK",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://vk.com/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-maildotru",
+      "answer": "Mail.Ru",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 3,
+      "image": "brand-maildotru.png",
+      "source": {
+        "author": "Mail.Ru",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://my.mail.ru",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-seatgeek",
+      "answer": "SeatGeek",
+      "aliases": [],
+      "category": "automóviles",
+      "difficulty": 1,
+      "image": "brand-seatgeek.png",
+      "source": {
+        "author": "SeatGeek",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://seatgeek.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-opensea",
+      "answer": "OpenSea",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-opensea.png",
+      "source": {
+        "author": "OpenSea",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://docs.opensea.io",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bigcommerce",
+      "answer": "BigCommerce",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 3,
+      "image": "brand-bigcommerce.png",
+      "source": {
+        "author": "BigCommerce",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.bigcommerce.co.uk/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-etsy",
+      "answer": "Etsy",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 1,
+      "image": "brand-etsy.png",
+      "source": {
+        "author": "Etsy",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.etsy.com/uk/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-rakuten",
+      "answer": "Rakuten",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-rakuten.png",
+      "source": {
+        "author": "Rakuten",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://global.rakuten.com/corp/news/media",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ticketmaster",
+      "answer": "Ticketmaster",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 3,
+      "image": "brand-ticketmaster.png",
+      "source": {
+        "author": "Ticketmaster",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://design.ticketmaster.com/brand/overview/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-kickstarter",
+      "answer": "Kickstarter",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 1,
+      "image": "brand-kickstarter.png",
+      "source": {
+        "author": "Kickstarter",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.kickstarter.com/help/brand_assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-patreon",
+      "answer": "Patreon",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-patreon.png",
+      "source": {
+        "author": "Patreon",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.patreon.com/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-fiverr",
+      "answer": "Fiverr",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 3,
+      "image": "brand-fiverr.png",
+      "source": {
+        "author": "Fiverr",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.fiverr.com/press-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dribbble",
+      "answer": "Dribbble",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 1,
+      "image": "brand-dribbble.png",
+      "source": {
+        "author": "Dribbble",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://dribbble.com/branding",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-behance",
+      "answer": "Behance",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-behance.png",
+      "source": {
+        "author": "Behance",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.behance.net",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-freepik",
+      "answer": "Freepik",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-freepik.png",
+      "source": {
+        "author": "Freepik",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Freepik.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-giphy",
+      "answer": "GIPHY",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-giphy.png",
+      "source": {
+        "author": "GIPHY",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://support.giphy.com/hc/en-us/articles/360022283772-GIPHY-Brand-Guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-unsplash",
+      "answer": "Unsplash",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-unsplash.png",
+      "source": {
+        "author": "Unsplash",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://unsplash.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-pixabay",
+      "answer": "Pixabay",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 3,
+      "image": "brand-pixabay.png",
+      "source": {
+        "author": "Pixabay",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://pixabay.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-pexels",
+      "answer": "Pexels",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 1,
+      "image": "brand-pexels.png",
+      "source": {
+        "author": "Pexels",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.pexels.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-deviantart",
+      "answer": "DeviantArt",
+      "aliases": [],
+      "category": "moda",
+      "difficulty": 2,
+      "image": "brand-deviantart.png",
+      "source": {
+        "author": "DeviantArt",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://help.deviantart.com/21",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-flickr",
+      "answer": "Flickr",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 3,
+      "image": "brand-flickr.png",
+      "source": {
+        "author": "Flickr",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.flickr.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-americanexpress",
+      "answer": "American Express",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-americanexpress.png",
+      "source": {
+        "author": "American Express",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:American_Express_logo_(2018).svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-revolut",
+      "answer": "Revolut",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-revolut.png",
+      "source": {
+        "author": "Revolut",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://developer.revolut.com/docs/resources/marketing-assets-guidelines/marketing-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wise",
+      "answer": "Wise",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 3,
+      "image": "brand-wise.png",
+      "source": {
+        "author": "Wise",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://wise.design/foundations/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-westernunion",
+      "answer": "Western Union",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-westernunion.png",
+      "source": {
+        "author": "Western Union",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.westernunion.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-square",
+      "answer": "Square",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-square.png",
+      "source": {
+        "author": "Square",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://squareup.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-klarna",
+      "answer": "Klarna",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 3,
+      "image": "brand-klarna.png",
+      "source": {
+        "author": "Klarna",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://klarna.design",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-venmo",
+      "answer": "Venmo",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-venmo.png",
+      "source": {
+        "author": "Venmo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://venmo.com/about/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-cashapp",
+      "answer": "Cash App",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-cashapp.png",
+      "source": {
+        "author": "Cash App",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://cash.app/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-coinbase",
+      "answer": "Coinbase",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 3,
+      "image": "brand-coinbase.png",
+      "source": {
+        "author": "Coinbase",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.coinbase.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-binance",
+      "answer": "Binance",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-binance.png",
+      "source": {
+        "author": "Binance",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://binance.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-deutschebank",
+      "answer": "Deutsche Bank",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 2,
+      "image": "brand-deutschebank.png",
+      "source": {
+        "author": "Deutsche Bank",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.db.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-barclays",
+      "answer": "Barclays",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 3,
+      "image": "brand-barclays.png",
+      "source": {
+        "author": "Barclays",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://home.barclays",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hsbc",
+      "answer": "HSBC",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-hsbc.png",
+      "source": {
+        "author": "HSBC",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.hsbc.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-monzo",
+      "answer": "Monzo",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 2,
+      "image": "brand-monzo.png",
+      "source": {
+        "author": "Monzo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://monzo.com/press/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-n26",
+      "answer": "N26",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 3,
+      "image": "brand-n26.png",
+      "source": {
+        "author": "N26",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://n26.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-alipay",
+      "answer": "Alipay",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-alipay.png",
+      "source": {
+        "author": "Alipay",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://global.alipay.com/docs/ac/website_hk/design",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mercadopago",
+      "answer": "Mercado Pago",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 2,
+      "image": "brand-mercadopago.png",
+      "source": {
+        "author": "Mercado Pago",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.mercadopago.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-paysafe",
+      "answer": "Paysafe",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 3,
+      "image": "brand-paysafe.png",
+      "source": {
+        "author": "Paysafe",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.paysafe.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-adyen",
+      "answer": "Adyen",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-adyen.png",
+      "source": {
+        "author": "Adyen",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.adyen.com/press-and-media/presskit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-afterpay",
+      "answer": "Afterpay",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 2,
+      "image": "brand-afterpay.png",
+      "source": {
+        "author": "Afterpay",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.afterpay.com/en-AU/business/resources/marketing/logos",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-zelle",
+      "answer": "Zelle",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 3,
+      "image": "brand-zelle.png",
+      "source": {
+        "author": "Zelle",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.zellepay.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-nubank",
+      "answer": "Nubank",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-nubank.png",
+      "source": {
+        "author": "Nubank",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://nubank.com.br/en/press/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-pagseguro",
+      "answer": "PagSeguro",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 2,
+      "image": "brand-pagseguro.png",
+      "source": {
+        "author": "PagSeguro",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://pagseguro.uol.com.br",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-zendesk",
+      "answer": "Zendesk",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-zendesk.png",
+      "source": {
+        "author": "Zendesk",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brandland.zendesk.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hubspot",
+      "answer": "HubSpot",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-hubspot.png",
+      "source": {
+        "author": "HubSpot",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.hubspot.com/style-guide",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-atlassian",
+      "answer": "Atlassian",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-atlassian.png",
+      "source": {
+        "author": "Atlassian",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://atlassian.design/resources/logo-library",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-jira",
+      "answer": "Jira",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-jira.png",
+      "source": {
+        "author": "Jira",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://atlassian.design/resources/logo-library",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-confluence",
+      "answer": "Confluence",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-confluence.png",
+      "source": {
+        "author": "Confluence",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.atlassian.com/company/news/press-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-trello",
+      "answer": "Trello",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-trello.png",
+      "source": {
+        "author": "Trello",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://atlassian.design/resources/logo-library",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-notion",
+      "answer": "Notion",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-notion.png",
+      "source": {
+        "author": "Notion",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.notion.so",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-asana",
+      "answer": "Asana",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-asana.png",
+      "source": {
+        "author": "Asana",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://asana.com/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-airtable",
+      "answer": "Airtable",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-airtable.png",
+      "source": {
+        "author": "Airtable",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://airtable.com/newsroom",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-clickup",
+      "answer": "ClickUp",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-clickup.png",
+      "source": {
+        "author": "ClickUp",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://clickup.com/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-miro",
+      "answer": "Miro",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-miro.png",
+      "source": {
+        "author": "Miro",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://miro.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-lucid",
+      "answer": "Lucid",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-lucid.png",
+      "source": {
+        "author": "Lucid",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://lucid.co/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-loom",
+      "answer": "Loom",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-loom.png",
+      "source": {
+        "author": "Loom",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.loom.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-grammarly",
+      "answer": "Grammarly",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-grammarly.png",
+      "source": {
+        "author": "Grammarly",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.grammarly.com/media-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-coursera",
+      "answer": "Coursera",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-coursera.png",
+      "source": {
+        "author": "Coursera",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://about.coursera.org/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-udemy",
+      "answer": "Udemy",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-udemy.png",
+      "source": {
+        "author": "Udemy",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://udemy.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-edx",
+      "answer": "edX",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-edx.png",
+      "source": {
+        "author": "edX",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.edx.org",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-khanacademy",
+      "answer": "Khan Academy",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-khanacademy.png",
+      "source": {
+        "author": "Khan Academy",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://khanacademy.zendesk.com/hc/en-us/articles/202483630-Press-room",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-duolingo",
+      "answer": "Duolingo",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-duolingo.png",
+      "source": {
+        "author": "Duolingo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://design.duolingo.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-stackoverflow",
+      "answer": "Stack Overflow",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-stackoverflow.png",
+      "source": {
+        "author": "Stack Overflow",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://stackoverflow.design/brand/logo/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wikipedia",
+      "answer": "Wikipedia",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-wikipedia.png",
+      "source": {
+        "author": "Wikipedia",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Wikipedia-logo-v2.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wordpress",
+      "answer": "WordPress",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-wordpress.png",
+      "source": {
+        "author": "WordPress",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://wordpress.org/about/logos",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-squarespace",
+      "answer": "Squarespace",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-squarespace.png",
+      "source": {
+        "author": "Squarespace",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.squarespace.com/logo-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-wix",
+      "answer": "Wix",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-wix.png",
+      "source": {
+        "author": "Wix",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.wix.com/about/design-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mailchimp",
+      "answer": "MailChimp",
+      "aliases": [],
+      "category": "transporte",
+      "difficulty": 3,
+      "image": "brand-mailchimp.png",
+      "source": {
+        "author": "MailChimp",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://mailchimp.com/about/brand-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-blender",
+      "answer": "Blender",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-blender.png",
+      "source": {
+        "author": "Blender",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.blender.org/about/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-autodesk",
+      "answer": "Autodesk",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-autodesk.png",
+      "source": {
+        "author": "Autodesk",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand.autodesk.com/brand-system/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-teamviewer",
+      "answer": "TeamViewer",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 3,
+      "image": "brand-teamviewer.png",
+      "source": {
+        "author": "TeamViewer",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.teamviewer.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-namecheap",
+      "answer": "Namecheap",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-namecheap.png",
+      "source": {
+        "author": "Namecheap",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.namecheap.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-godaddy",
+      "answer": "GoDaddy",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-godaddy.png",
+      "source": {
+        "author": "GoDaddy",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://aboutus.godaddy.net/newsroom/media-resources/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mega",
+      "answer": "MEGA",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-mega.png",
+      "source": {
+        "author": "MEGA",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://mega.io/media",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-cloudflare",
+      "answer": "Cloudflare",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-cloudflare.png",
+      "source": {
+        "author": "Cloudflare",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.cloudflare.com/logo/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-digitalocean",
+      "answer": "DigitalOcean",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-digitalocean.png",
+      "source": {
+        "author": "DigitalOcean",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.digitalocean.com/press/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-firebase",
+      "answer": "Firebase",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 3,
+      "image": "brand-firebase.png",
+      "source": {
+        "author": "Firebase",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://firebase.google.com/brand-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-supabase",
+      "answer": "Supabase",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-supabase.png",
+      "source": {
+        "author": "Supabase",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://github.com/supabase/supabase/blob/4031a7549f5d46da7bc79c01d56be4177dc7c114/packages/common/assets/images/supabase-logo-wordmark--light.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-evernote",
+      "answer": "Evernote",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-evernote.png",
+      "source": {
+        "author": "Evernote",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://evernote.com/about-us",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-basecamp",
+      "answer": "Basecamp",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-basecamp.png",
+      "source": {
+        "author": "Basecamp",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://basecamp.com/about/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hootsuite",
+      "answer": "Hootsuite",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 1,
+      "image": "brand-hootsuite.png",
+      "source": {
+        "author": "Hootsuite",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://hootsuite.widencollective.com/portals/bafpk5oo/bafpk5oo/MediaKitAssets/c/b9e3a7bb-aca7-48d7-90ed-cff5898aafd0",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-buffer",
+      "answer": "Buffer",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-buffer.png",
+      "source": {
+        "author": "Buffer",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://buffer.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-anydesk",
+      "answer": "AnyDesk",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-anydesk.png",
+      "source": {
+        "author": "AnyDesk",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://anydesk.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-deepl",
+      "answer": "DeepL",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-deepl.png",
+      "source": {
+        "author": "DeepL",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.deepl.com/press.html",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-webflow",
+      "answer": "Webflow",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-webflow.png",
+      "source": {
+        "author": "Webflow",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brand-at.webflow.io/resources#logos",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-intercom",
+      "answer": "Intercom",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-intercom.png",
+      "source": {
+        "author": "Intercom",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.intercom.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-livechat",
+      "answer": "LiveChat",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-livechat.png",
+      "source": {
+        "author": "LiveChat",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://livechat.design",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-typeform",
+      "answer": "Typeform",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-typeform.png",
+      "source": {
+        "author": "Typeform",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.typeform.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-surveymonkey",
+      "answer": "SurveyMonkey",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-surveymonkey.png",
+      "source": {
+        "author": "SurveyMonkey",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.surveymonkey.com/mp/brandassets/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-bitly",
+      "answer": "Bitly",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-bitly.png",
+      "source": {
+        "author": "Bitly",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://bitly.com/pages/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ovh",
+      "answer": "OVH",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-ovh.png",
+      "source": {
+        "author": "OVH",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ovh.com/ca/en/newsroom/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hetzner",
+      "answer": "Hetzner",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-hetzner.png",
+      "source": {
+        "author": "Hetzner",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.hetzner.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vultr",
+      "answer": "Vultr",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-vultr.png",
+      "source": {
+        "author": "Vultr",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.vultr.com/company/brand-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-scaleway",
+      "answer": "Scaleway",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-scaleway.png",
+      "source": {
+        "author": "Scaleway",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://ultraviolet.scaleway.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ionos",
+      "answer": "Ionos",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-ionos.png",
+      "source": {
+        "author": "Ionos",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ionos.de",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-woocommerce",
+      "answer": "WooCommerce",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 1,
+      "image": "brand-woocommerce.png",
+      "source": {
+        "author": "WooCommerce",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://woocommerce.com/style-guide",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-prestashop",
+      "answer": "PrestaShop",
+      "aliases": [],
+      "category": "comercio",
+      "difficulty": 2,
+      "image": "brand-prestashop.png",
+      "source": {
+        "author": "PrestaShop",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://prestashop.com/brand-book",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-jetbrains",
+      "answer": "JetBrains",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-jetbrains.png",
+      "source": {
+        "author": "JetBrains",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.jetbrains.com/company/brand/logos/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sublimetext",
+      "answer": "Sublime Text",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-sublimetext.png",
+      "source": {
+        "author": "Sublime Text",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.sublimetext.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-gitkraken",
+      "answer": "GitKraken",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 2,
+      "image": "brand-gitkraken.png",
+      "source": {
+        "author": "GitKraken",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.gitkraken.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sourcetree",
+      "answer": "Sourcetree",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-sourcetree.png",
+      "source": {
+        "author": "Sourcetree",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://atlassian.design/resources/logo-library",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-huggingface",
+      "answer": "Hugging Face",
+      "aliases": [],
+      "category": "bebidas",
+      "difficulty": 1,
+      "image": "brand-huggingface.png",
+      "source": {
+        "author": "Hugging Face",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://huggingface.co/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-kaggle",
+      "answer": "Kaggle",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 2,
+      "image": "brand-kaggle.png",
+      "source": {
+        "author": "Kaggle",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.kaggle.com/brand-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-elevenlabs",
+      "answer": "ElevenLabs",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-elevenlabs.png",
+      "source": {
+        "author": "ElevenLabs",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://elevenlabs.io/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-replit",
+      "answer": "Replit",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-replit.png",
+      "source": {
+        "author": "Replit",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://repl.it",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-codesandbox",
+      "answer": "CodeSandbox",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-codesandbox.png",
+      "source": {
+        "author": "CodeSandbox",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://codesandbox.io/CodeSandbox-Press-Kit.zip",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-stackblitz",
+      "answer": "StackBlitz",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-stackblitz.png",
+      "source": {
+        "author": "StackBlitz",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://stackblitz.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-datadog",
+      "answer": "Datadog",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-datadog.png",
+      "source": {
+        "author": "Datadog",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.datadoghq.com/about/resources",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-newrelic",
+      "answer": "New Relic",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-newrelic.png",
+      "source": {
+        "author": "New Relic",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://newrelic.com/about/media-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-dynatrace",
+      "answer": "Dynatrace",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-dynatrace.png",
+      "source": {
+        "author": "Dynatrace",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.dynatrace.com/company/press-kit/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sentry",
+      "answer": "Sentry",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-sentry.png",
+      "source": {
+        "author": "Sentry",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://sentry.io/branding/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-grafana",
+      "answer": "Grafana",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-grafana.png",
+      "source": {
+        "author": "Grafana",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://grafana.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-prometheus",
+      "answer": "Prometheus",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-prometheus.png",
+      "source": {
+        "author": "Prometheus",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://prometheus.io",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-hashicorp",
+      "answer": "HashiCorp",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-hashicorp.png",
+      "source": {
+        "author": "HashiCorp",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.hashicorp.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-render",
+      "answer": "Render",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-render.png",
+      "source": {
+        "author": "Render",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://render.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-railway",
+      "answer": "Railway",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-railway.png",
+      "source": {
+        "author": "Railway",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://railway.app",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-flydotio",
+      "answer": "Fly.io",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-flydotio.png",
+      "source": {
+        "author": "Fly.io",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://fly.io/docs/about/brand",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-glitch",
+      "answer": "Glitch",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-glitch.png",
+      "source": {
+        "author": "Glitch",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://glitch.com/about/press/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-instapaper",
+      "answer": "Instapaper",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-instapaper.png",
+      "source": {
+        "author": "Instapaper",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.instapaper.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-inoreader",
+      "answer": "Inoreader",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-inoreader.png",
+      "source": {
+        "author": "Inoreader",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.inoreader.com/brand-portal",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-digg",
+      "answer": "Digg",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-digg.png",
+      "source": {
+        "author": "Digg",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://digg.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-slashdot",
+      "answer": "Slashdot",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-slashdot.png",
+      "source": {
+        "author": "Slashdot",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://commons.wikimedia.org/wiki/File:Slashdot_wordmark_and_logo.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-ycombinator",
+      "answer": "Y Combinator",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-ycombinator.png",
+      "source": {
+        "author": "Y Combinator",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.ycombinator.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-tinder",
+      "answer": "Tinder",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-tinder.png",
+      "source": {
+        "author": "Tinder",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.gotinder.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-badoo",
+      "answer": "Badoo",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-badoo.png",
+      "source": {
+        "author": "Badoo",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://badoo.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-okcupid",
+      "answer": "okcupid",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-okcupid.png",
+      "source": {
+        "author": "okcupid",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://okcupid.com/press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-strava",
+      "answer": "Strava",
+      "aliases": [],
+      "category": "deportes",
+      "difficulty": 2,
+      "image": "brand-strava.png",
+      "source": {
+        "author": "Strava",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://itunes.apple.com/us/app/strava-running-and-cycling-gps/id426826309",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-komoot",
+      "answer": "Komoot",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-komoot.png",
+      "source": {
+        "author": "Komoot",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://newsroom.komoot.com/media_kits/219423/",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-alltrails",
+      "answer": "AllTrails",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-alltrails.png",
+      "source": {
+        "author": "AllTrails",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.alltrails.com/press?section=press-page-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-tomtom",
+      "answer": "TomTom",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-tomtom.png",
+      "source": {
+        "author": "TomTom",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://brandguide.tomtom.com/design/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-here",
+      "answer": "HERE",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-here.png",
+      "source": {
+        "author": "HERE",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.here.com/company/media-assets",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-mapbox",
+      "answer": "Mapbox",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 1,
+      "image": "brand-mapbox.png",
+      "source": {
+        "author": "Mapbox",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.mapbox.com/about/press/brand-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-flightaware",
+      "answer": "Flightaware",
+      "aliases": [],
+      "category": "turismo",
+      "difficulty": 2,
+      "image": "brand-flightaware.png",
+      "source": {
+        "author": "Flightaware",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://flightaware.com/about/logo",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-tradingview",
+      "answer": "TradingView",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 3,
+      "image": "brand-tradingview.png",
+      "source": {
+        "author": "TradingView",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.tradingview.com/media-kit",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-coinmarketcap",
+      "answer": "CoinMarketCap",
+      "aliases": [],
+      "category": "finanzas",
+      "difficulty": 1,
+      "image": "brand-coinmarketcap.png",
+      "source": {
+        "author": "CoinMarketCap",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.coinmarketcap.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-davinciresolve",
+      "answer": "DaVinci Resolve",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 2,
+      "image": "brand-davinciresolve.png",
+      "source": {
+        "author": "DaVinci Resolve",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.blackmagicdesign.com/media/images/davinci-resolve-logo-square",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-coreldraw",
+      "answer": "CorelDRAW",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 3,
+      "image": "brand-coreldraw.png",
+      "source": {
+        "author": "CorelDRAW",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.coreldraw.com/en/learn/webinars/ebook-embroidery",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-protools",
+      "answer": "Pro Tools",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-protools.png",
+      "source": {
+        "author": "Pro Tools",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://cdn-www.avid.com/Content/fonts/avidmoon.ttf",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-audacity",
+      "answer": "Audacity",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-audacity.png",
+      "source": {
+        "author": "Audacity",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://github.com/audacity/audacity/blob/c818449c69193f5311b430fbf600d8d6cbe49047/images/audacity.svg",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-sketch",
+      "answer": "Sketch",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-sketch.png",
+      "source": {
+        "author": "Sketch",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.sketch.com/about-us/#press",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-framer",
+      "answer": "Framer",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-framer.png",
+      "source": {
+        "author": "Framer",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://framer.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-codecademy",
+      "answer": "Codecademy",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-codecademy.png",
+      "source": {
+        "author": "Codecademy",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.codecademy.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-quizlet",
+      "answer": "Quizlet",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-quizlet.png",
+      "source": {
+        "author": "Quizlet",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://quizlet.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-substack",
+      "answer": "Substack",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-substack.png",
+      "source": {
+        "author": "Substack",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://on.substack.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-producthunt",
+      "answer": "Product Hunt",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-producthunt.png",
+      "source": {
+        "author": "Product Hunt",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://www.producthunt.com/branding",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-flipboard",
+      "answer": "Flipboard",
+      "aliases": [],
+      "category": "redes sociales",
+      "difficulty": 3,
+      "image": "brand-flipboard.png",
+      "source": {
+        "author": "Flipboard",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://about.flipboard.com/brand-guidelines",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-feedly",
+      "answer": "Feedly",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 1,
+      "image": "brand-feedly.png",
+      "source": {
+        "author": "Feedly",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://blog.feedly.com",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-coda",
+      "answer": "Coda",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 2,
+      "image": "brand-coda.png",
+      "source": {
+        "author": "Coda",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://coda.io",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-obsidian",
+      "answer": "Obsidian",
+      "aliases": [],
+      "category": "tecnología",
+      "difficulty": 3,
+      "image": "brand-obsidian.png",
+      "source": {
+        "author": "Obsidian",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://obsidian.md",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-roamresearch",
+      "answer": "Roam Research",
+      "aliases": [],
+      "category": "videojuegos",
+      "difficulty": 1,
+      "image": "brand-roamresearch.png",
+      "source": {
+        "author": "Roam Research",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://roamresearch.com/#/app/help/page/Vu1MmjinS",
+        "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
+      }
+    },
+    {
+      "id": "brand-vlcmediaplayer",
+      "answer": "VLC media player",
+      "aliases": [],
+      "category": "entretenimiento",
+      "difficulty": 2,
+      "image": "brand-vlcmediaplayer.png",
+      "source": {
+        "author": "VLC media player",
+        "license": "Marca registrada / Fair Use",
+        "url": "https://code.videolan.org/videolan/vlc/-/blob/1ce7f686ee17a028d2d79627ae69f22d905f2e23/extras/package/macosx/asset_sources/vlc_app_icon.svg",
         "notes": "Logo oficial optimizado en PNG sobre fondo negro (#000000) con alto contraste."
       }
     }
