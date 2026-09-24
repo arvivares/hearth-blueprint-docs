@@ -1,24 +1,65 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import { api, errorText } from "@/game/api";
+import { saveSession } from "@/game/session";
+import { Button, Card, ErrorBox, Input, Shell } from "@/game/ui";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Logos — Juego de logos con TV y móviles" },
+      { name: "description", content: "Crea una sala o entra con un código para adivinar logos desde tu móvil." },
+      { property: "og:title", content: "Logos — Juego de logos con TV y móviles" },
+      { property: "og:description", content: "Crea una sala o entra con un código para adivinar logos desde tu móvil." },
+    ],
+  }),
+  component: Home,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Home() {
+  const navigate = useNavigate();
+  const [code, setCode] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  async function create() {
+    setBusy(true);
+    setError(null);
+    try {
+      const r = await api.createRoom();
+      saveSession("host", r.roomCode, { roomId: r.roomId, token: r.hostToken });
+      navigate({ to: "/host", search: { room: r.roomCode } });
+    } catch (e) {
+      setError(errorText(e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <Shell title="Logos">
+      <ErrorBox>{error}</ErrorBox>
+      <Card>
+        <h2 className="font-semibold">Anfitrión</h2>
+        <Button onClick={create} disabled={busy}>Crear sala</Button>
+      </Card>
+      <Card>
+        <h2 className="font-semibold">Jugador</h2>
+        <form
+          className="flex gap-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (code.trim()) navigate({ to: "/play", search: { room: code.trim().toUpperCase() } });
+          }}
+        >
+          <Input aria-label="Código de sala" placeholder="Código de sala" value={code} onChange={(e) => setCode(e.target.value)} maxLength={5} />
+          <Button type="submit">Entrar</Button>
+        </form>
+      </Card>
+      <Card>
+        <h2 className="font-semibold">Pantalla (TV)</h2>
+        <Button onClick={() => navigate({ to: "/tv" })}>Vincular esta pantalla</Button>
+      </Card>
+    </Shell>
   );
 }

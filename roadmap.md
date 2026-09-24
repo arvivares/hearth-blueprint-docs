@@ -9,3 +9,8 @@
 - [ ] Etapa 7 — Reconexión, pausas y casos límite
 - [ ] Etapa 8 — Pruebas de carga (objetivo 9–30 jugadores)
 - [ ] Etapa 9 — Despliegue independiente reproducible (bloqueado: elegir alojamiento)
+
+## Etapa 2 (hecha) — Base multijugador
+- [x] Servidor Colyseus independiente (salas, tokens por rol, QR, pantalla, sesión)
+- [x] Cliente real mínimo (/host, /tv, /play)
+- [x] Prueba reproducible multi-cliente (aislamiento, permisos, capacidad)
