@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-24T14:53:21.541Z",
+  "env": {
+    "node": "v22.22.0",
+    "cpus": 16,
+    "cpuModel": "unknown",
+    "memGB": 32,
+    "platform": "Linux 4.19.0-gvisor",
+    "network": "loopback (mismo host, sin Wi-Fi ni Internet)"
+  },
+  "params": {
+    "rooms": 2,
+    "playersPerRoom": 30,
+    "roundsPerRoom": 1,
+    "timeScale": 1,
+    "roundSeconds": 120,
+    "clientsTotal": 64
+  },
+  "rooms": [
+    {
+      "roomCode": "YD8ZA",
+      "final": "FINAL_RESULTS",
+      "roundsSeen": 1,
+      "answerRevealed": true
+    },
+    {
+      "roomCode": "Q68XA",
+      "final": "FINAL_RESULTS",
+      "roundsSeen": 1,
+      "answerRevealed": true
+    }
+  ],
+  "durationS": 132.626,
+  "attempts": {
+    "sent": 168,
+    "confirmed": 168,
+    "unconfirmed": 0
+  },
+  "confirmLatencyMs": {
+    "n": 168,
+    "p50": 3.7,
+    "p95": 36.7,
+    "p99": 39.5,
+    "max": 39.9
+  },
+  "joinMs": {
+    "n": 60,
+    "p50": 525.4,
+    "p95": 714.4,
+    "max": 720.4
+  },
+  "errors": {},
+  "unexpectedLeaves": 0,
+  "answerLeaks": 0,
+  "server": {
+    "idleRssMB": 225.4,
+    "peakRssMB": 268.4,
+    "avgCpuPct": 3.4,
+    "peakCpuPct": 165.7
+  }
+}

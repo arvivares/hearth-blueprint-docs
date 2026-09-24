@@ -122,6 +122,7 @@ async function main() {
   for (let i = 0; ; i++) { try { if ((await fetch(BASE + "/health")).ok) break; } catch {} if (i > 150) throw new Error("el servidor no arranca"); await wait(100); }
   await wait(1500);
   const timer = sampler(child.pid!);
+  await wait(1100);
   const idle = samples.at(-1);
   const t0 = Date.now();
   const rooms = await Promise.all(Array.from({ length: ROOMS }, (_, i) => runRoom(i)));
