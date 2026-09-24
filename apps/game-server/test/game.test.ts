@@ -53,6 +53,7 @@ async function joinPlayer(alias: string, token?: string): Promise<Player> {
 }
 function attempt(p: Player, text: string, attemptId = randomUUID(), roundId = host.state.roundId) {
   p.room.send("player:attempt", { attemptId, roundId, text });
+  const before = p.results.length;
   return { attemptId, result: async () => { await waitFor(() => p.results.length > before, 3000, "resultado"); return p.results.at(-1); } };
 }
 const live = () => matchMaker.getLocalRoomById(roomId) as LogoRoom;
