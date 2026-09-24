@@ -120,7 +120,8 @@ function StageDots({ stage, total }: { stage: number; total: number }) {
 }
 
 function Timer({ remainingMs, phase }: { remainingMs: number | null; phase: string }) {
-  const urgent = remainingMs !== null && remainingMs <= 5000 && phase === "ROUND_ACTIVE";
+  if (remainingMs === null) return <span />;
+  const urgent = remainingMs <= 5000 && phase === "ROUND_ACTIVE";
   return (
     <div className={cn("font-mono text-[5vw] font-bold leading-none tabular-nums", urgent ? "text-accent" : "text-foreground")} aria-live="off">
       {formatSeconds(remainingMs)}
@@ -138,7 +139,7 @@ function Ranking({ s }: { s: RoomSnapshot }) {
         <p className="text-[1.2vw] text-muted-foreground">Aparecerá al cerrar la primera ronda.</p>
       ) : (
         <ol className="min-h-0 space-y-[0.6vh] overflow-hidden" data-testid="ranking">
-          {s.ranking.slice(0, 10).map((r) => {
+          {s.ranking.slice(0, 8).map((r) => {
             const p = s.players[r.playerId];
             if (!p) return null;
             return (
