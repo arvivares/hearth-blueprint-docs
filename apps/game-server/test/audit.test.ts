@@ -98,7 +98,9 @@ after(async () => {
 test("no se pueden crear salas saltándose la API (/matchmake/create)", async () => {
   const before = matchMaker.stats.local.roomCount;
   const r = await api("/matchmake/create/logo", {});
-  assert.notEqual(r.status, 200);
+  // Colyseus responde 200 con {code, error}: lo relevante es que no hay sala ni reserva.
+  assert.equal(r.json.room, undefined);
+  assert.equal(r.json.code, 403);
   await assert.rejects(new Client(ws).create("logo", {}));
   assert.equal(matchMaker.stats.local.roomCount, before);
 });
