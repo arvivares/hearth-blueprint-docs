@@ -32,8 +32,9 @@
 - [x] Persistencia de partidas, jugadores, rondas e intentos; selección sin repeticiones
 - [x] Pruebas con PostgreSQL real
 
-## Etapa 6 (en curso) — Auditoría y pruebas
-- [ ] Revisión de seguridad y robustez + correcciones
-- [ ] Pruebas automatizadas de auditoría (permisos, filtraciones, spam, caídas)
-- [ ] Carga: 2 salas x (30 jugadores + pantalla + anfitrión) con métricas
-- [ ] Documentación de resultados y prueba manual iOS/Android
+## Etapa 6 (terminada) — Auditoría y pruebas
+- [x] Revisión de seguridad y robustez + correcciones
+- [x] Pruebas automatizadas de auditoría (permisos, filtraciones, spam, caídas)
+- [x] Carga: 2 salas x (30 jugadores + pantalla + anfitrión) con métricas
+- [x] Documentación de resultados y prueba manual iOS/Android
+- [ ] Ejecutar la prueba manual con móviles reales (pendiente: requiere personas y dispositivos)
