@@ -52,8 +52,8 @@ export function Participants({
   highlight,
 }: {
   state: RoomSnapshot | null;
-  onKick?: (id: string) => void;
-  highlight?: string;
+  onKick?: ((id: string) => void) | undefined;
+  highlight?: string | undefined;
 }) {
   if (!state) return <p className="text-sm text-muted-foreground">Esperando estado del servidor…</p>;
   const list = Object.entries(state.players);

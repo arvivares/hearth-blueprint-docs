@@ -7,7 +7,7 @@ import {
 } from "../../packages/contracts/src/http";
 
 export const SERVER_URL: string =
-  (import.meta.env.VITE_GAME_SERVER_URL as string | undefined) ?? "http://localhost:2567";
+  (import.meta.env['VITE_GAME_SERVER_URL'] as string | undefined) ?? "http://localhost:2567";
 
 export class ApiError extends Error {
   constructor(public code: string, public status: number) {
@@ -21,7 +21,7 @@ async function call(path: string, body?: unknown, token?: string) {
     res = await fetch(SERVER_URL + path, {
       method: body === undefined ? "GET" : "POST",
       headers: { "content-type": "application/json", ...(token ? { authorization: `Bearer ${token}` } : {}) },
-      body: body === undefined ? undefined : JSON.stringify(body),
+      body: body === undefined ? null : JSON.stringify(body),
     });
   } catch {
     throw new ApiError("SERVER_UNREACHABLE", 0);
