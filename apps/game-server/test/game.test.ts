@@ -178,6 +178,7 @@ test("reconexión durante la ronda: conserva puntos y recibe sus resultados sin 
   await p.room.leave();
   await waitFor(() => host.state.players.get(p.playerId).connected === false);
   const again = await joinPlayer("x", p.token);
+  const _all: any[] = []; again.room.onMessage("*", (t, m) => _all.push([t, m])); await wait(500); console.log("DBG2", JSON.stringify(_all), JSON.stringify(again.results), again.room.connection.isOpen);
   assert.equal(again.playerId, p.playerId);
   console.log("DBG", host.state.phase, JSON.stringify(p.results), [...live().attempts.values()].filter(a=>a.playerId===p.playerId).length);
   await waitFor(() => again.results.length >= before - 0 && again.results.length > 0, 3000, "historial");
