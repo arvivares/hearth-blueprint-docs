@@ -3,10 +3,21 @@ import QRCode from "qrcode";
 import { cn } from "@/lib/utils";
 import type { ConnectionStatus } from "./useGameRoom";
 
-export function Shell({ title, children }: { title: string; children: ReactNode }) {
+export function Shell({
+  title,
+  headerRight,
+  children,
+}: {
+  title: ReactNode;
+  headerRight?: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <main className="mx-auto min-h-[100dvh] max-w-3xl space-y-6 px-4 py-8">
-      <h1 className="font-display text-3xl font-extrabold tracking-tight">{title}</h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="font-display text-3xl font-extrabold tracking-tight">{title}</h1>
+        {headerRight}
+      </div>
       {children}
     </main>
   );
