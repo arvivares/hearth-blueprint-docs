@@ -8,8 +8,7 @@ import { getById, unregisterRoom, type RoomRecord } from "./registry";
 import * as repo from "./db/repo";
 import type { Question } from "./db/repo";
 import { dropRoundMedia, prepareRoundMedia } from "./content/media";
-import { isCorrectAnswer, normalizeAnswer } from "./rules/normalize";
-import { computeRanking, pointsForStage, stageForElapsed } from "./rules/scoring";
+import { calculateDynamicScore, computeRanking, pointsForStage, stageForElapsed } from "./rules/scoring";
 import { scaled, settings } from "./settings";
 
 export class PlayerState extends Schema {
@@ -51,6 +50,7 @@ interface AttemptRecord {
   playerId: string;
   status: AttemptStatus;
   points?: number;
+  multiplier?: number;
   retryAt?: number;
   normalized: string;
   stage: number;
@@ -462,7 +462,14 @@ export class LogoRoom extends Room<LogoState> {
   }
 
   private publicResult(a: AttemptRecord) {
-    return { attemptId: a.attemptId, roundId: a.roundId, status: a.status, points: a.points, retryAt: a.retryAt };
+    return {
+      attemptId: a.attemptId,
+      roundId: a.roundId,
+      status: a.status,
+      points: a.points,
+      multiplier: a.multiplier,
+      retryAt: a.retryAt,
+    };
   }
 
   private handleAttempt(client: Client, playerId: string, data: { attemptId: string; roundId: string; text: string }) {
@@ -511,11 +518,16 @@ export class LogoRoom extends Room<LogoState> {
     this.lastAttemptAt.set(playerId, now);
 
     if (isCorrectAnswer(data.text, this.round!.item.answer, this.round!.item.aliases)) {
-      const points = pointsForStage(this.state.revealStage, this.rec.config.pointsByStage);
+      const remainingMs = Math.max(0, this.state.phaseEndsAt - now);
+      const { points, multiplier } = calculateDynamicScore(
+        this.state.revealStage,
+        this.rec.config.pointsByStage,
+        remainingMs,
+      );
       p.score += points;
       p.correctCount += 1;
       p.answeredThisRound = true;
-      record("correct", { points });
+      record("correct", { points, multiplier });
 
       // Si todos los jugadores activos ya acertaron (o si se juega de a uno), avanzar la ronda
       const active = this.activePlayers();

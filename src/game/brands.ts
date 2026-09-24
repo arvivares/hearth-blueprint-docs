@@ -3570,5 +3570,3505 @@ export const ALL_BRANDS: RealBrand[] = [
     "category": "Entretenimiento",
     "image": "/logos/brand-vlcmediaplayer.png",
     "aliases": []
+  },
+  {
+    "id": "brand-generalmotors",
+    "name": "General Motors",
+    "category": "Automóviles",
+    "image": "/logos/brand-generalmotors.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-kia",
+    "name": "Kia",
+    "category": "Tecnología",
+    "image": "/logos/brand-kia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-fiat",
+    "name": "Fiat",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-fiat.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ram",
+    "name": "Ram",
+    "category": "Tecnología",
+    "image": "/logos/brand-ram.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-daf",
+    "name": "DAF",
+    "category": "Tecnología",
+    "image": "/logos/brand-daf.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-copaairlines",
+    "name": "Copa Airlines",
+    "category": "Turismo",
+    "image": "/logos/brand-copaairlines.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-avianca",
+    "name": "avianca",
+    "category": "Tecnología",
+    "image": "/logos/brand-avianca.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-lotpolishairlines",
+    "name": "LOT Polish Airlines",
+    "category": "Turismo",
+    "image": "/logos/brand-lotpolishairlines.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-pegasusairlines",
+    "name": "Pegasus Airlines",
+    "category": "Turismo",
+    "image": "/logos/brand-pegasusairlines.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-saudia",
+    "name": "Saudia",
+    "category": "Automóviles",
+    "image": "/logos/brand-saudia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-indigo",
+    "name": "IndiGo",
+    "category": "Tecnología",
+    "image": "/logos/brand-indigo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-jameson",
+    "name": "Jameson",
+    "category": "Bebidas",
+    "image": "/logos/brand-jameson.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chupachups",
+    "name": "Chupa Chups",
+    "category": "Transporte",
+    "image": "/logos/brand-chupachups.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-target",
+    "name": "Target",
+    "category": "Comercio",
+    "image": "/logos/brand-target.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-carrefour",
+    "name": "Carrefour",
+    "category": "Comercio",
+    "image": "/logos/brand-carrefour.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-lidl",
+    "name": "Lidl",
+    "category": "Tecnología",
+    "image": "/logos/brand-lidl.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-auchan",
+    "name": "Auchan",
+    "category": "Tecnología",
+    "image": "/logos/brand-auchan.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-tesco",
+    "name": "Tesco",
+    "category": "Tecnología",
+    "image": "/logos/brand-tesco.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-asda",
+    "name": "ASDA",
+    "category": "Tecnología",
+    "image": "/logos/brand-asda.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-leroymerlin",
+    "name": "Leroy Merlin",
+    "category": "Tecnología",
+    "image": "/logos/brand-leroymerlin.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-mediamarkt",
+    "name": "MediaMarkt",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-mediamarkt.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-fnac",
+    "name": "Fnac",
+    "category": "Tecnología",
+    "image": "/logos/brand-fnac.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-shopee",
+    "name": "Shopee",
+    "category": "Comercio",
+    "image": "/logos/brand-shopee.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-zalando",
+    "name": "Zalando",
+    "category": "Tecnología",
+    "image": "/logos/brand-zalando.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-toshiba",
+    "name": "Toshiba",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-toshiba.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-sharp",
+    "name": "sharp",
+    "category": "Tecnología",
+    "image": "/logos/brand-sharp.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-hitachi",
+    "name": "Hitachi",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-hitachi.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-nec",
+    "name": "NEC",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-nec.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-nikon",
+    "name": "Nikon",
+    "category": "Tecnología",
+    "image": "/logos/brand-nikon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-leica",
+    "name": "Leica",
+    "category": "Electrónica",
+    "image": "/logos/brand-leica.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-delonghi",
+    "name": "De'Longhi",
+    "category": "Tecnología",
+    "image": "/logos/brand-delonghi.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-denon",
+    "name": "Denon",
+    "category": "Tecnología",
+    "image": "/logos/brand-denon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-yamahacorporation",
+    "name": "Yamaha",
+    "category": "Automóviles",
+    "image": "/logos/brand-yamahacorporation.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-fila",
+    "name": "Fila",
+    "category": "Tecnología",
+    "image": "/logos/brand-fila.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-thenorthface",
+    "name": "The North Face",
+    "category": "Tecnología",
+    "image": "/logos/brand-thenorthface.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-uniqlo",
+    "name": "Uniqlo",
+    "category": "Tecnología",
+    "image": "/logos/brand-uniqlo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-hermes",
+    "name": "Hermes",
+    "category": "Tecnología",
+    "image": "/logos/brand-hermes.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-dior",
+    "name": "Dior",
+    "category": "Tecnología",
+    "image": "/logos/brand-dior.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-verizon",
+    "name": "Verizon",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-verizon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-vodafone",
+    "name": "Vodafone",
+    "category": "Tecnología",
+    "image": "/logos/brand-vodafone.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-orange",
+    "name": "Orange",
+    "category": "Tecnología",
+    "image": "/logos/brand-orange.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-telefonica",
+    "name": "Telefónica",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-telefonica.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-movistar",
+    "name": "Movistar",
+    "category": "Tecnología",
+    "image": "/logos/brand-movistar.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-o2",
+    "name": "O2",
+    "category": "Tecnología",
+    "image": "/logos/brand-o2.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-deutschetelekom",
+    "name": "Deutsche Telekom",
+    "category": "Electrónica",
+    "image": "/logos/brand-deutschetelekom.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bt",
+    "name": "BT",
+    "category": "Tecnología",
+    "image": "/logos/brand-bt.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-virginmedia",
+    "name": "Virgin Media",
+    "category": "Bebidas",
+    "image": "/logos/brand-virginmedia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-sky",
+    "name": "Sky",
+    "category": "Deportes",
+    "image": "/logos/brand-sky.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-airtel",
+    "name": "Airtel",
+    "category": "Tecnología",
+    "image": "/logos/brand-airtel.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-jio",
+    "name": "Jio",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-jio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-hbo",
+    "name": "HBO",
+    "category": "Tecnología",
+    "image": "/logos/brand-hbo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crunchyroll",
+    "name": "Crunchyroll",
+    "category": "Tecnología",
+    "image": "/logos/brand-crunchyroll.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-roku",
+    "name": "Roku",
+    "category": "Tecnología",
+    "image": "/logos/brand-roku.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-1and1",
+    "name": "1&1",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-1and1.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-1dot1dot1dot1",
+    "name": "1.1.1.1",
+    "category": "Tecnología",
+    "image": "/logos/brand-1dot1dot1dot1.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-1panel",
+    "name": "1Panel",
+    "category": "Tecnología",
+    "image": "/logos/brand-1panel.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-2fas",
+    "name": "2FAS",
+    "category": "Tecnología",
+    "image": "/logos/brand-2fas.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-365datascience",
+    "name": "365 Data Science",
+    "category": "Tecnología",
+    "image": "/logos/brand-365datascience.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-42",
+    "name": "42",
+    "category": "Tecnología",
+    "image": "/logos/brand-42.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-4chan",
+    "name": "4chan",
+    "category": "Tecnología",
+    "image": "/logos/brand-4chan.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-4d",
+    "name": "4D",
+    "category": "Tecnología",
+    "image": "/logos/brand-4d.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-500px",
+    "name": "500px",
+    "category": "Tecnología",
+    "image": "/logos/brand-500px.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-7zip",
+    "name": "7Zip",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-7zip.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-99designs",
+    "name": "99designs",
+    "category": "Tecnología",
+    "image": "/logos/brand-99designs.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-9gag",
+    "name": "9GAG",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-9gag.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-abbott",
+    "name": "Abbott",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-abbott.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-abbvie",
+    "name": "Abbvie",
+    "category": "Transporte",
+    "image": "/logos/brand-abbvie.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-abdownloadmanager",
+    "name": "AB Download Manager",
+    "category": "Tecnología",
+    "image": "/logos/brand-abdownloadmanager.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aboutdotme",
+    "name": "about.me",
+    "category": "Tecnología",
+    "image": "/logos/brand-aboutdotme.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-abstract",
+    "name": "Abstract",
+    "category": "Tecnología",
+    "image": "/logos/brand-abstract.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-abusedotch",
+    "name": "abuse.ch",
+    "category": "Tecnología",
+    "image": "/logos/brand-abusedotch.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-academia",
+    "name": "Academia",
+    "category": "Tecnología",
+    "image": "/logos/brand-academia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-accenture",
+    "name": "Accenture",
+    "category": "Tecnología",
+    "image": "/logos/brand-accenture.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-accusoft",
+    "name": "Accusoft",
+    "category": "Tecnología",
+    "image": "/logos/brand-accusoft.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-accuweather",
+    "name": "AccuWeather",
+    "category": "Videojuegos",
+    "image": "/logos/brand-accuweather.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-acm",
+    "name": "ACM",
+    "category": "Tecnología",
+    "image": "/logos/brand-acm.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-actigraph",
+    "name": "ActiGraph",
+    "category": "Videojuegos",
+    "image": "/logos/brand-actigraph.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-activitypub",
+    "name": "ActivityPub",
+    "category": "Tecnología",
+    "image": "/logos/brand-activitypub.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ada",
+    "name": "Ada",
+    "category": "Tecnología",
+    "image": "/logos/brand-ada.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-adafruit",
+    "name": "Adafruit",
+    "category": "Tecnología",
+    "image": "/logos/brand-adafruit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-addydotio",
+    "name": "addy.io",
+    "category": "Tecnología",
+    "image": "/logos/brand-addydotio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-adminer",
+    "name": "Adminer",
+    "category": "Tecnología",
+    "image": "/logos/brand-adminer.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-adp",
+    "name": "ADP",
+    "category": "Tecnología",
+    "image": "/logos/brand-adp.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-adroll",
+    "name": "Adroll",
+    "category": "Tecnología",
+    "image": "/logos/brand-adroll.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-adventofcode",
+    "name": "Advent Of Code",
+    "category": "Tecnología",
+    "image": "/logos/brand-adventofcode.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aegisauthenticator",
+    "name": "Aegis Authenticator",
+    "category": "Tecnología",
+    "image": "/logos/brand-aegisauthenticator.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-afdian",
+    "name": "AFDIAN",
+    "category": "Videojuegos",
+    "image": "/logos/brand-afdian.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-affine",
+    "name": "AFFiNE",
+    "category": "Tecnología",
+    "image": "/logos/brand-affine.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aframe",
+    "name": "A-Frame",
+    "category": "Tecnología",
+    "image": "/logos/brand-aframe.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aftership",
+    "name": "AfterShip",
+    "category": "Tecnología",
+    "image": "/logos/brand-aftership.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aib",
+    "name": "AIB",
+    "category": "Tecnología",
+    "image": "/logos/brand-aib.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aidungeon",
+    "name": "AI Dungeon",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-aidungeon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-airbyte",
+    "name": "Airbyte",
+    "category": "Tecnología",
+    "image": "/logos/brand-airbyte.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aircall",
+    "name": "Aircall",
+    "category": "Tecnología",
+    "image": "/logos/brand-aircall.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-airplayaudio",
+    "name": "AirPlay Audio",
+    "category": "Automóviles",
+    "image": "/logos/brand-airplayaudio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-airplayvideo",
+    "name": "AirPlay Video",
+    "category": "Redes sociales",
+    "image": "/logos/brand-airplayvideo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-akamai",
+    "name": "Akamai",
+    "category": "Tecnología",
+    "image": "/logos/brand-akamai.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-akaunting",
+    "name": "Akaunting",
+    "category": "Tecnología",
+    "image": "/logos/brand-akaunting.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-akiflow",
+    "name": "Akiflow",
+    "category": "Tecnología",
+    "image": "/logos/brand-akiflow.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alamy",
+    "name": "Alamy",
+    "category": "Tecnología",
+    "image": "/logos/brand-alamy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-albertheijn",
+    "name": "Albert Heijn",
+    "category": "Tecnología",
+    "image": "/logos/brand-albertheijn.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-albumoftheyear",
+    "name": "Album of the Year",
+    "category": "Videojuegos",
+    "image": "/logos/brand-albumoftheyear.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alchemy",
+    "name": "Alchemy",
+    "category": "Tecnología",
+    "image": "/logos/brand-alchemy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alfred",
+    "name": "Alfred",
+    "category": "Tecnología",
+    "image": "/logos/brand-alfred.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-algolia",
+    "name": "Algolia",
+    "category": "Tecnología",
+    "image": "/logos/brand-algolia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-algorand",
+    "name": "Algorand",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-algorand.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alibabacloud",
+    "name": "Alibaba Cloud",
+    "category": "Tecnología",
+    "image": "/logos/brand-alibabacloud.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alibabadotcom",
+    "name": "Alibaba.com",
+    "category": "Tecnología",
+    "image": "/logos/brand-alibabadotcom.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alist",
+    "name": "AList",
+    "category": "Tecnología",
+    "image": "/logos/brand-alist.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-allegro",
+    "name": "Allegro",
+    "category": "Tecnología",
+    "image": "/logos/brand-allegro.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alliedmodders",
+    "name": "AlliedModders",
+    "category": "Bebidas",
+    "image": "/logos/brand-alliedmodders.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-almalinux",
+    "name": "AlmaLinux",
+    "category": "Tecnología",
+    "image": "/logos/brand-almalinux.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alphaxiv",
+    "name": "alphaXiv",
+    "category": "Tecnología",
+    "image": "/logos/brand-alphaxiv.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alternativeto",
+    "name": "AlternativeTo",
+    "category": "Tecnología",
+    "image": "/logos/brand-alternativeto.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-alwaysdata",
+    "name": "Alwaysdata",
+    "category": "Tecnología",
+    "image": "/logos/brand-alwaysdata.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ameba",
+    "name": "Ameba",
+    "category": "Tecnología",
+    "image": "/logos/brand-ameba.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-amg",
+    "name": "AMG",
+    "category": "Tecnología",
+    "image": "/logos/brand-amg.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-amp",
+    "name": "AMP",
+    "category": "Tecnología",
+    "image": "/logos/brand-amp.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-amul",
+    "name": "Amul",
+    "category": "Tecnología",
+    "image": "/logos/brand-amul.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-anaconda",
+    "name": "Anaconda",
+    "category": "Tecnología",
+    "image": "/logos/brand-anaconda.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-analogue",
+    "name": "Analogue",
+    "category": "Tecnología",
+    "image": "/logos/brand-analogue.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-andela",
+    "name": "Andela",
+    "category": "Tecnología",
+    "image": "/logos/brand-andela.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-android",
+    "name": "Android",
+    "category": "Comercio",
+    "image": "/logos/brand-android.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-androidauto",
+    "name": "Android Auto",
+    "category": "Automóviles",
+    "image": "/logos/brand-androidauto.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-androidstudio",
+    "name": "Android Studio",
+    "category": "Tecnología",
+    "image": "/logos/brand-androidstudio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-anichart",
+    "name": "AniChart",
+    "category": "Tecnología",
+    "image": "/logos/brand-anichart.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ankermake",
+    "name": "AnkerMake",
+    "category": "Tecnología",
+    "image": "/logos/brand-ankermake.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-anki",
+    "name": "Anki",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-anki.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-answer",
+    "name": "Answer",
+    "category": "Tecnología",
+    "image": "/logos/brand-answer.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ansys",
+    "name": "Ansys",
+    "category": "Tecnología",
+    "image": "/logos/brand-ansys.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-antdesign",
+    "name": "Ant Design",
+    "category": "Tecnología",
+    "image": "/logos/brand-antdesign.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-anthropic",
+    "name": "Anthropic",
+    "category": "Tecnología",
+    "image": "/logos/brand-anthropic.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-antv",
+    "name": "AntV",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-antv.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-anycubic",
+    "name": "Anycubic",
+    "category": "Comercio",
+    "image": "/logos/brand-anycubic.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheairflow",
+    "name": "Apache Airflow",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheairflow.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheant",
+    "name": "Apache Ant",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheant.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachearrow",
+    "name": "Apache Arrow",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachearrow.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheavro",
+    "name": "Apache Avro",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheavro.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachecassandra",
+    "name": "Apache Cassandra",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachecassandra.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachecloudstack",
+    "name": "Apache CloudStack",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachecloudstack.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachecordova",
+    "name": "Apache Cordova",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachecordova.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachecouchdb",
+    "name": "Apache CouchDB",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachecouchdb.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachedolphinscheduler",
+    "name": "Apache DolphinScheduler",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachedolphinscheduler.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachedoris",
+    "name": "Apache Doris",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachedoris.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachedruid",
+    "name": "Apache Druid",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachedruid.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheflink",
+    "name": "Apache Flink",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheflink.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachefreemarker",
+    "name": "Apache FreeMarker",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachefreemarker.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachegroovy",
+    "name": "Apache Groovy",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachegroovy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheguacamole",
+    "name": "Apache Guacamole",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheguacamole.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachehadoop",
+    "name": "Apache Hadoop",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachehadoop.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachehbase",
+    "name": "Apache HBase",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachehbase.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachehive",
+    "name": "Apache Hive",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachehive.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachejmeter",
+    "name": "Apache JMeter",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachejmeter.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachekylin",
+    "name": "Apache Kylin",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachekylin.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachelucene",
+    "name": "Apache Lucene",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachelucene.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachemaven",
+    "name": "Apache Maven",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachemaven.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachenetbeanside",
+    "name": "Apache NetBeans IDE",
+    "category": "Videojuegos",
+    "image": "/logos/brand-apachenetbeanside.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachenifi",
+    "name": "Apache NiFi",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachenifi.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheopenoffice",
+    "name": "Apache OpenOffice",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheopenoffice.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacheparquet",
+    "name": "Apache Parquet",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacheparquet.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachepdfbox",
+    "name": "Apache PDFBox",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachepdfbox.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachepulsar",
+    "name": "Apache Pulsar",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachepulsar.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apacherocketmq",
+    "name": "Apache RocketMQ",
+    "category": "Tecnología",
+    "image": "/logos/brand-apacherocketmq.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachesolr",
+    "name": "Apache Solr",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachesolr.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachespark",
+    "name": "Apache Spark",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachespark.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachesuperset",
+    "name": "Apache Superset",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachesuperset.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apachetomcat",
+    "name": "Apache Tomcat",
+    "category": "Tecnología",
+    "image": "/logos/brand-apachetomcat.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aparat",
+    "name": "Aparat",
+    "category": "Tecnología",
+    "image": "/logos/brand-aparat.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apmterminals",
+    "name": "APM Terminals",
+    "category": "Tecnología",
+    "image": "/logos/brand-apmterminals.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-apollographql",
+    "name": "Apollo GraphQL",
+    "category": "Tecnología",
+    "image": "/logos/brand-apollographql.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appgallery",
+    "name": "AppGallery",
+    "category": "Tecnología",
+    "image": "/logos/brand-appgallery.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appian",
+    "name": "Appian",
+    "category": "Tecnología",
+    "image": "/logos/brand-appian.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appimage",
+    "name": "AppImage",
+    "category": "Tecnología",
+    "image": "/logos/brand-appimage.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-applearcade",
+    "name": "Apple Arcade",
+    "category": "Videojuegos",
+    "image": "/logos/brand-applearcade.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-applemusic",
+    "name": "Apple Music",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-applemusic.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-applenews",
+    "name": "Apple News",
+    "category": "Tecnología",
+    "image": "/logos/brand-applenews.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-applepay",
+    "name": "Apple Pay",
+    "category": "Finanzas",
+    "image": "/logos/brand-applepay.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appletv",
+    "name": "Apple TV",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-appletv.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appsignal",
+    "name": "AppSignal",
+    "category": "Redes sociales",
+    "image": "/logos/brand-appsignal.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appsmith",
+    "name": "Appsmith",
+    "category": "Tecnología",
+    "image": "/logos/brand-appsmith.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appstore",
+    "name": "App Store",
+    "category": "Comercio",
+    "image": "/logos/brand-appstore.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appveyor",
+    "name": "AppVeyor",
+    "category": "Tecnología",
+    "image": "/logos/brand-appveyor.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-appwrite",
+    "name": "Appwrite",
+    "category": "Tecnología",
+    "image": "/logos/brand-appwrite.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aqua",
+    "name": "Aqua",
+    "category": "Tecnología",
+    "image": "/logos/brand-aqua.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aral",
+    "name": "ARAL",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-aral.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arangodb",
+    "name": "ArangoDB",
+    "category": "Tecnología",
+    "image": "/logos/brand-arangodb.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arc",
+    "name": "Arc",
+    "category": "Tecnología",
+    "image": "/logos/brand-arc.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arcgis",
+    "name": "ArcGIS",
+    "category": "Tecnología",
+    "image": "/logos/brand-arcgis.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-archicad",
+    "name": "Archicad",
+    "category": "Tecnología",
+    "image": "/logos/brand-archicad.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-archiveofourown",
+    "name": "Archive of Our Own",
+    "category": "Tecnología",
+    "image": "/logos/brand-archiveofourown.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arduino",
+    "name": "Arduino",
+    "category": "Tecnología",
+    "image": "/logos/brand-arduino.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-argos",
+    "name": "Argos",
+    "category": "Tecnología",
+    "image": "/logos/brand-argos.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arkecosystem",
+    "name": "ARK Ecosystem",
+    "category": "Tecnología",
+    "image": "/logos/brand-arkecosystem.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arlo",
+    "name": "Arlo",
+    "category": "Tecnología",
+    "image": "/logos/brand-arlo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arm",
+    "name": "Arm",
+    "category": "Tecnología",
+    "image": "/logos/brand-arm.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-armkeil",
+    "name": "Arm Keil",
+    "category": "Tecnología",
+    "image": "/logos/brand-armkeil.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arstechnica",
+    "name": "Ars Technica",
+    "category": "Tecnología",
+    "image": "/logos/brand-arstechnica.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-artixlinux",
+    "name": "Artix Linux",
+    "category": "Bebidas",
+    "image": "/logos/brand-artixlinux.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-arxiv",
+    "name": "arXiv",
+    "category": "Tecnología",
+    "image": "/logos/brand-arxiv.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aseprite",
+    "name": "Aseprite",
+    "category": "Tecnología",
+    "image": "/logos/brand-aseprite.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-assemblyscript",
+    "name": "AssemblyScript",
+    "category": "Tecnología",
+    "image": "/logos/brand-assemblyscript.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-asterisk",
+    "name": "Asterisk",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-asterisk.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-astra",
+    "name": "Astra",
+    "category": "Tecnología",
+    "image": "/logos/brand-astra.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-astral",
+    "name": "Astral",
+    "category": "Tecnología",
+    "image": "/logos/brand-astral.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-astro",
+    "name": "Astro",
+    "category": "Tecnología",
+    "image": "/logos/brand-astro.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-atandt",
+    "name": "AT&T",
+    "category": "Tecnología",
+    "image": "/logos/brand-atandt.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-atlasos",
+    "name": "AtlasOS",
+    "category": "Tecnología",
+    "image": "/logos/brand-atlasos.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-atomgit",
+    "name": "AtomGit",
+    "category": "Tecnología",
+    "image": "/logos/brand-atomgit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-audioboom",
+    "name": "Audioboom",
+    "category": "Automóviles",
+    "image": "/logos/brand-audioboom.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-audiomack",
+    "name": "Audiomack",
+    "category": "Automóviles",
+    "image": "/logos/brand-audiomack.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-aurelia",
+    "name": "Aurelia",
+    "category": "Tecnología",
+    "image": "/logos/brand-aurelia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autentique",
+    "name": "Autentique",
+    "category": "Tecnología",
+    "image": "/logos/brand-autentique.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-auth0",
+    "name": "Auth0",
+    "category": "Tecnología",
+    "image": "/logos/brand-auth0.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autocad",
+    "name": "AutoCAD",
+    "category": "Tecnología",
+    "image": "/logos/brand-autocad.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autodeskmaya",
+    "name": "Autodesk Maya",
+    "category": "Videojuegos",
+    "image": "/logos/brand-autodeskmaya.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autodeskrevit",
+    "name": "Autodesk Revit",
+    "category": "Tecnología",
+    "image": "/logos/brand-autodeskrevit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autohotkey",
+    "name": "AutoHotkey",
+    "category": "Tecnología",
+    "image": "/logos/brand-autohotkey.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autoit",
+    "name": "AutoIt",
+    "category": "Tecnología",
+    "image": "/logos/brand-autoit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-automattic",
+    "name": "Automattic",
+    "category": "Tecnología",
+    "image": "/logos/brand-automattic.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-autozone",
+    "name": "AutoZone",
+    "category": "Tecnología",
+    "image": "/logos/brand-autozone.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-avaloniaui",
+    "name": "AvaloniaUI",
+    "category": "Tecnología",
+    "image": "/logos/brand-avaloniaui.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-avast",
+    "name": "Avast",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-avast.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-avm",
+    "name": "AVM",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-avm.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-await",
+    "name": "Await",
+    "category": "Tecnología",
+    "image": "/logos/brand-await.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-awesomewm",
+    "name": "awesomeWM",
+    "category": "Tecnología",
+    "image": "/logos/brand-awesomewm.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-awwwards",
+    "name": "Awwwards",
+    "category": "Tecnología",
+    "image": "/logos/brand-awwwards.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-axisbank",
+    "name": "Axis Bank",
+    "category": "Finanzas",
+    "image": "/logos/brand-axisbank.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-b4x",
+    "name": "B4X",
+    "category": "Bebidas",
+    "image": "/logos/brand-b4x.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-babelio",
+    "name": "Babelio",
+    "category": "Tecnología",
+    "image": "/logos/brand-babelio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-backblaze",
+    "name": "Backblaze",
+    "category": "Tecnología",
+    "image": "/logos/brand-backblaze.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-backbone",
+    "name": "Backbone",
+    "category": "Tecnología",
+    "image": "/logos/brand-backbone.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-backendless",
+    "name": "Backendless",
+    "category": "Tecnología",
+    "image": "/logos/brand-backendless.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-backstage-casting",
+    "name": "Backstage",
+    "category": "Tecnología",
+    "image": "/logos/brand-backstage-casting.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-baidu",
+    "name": "Baidu",
+    "category": "Tecnología",
+    "image": "/logos/brand-baidu.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bakalari",
+    "name": "Bakaláři",
+    "category": "Tecnología",
+    "image": "/logos/brand-bakalari.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bamboo",
+    "name": "Bamboo",
+    "category": "Redes sociales",
+    "image": "/logos/brand-bamboo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bambulab",
+    "name": "Bambu Lab",
+    "category": "Tecnología",
+    "image": "/logos/brand-bambulab.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bandlab",
+    "name": "BandLab",
+    "category": "Tecnología",
+    "image": "/logos/brand-bandlab.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bandrautomation",
+    "name": "B&R Automation",
+    "category": "Tecnología",
+    "image": "/logos/brand-bandrautomation.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bandsintown",
+    "name": "Bandsintown",
+    "category": "Tecnología",
+    "image": "/logos/brand-bandsintown.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bankofamerica",
+    "name": "Bank of America",
+    "category": "Finanzas",
+    "image": "/logos/brand-bankofamerica.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-baremetrics",
+    "name": "Baremetrics",
+    "category": "Tecnología",
+    "image": "/logos/brand-baremetrics.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-barmenia",
+    "name": "Barmenia",
+    "category": "Tecnología",
+    "image": "/logos/brand-barmenia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-baserow",
+    "name": "Baserow",
+    "category": "Tecnología",
+    "image": "/logos/brand-baserow.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-baseui",
+    "name": "Base UI",
+    "category": "Tecnología",
+    "image": "/logos/brand-baseui.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-basicattentiontoken",
+    "name": "Basic Attention Token",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-basicattentiontoken.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bata",
+    "name": "Bata",
+    "category": "Tecnología",
+    "image": "/logos/brand-bata.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bazel",
+    "name": "Bazel",
+    "category": "Tecnología",
+    "image": "/logos/brand-bazel.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-beatstars",
+    "name": "BeatStars",
+    "category": "Videojuegos",
+    "image": "/logos/brand-beatstars.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-beekeeperstudio",
+    "name": "Beekeeper Studio",
+    "category": "Tecnología",
+    "image": "/logos/brand-beekeeperstudio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-beijingsubway",
+    "name": "Beijing Subway",
+    "category": "Alimentación",
+    "image": "/logos/brand-beijingsubway.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bem",
+    "name": "BEM",
+    "category": "Tecnología",
+    "image": "/logos/brand-bem.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bento",
+    "name": "Bento",
+    "category": "Tecnología",
+    "image": "/logos/brand-bento.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bentobox",
+    "name": "BentoBox",
+    "category": "Tecnología",
+    "image": "/logos/brand-bentobox.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-betfair",
+    "name": "Betfair",
+    "category": "Tecnología",
+    "image": "/logos/brand-betfair.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-betterstack",
+    "name": "Better Stack",
+    "category": "Tecnología",
+    "image": "/logos/brand-betterstack.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bigbasket",
+    "name": "bigbasket",
+    "category": "Tecnología",
+    "image": "/logos/brand-bigbasket.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bigcartel",
+    "name": "Big Cartel",
+    "category": "Tecnología",
+    "image": "/logos/brand-bigcartel.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-billboard",
+    "name": "Billboard",
+    "category": "Tecnología",
+    "image": "/logos/brand-billboard.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bim",
+    "name": "BIM",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-bim.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-biolink",
+    "name": "Bio Link",
+    "category": "Tecnología",
+    "image": "/logos/brand-biolink.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bisecthosting",
+    "name": "BisectHosting",
+    "category": "Tecnología",
+    "image": "/logos/brand-bisecthosting.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bit",
+    "name": "Bit",
+    "category": "Tecnología",
+    "image": "/logos/brand-bit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitbucket",
+    "name": "Bitbucket",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitbucket.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitcoin",
+    "name": "Bitcoin",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitcoin.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitcoincash",
+    "name": "Bitcoin Cash",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitcoincash.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitcoinsv",
+    "name": "Bitcoin SV",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitcoinsv.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitcomet",
+    "name": "BitComet",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitcomet.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitrise",
+    "name": "Bitrise",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitrise.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitsy",
+    "name": "Bitsy",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitsy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bittorrent",
+    "name": "BitTorrent",
+    "category": "Tecnología",
+    "image": "/logos/brand-bittorrent.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bitwig",
+    "name": "Bitwig",
+    "category": "Tecnología",
+    "image": "/logos/brand-bitwig.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-black",
+    "name": "Black",
+    "category": "Videojuegos",
+    "image": "/logos/brand-black.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blackmagicdesign",
+    "name": "Blackmagic Design",
+    "category": "Tecnología",
+    "image": "/logos/brand-blackmagicdesign.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blazemeter",
+    "name": "Blazemeter",
+    "category": "Tecnología",
+    "image": "/logos/brand-blazemeter.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blazor",
+    "name": "Blazor",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-blazor.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blibli",
+    "name": "Blibli",
+    "category": "Tecnología",
+    "image": "/logos/brand-blibli.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blockbench",
+    "name": "Blockbench",
+    "category": "Tecnología",
+    "image": "/logos/brand-blockbench.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blockchaindotcom",
+    "name": "Blockchain.com",
+    "category": "Tecnología",
+    "image": "/logos/brand-blockchaindotcom.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blogger",
+    "name": "Blogger",
+    "category": "Tecnología",
+    "image": "/logos/brand-blogger.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bloglovin",
+    "name": "Bloglovin",
+    "category": "Tecnología",
+    "image": "/logos/brand-bloglovin.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-blueprint",
+    "name": "Blueprint",
+    "category": "Tecnología",
+    "image": "/logos/brand-blueprint.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bluesound",
+    "name": "Bluesound",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-bluesound.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bluetooth",
+    "name": "Bluetooth",
+    "category": "Comercio",
+    "image": "/logos/brand-bluetooth.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bmcsoftware",
+    "name": "BMC Software",
+    "category": "Tecnología",
+    "image": "/logos/brand-bmcsoftware.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bnbchain",
+    "name": "BNB Chain",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-bnbchain.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-boardgamegeek",
+    "name": "BoardGameGeek",
+    "category": "Videojuegos",
+    "image": "/logos/brand-boardgamegeek.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-boehringeringelheim",
+    "name": "Boehringer Ingelheim",
+    "category": "Tecnología",
+    "image": "/logos/brand-boehringeringelheim.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bohemiainteractive",
+    "name": "Bohemia Interactive",
+    "category": "Tecnología",
+    "image": "/logos/brand-bohemiainteractive.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bombardier",
+    "name": "Bombardier",
+    "category": "Tecnología",
+    "image": "/logos/brand-bombardier.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bookalope",
+    "name": "Bookalope",
+    "category": "Tecnología",
+    "image": "/logos/brand-bookalope.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bookbub",
+    "name": "BookBub",
+    "category": "Tecnología",
+    "image": "/logos/brand-bookbub.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bookmeter",
+    "name": "Bookmeter",
+    "category": "Tecnología",
+    "image": "/logos/brand-bookmeter.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bookmyshow",
+    "name": "BookMyShow",
+    "category": "Tecnología",
+    "image": "/logos/brand-bookmyshow.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bookstack",
+    "name": "BookStack",
+    "category": "Tecnología",
+    "image": "/logos/brand-bookstack.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-boost",
+    "name": "Boost",
+    "category": "Electrónica",
+    "image": "/logos/brand-boost.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-boosty",
+    "name": "Boosty",
+    "category": "Tecnología",
+    "image": "/logos/brand-boosty.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-borgbackup",
+    "name": "BorgBackup",
+    "category": "Tecnología",
+    "image": "/logos/brand-borgbackup.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-botblecms",
+    "name": "Botble CMS",
+    "category": "Tecnología",
+    "image": "/logos/brand-botblecms.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-boulanger",
+    "name": "boulanger",
+    "category": "Tecnología",
+    "image": "/logos/brand-boulanger.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bower",
+    "name": "Bower",
+    "category": "Tecnología",
+    "image": "/logos/brand-bower.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-box",
+    "name": "Box",
+    "category": "Tecnología",
+    "image": "/logos/brand-box.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-boxysvg",
+    "name": "Boxy SVG",
+    "category": "Videojuegos",
+    "image": "/logos/brand-boxysvg.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-braintree",
+    "name": "Braintree",
+    "category": "Finanzas",
+    "image": "/logos/brand-braintree.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-brandfetch",
+    "name": "Brandfetch",
+    "category": "Tecnología",
+    "image": "/logos/brand-brandfetch.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-brandfolder",
+    "name": "Brandfolder",
+    "category": "Tecnología",
+    "image": "/logos/brand-brandfolder.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-breaker",
+    "name": "Breaker",
+    "category": "Automóviles",
+    "image": "/logos/brand-breaker.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-brenntag",
+    "name": "Brenntag",
+    "category": "Tecnología",
+    "image": "/logos/brand-brenntag.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-brevo",
+    "name": "Brevo",
+    "category": "Tecnología",
+    "image": "/logos/brand-brevo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-brex",
+    "name": "Brex",
+    "category": "Tecnología",
+    "image": "/logos/brand-brex.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bricks",
+    "name": "Bricks",
+    "category": "Tecnología",
+    "image": "/logos/brand-bricks.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bruno",
+    "name": "Bruno",
+    "category": "Tecnología",
+    "image": "/logos/brand-bruno.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bsd",
+    "name": "BSD",
+    "category": "Tecnología",
+    "image": "/logos/brand-bsd.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-buddy",
+    "name": "Buddy",
+    "category": "Tecnología",
+    "image": "/logos/brand-buddy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-buhl",
+    "name": "Buhl",
+    "category": "Tecnología",
+    "image": "/logos/brand-buhl.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-buildkite",
+    "name": "Buildkite",
+    "category": "Tecnología",
+    "image": "/logos/brand-buildkite.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-builtbybit",
+    "name": "BuiltByBit",
+    "category": "Tecnología",
+    "image": "/logos/brand-builtbybit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bukalapak",
+    "name": "Bukalapak",
+    "category": "Tecnología",
+    "image": "/logos/brand-bukalapak.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bun",
+    "name": "Bun",
+    "category": "Tecnología",
+    "image": "/logos/brand-bun.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bungie",
+    "name": "Bungie",
+    "category": "Tecnología",
+    "image": "/logos/brand-bungie.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bunnydotnet",
+    "name": "bunny.net",
+    "category": "Tecnología",
+    "image": "/logos/brand-bunnydotnet.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bunq",
+    "name": "bunq",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-bunq.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-burpsuite",
+    "name": "Burp Suite",
+    "category": "Tecnología",
+    "image": "/logos/brand-burpsuite.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-burton",
+    "name": "Burton",
+    "category": "Tecnología",
+    "image": "/logos/brand-burton.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-buymeacoffee",
+    "name": "Buy Me A Coffee",
+    "category": "Bebidas",
+    "image": "/logos/brand-buymeacoffee.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-buysellads",
+    "name": "BuySellAds",
+    "category": "Tecnología",
+    "image": "/logos/brand-buysellads.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bvg",
+    "name": "BVG",
+    "category": "Tecnología",
+    "image": "/logos/brand-bvg.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-byjus",
+    "name": "Byju's",
+    "category": "Videojuegos",
+    "image": "/logos/brand-byjus.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-bytedance",
+    "name": "ByteDance",
+    "category": "Tecnología",
+    "image": "/logos/brand-bytedance.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cachet",
+    "name": "Cachet",
+    "category": "Tecnología",
+    "image": "/logos/brand-cachet.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cachyos",
+    "name": "CachyOS",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-cachyos.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cafepress",
+    "name": "CafePress",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-cafepress.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cairometro",
+    "name": "Cairo Metro",
+    "category": "Tecnología",
+    "image": "/logos/brand-cairometro.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-caixabank",
+    "name": "CaixaBank",
+    "category": "Finanzas",
+    "image": "/logos/brand-caixabank.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cakephp",
+    "name": "CakePHP",
+    "category": "Tecnología",
+    "image": "/logos/brand-cakephp.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-caldotcom",
+    "name": "Cal.com",
+    "category": "Tecnología",
+    "image": "/logos/brand-caldotcom.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-calendly",
+    "name": "Calendly",
+    "category": "Tecnología",
+    "image": "/logos/brand-calendly.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-campaignmonitor",
+    "name": "Campaign Monitor",
+    "category": "Tecnología",
+    "image": "/logos/brand-campaignmonitor.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-camunda",
+    "name": "Camunda",
+    "category": "Tecnología",
+    "image": "/logos/brand-camunda.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-canonical",
+    "name": "Canonical",
+    "category": "Tecnología",
+    "image": "/logos/brand-canonical.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-canvas",
+    "name": "Canvas",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-canvas.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cardano",
+    "name": "Cardano",
+    "category": "Tecnología",
+    "image": "/logos/brand-cardano.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-carlsberggroup",
+    "name": "Carlsberg Group",
+    "category": "Alimentación",
+    "image": "/logos/brand-carlsberggroup.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-carrd",
+    "name": "Carrd",
+    "category": "Tecnología",
+    "image": "/logos/brand-carrd.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-carthrottle",
+    "name": "Car Throttle",
+    "category": "Automóviles",
+    "image": "/logos/brand-carthrottle.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-carto",
+    "name": "Carto",
+    "category": "Tecnología",
+    "image": "/logos/brand-carto.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-castbox",
+    "name": "Castbox",
+    "category": "Tecnología",
+    "image": "/logos/brand-castbox.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-castorama",
+    "name": "Castorama",
+    "category": "Tecnología",
+    "image": "/logos/brand-castorama.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-castro",
+    "name": "Castro",
+    "category": "Tecnología",
+    "image": "/logos/brand-castro.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-caterpillar",
+    "name": "Caterpillar",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-caterpillar.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cbc",
+    "name": "CBC",
+    "category": "Tecnología",
+    "image": "/logos/brand-cbc.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ccc",
+    "name": "CCC",
+    "category": "Tecnología",
+    "image": "/logos/brand-ccc.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ccleaner",
+    "name": "CCleaner",
+    "category": "Videojuegos",
+    "image": "/logos/brand-ccleaner.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-ce",
+    "name": "CE",
+    "category": "Comercio",
+    "image": "/logos/brand-ce.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-celestron",
+    "name": "Celestron",
+    "category": "Tecnología",
+    "image": "/logos/brand-celestron.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cesium",
+    "name": "Cesium",
+    "category": "Tecnología",
+    "image": "/logos/brand-cesium.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chainguard",
+    "name": "Chainguard",
+    "category": "Tecnología",
+    "image": "/logos/brand-chainguard.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chainlink",
+    "name": "Chainlink",
+    "category": "Tecnología",
+    "image": "/logos/brand-chainlink.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-changedetection",
+    "name": "Change Detection",
+    "category": "Tecnología",
+    "image": "/logos/brand-changedetection.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-channel4",
+    "name": "Channel 4",
+    "category": "Videojuegos",
+    "image": "/logos/brand-channel4.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-charles",
+    "name": "Charles",
+    "category": "Tecnología",
+    "image": "/logos/brand-charles.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chartmogul",
+    "name": "ChartMogul",
+    "category": "Tecnología",
+    "image": "/logos/brand-chartmogul.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chase",
+    "name": "Chase",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-chase.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chatbot",
+    "name": "ChatBot",
+    "category": "Redes sociales",
+    "image": "/logos/brand-chatbot.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chatwoot",
+    "name": "Chatwoot",
+    "category": "Redes sociales",
+    "image": "/logos/brand-chatwoot.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-checkio",
+    "name": "CheckiO",
+    "category": "Tecnología",
+    "image": "/logos/brand-checkio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-checkmarx",
+    "name": "Checkmarx",
+    "category": "Tecnología",
+    "image": "/logos/brand-checkmarx.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-checkmk",
+    "name": "Checkmk",
+    "category": "Tecnología",
+    "image": "/logos/brand-checkmk.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chedraui",
+    "name": "Chedraui",
+    "category": "Tecnología",
+    "image": "/logos/brand-chedraui.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chemex",
+    "name": "Chemex",
+    "category": "Bebidas",
+    "image": "/logos/brand-chemex.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chessdotcom",
+    "name": "Chess.com",
+    "category": "Tecnología",
+    "image": "/logos/brand-chessdotcom.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chianetwork",
+    "name": "Chia Network",
+    "category": "Tecnología",
+    "image": "/logos/brand-chianetwork.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chinarailway",
+    "name": "China Railway",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-chinarailway.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chocolatey",
+    "name": "Chocolatey",
+    "category": "Alimentación",
+    "image": "/logos/brand-chocolatey.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chromatic",
+    "name": "Chromatic",
+    "category": "Tecnología",
+    "image": "/logos/brand-chromatic.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-chromewebstore",
+    "name": "Chrome Web Store",
+    "category": "Comercio",
+    "image": "/logos/brand-chromewebstore.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cinema4d",
+    "name": "Cinema 4D",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-cinema4d.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cinnamon",
+    "name": "Cinnamon",
+    "category": "Tecnología",
+    "image": "/logos/brand-cinnamon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cinny",
+    "name": "Cinny",
+    "category": "Tecnología",
+    "image": "/logos/brand-cinny.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-circle",
+    "name": "Circle",
+    "category": "Tecnología",
+    "image": "/logos/brand-circle.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-circuitverse",
+    "name": "CircuitVerse",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-circuitverse.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cirrusci",
+    "name": "Cirrus CI",
+    "category": "Tecnología",
+    "image": "/logos/brand-cirrusci.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-citrix",
+    "name": "Citrix",
+    "category": "Tecnología",
+    "image": "/logos/brand-citrix.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-civicrm",
+    "name": "CiviCRM",
+    "category": "Tecnología",
+    "image": "/logos/brand-civicrm.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-civo",
+    "name": "Civo",
+    "category": "Tecnología",
+    "image": "/logos/brand-civo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clarifai",
+    "name": "Clarifai",
+    "category": "Tecnología",
+    "image": "/logos/brand-clarifai.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-claris",
+    "name": "Claris",
+    "category": "Tecnología",
+    "image": "/logos/brand-claris.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clarivate",
+    "name": "Clarivate",
+    "category": "Tecnología",
+    "image": "/logos/brand-clarivate.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-claude",
+    "name": "Claude",
+    "category": "Tecnología",
+    "image": "/logos/brand-claude.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-claudecode",
+    "name": "Claude Code",
+    "category": "Tecnología",
+    "image": "/logos/brand-claudecode.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clerk",
+    "name": "Clerk",
+    "category": "Tecnología",
+    "image": "/logos/brand-clerk.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clevercloud",
+    "name": "Clever Cloud",
+    "category": "Tecnología",
+    "image": "/logos/brand-clevercloud.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cline",
+    "name": "Cline",
+    "category": "Redes sociales",
+    "image": "/logos/brand-cline.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clion",
+    "name": "CLion",
+    "category": "Tecnología",
+    "image": "/logos/brand-clion.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clockify",
+    "name": "Clockify",
+    "category": "Tecnología",
+    "image": "/logos/brand-clockify.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloud66",
+    "name": "Cloud 66",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloud66.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudbees",
+    "name": "CloudBees",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudbees.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudcannon",
+    "name": "CloudCannon",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudcannon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudera",
+    "name": "Cloudera",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudera.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudflarepages",
+    "name": "Cloudflare Pages",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudflarepages.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudflareworkers",
+    "name": "Cloudflare Workers",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudflareworkers.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudfoundry",
+    "name": "Cloud Foundry",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudfoundry.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudinary",
+    "name": "Cloudinary",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudinary.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudnativebuild",
+    "name": "Cloud Native Build",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudnativebuild.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudron",
+    "name": "Cloudron",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudron.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudsmith",
+    "name": "Cloudsmith",
+    "category": "Tecnología",
+    "image": "/logos/brand-cloudsmith.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cloudways",
+    "name": "Cloudways",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-cloudways.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clubforce",
+    "name": "Clubforce",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-clubforce.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clubhouse",
+    "name": "Clubhouse",
+    "category": "Tecnología",
+    "image": "/logos/brand-clubhouse.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-clyp",
+    "name": "Clyp",
+    "category": "Tecnología",
+    "image": "/logos/brand-clyp.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cmake",
+    "name": "CMake",
+    "category": "Tecnología",
+    "image": "/logos/brand-cmake.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cnes",
+    "name": "CNES",
+    "category": "Tecnología",
+    "image": "/logos/brand-cnes.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cnet",
+    "name": "CNET",
+    "category": "Tecnología",
+    "image": "/logos/brand-cnet.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cobalt",
+    "name": "cobalt",
+    "category": "Tecnología",
+    "image": "/logos/brand-cobalt.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cockroachlabs",
+    "name": "Cockroach Labs",
+    "category": "Tecnología",
+    "image": "/logos/brand-cockroachlabs.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cocos",
+    "name": "Cocos",
+    "category": "Tecnología",
+    "image": "/logos/brand-cocos.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codacy",
+    "name": "Codacy",
+    "category": "Tecnología",
+    "image": "/logos/brand-codacy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeberg",
+    "name": "Codeberg",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeberg.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeblocks",
+    "name": "Code::Blocks",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeblocks.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codebuddy",
+    "name": "CodeBuddy",
+    "category": "Tecnología",
+    "image": "/logos/brand-codebuddy.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codechef",
+    "name": "CodeChef",
+    "category": "Tecnología",
+    "image": "/logos/brand-codechef.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeclimate",
+    "name": "Code Climate",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeclimate.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codecov",
+    "name": "Codecov",
+    "category": "Tecnología",
+    "image": "/logos/brand-codecov.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codefactor",
+    "name": "CodeFactor",
+    "category": "Tecnología",
+    "image": "/logos/brand-codefactor.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeforces",
+    "name": "Codeforces",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeforces.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codefresh",
+    "name": "Codefresh",
+    "category": "Tecnología",
+    "image": "/logos/brand-codefresh.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeigniter",
+    "name": "CodeIgniter",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeigniter.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codemagic",
+    "name": "Codemagic",
+    "category": "Tecnología",
+    "image": "/logos/brand-codemagic.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codementor",
+    "name": "Codementor",
+    "category": "Tecnología",
+    "image": "/logos/brand-codementor.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codenewbie",
+    "name": "CodeNewbie",
+    "category": "Redes sociales",
+    "image": "/logos/brand-codenewbie.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeproject",
+    "name": "CodeProject",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeproject.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coder",
+    "name": "Coder",
+    "category": "Tecnología",
+    "image": "/logos/brand-coder.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coderabbit",
+    "name": "CodeRabbit",
+    "category": "Transporte",
+    "image": "/logos/brand-coderabbit.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codersrank",
+    "name": "CodersRank",
+    "category": "Tecnología",
+    "image": "/logos/brand-codersrank.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codeship",
+    "name": "Codeship",
+    "category": "Tecnología",
+    "image": "/logos/brand-codeship.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codesignal",
+    "name": "CodeSignal",
+    "category": "Redes sociales",
+    "image": "/logos/brand-codesignal.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codestream",
+    "name": "CodeStream",
+    "category": "Videojuegos",
+    "image": "/logos/brand-codestream.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codingame",
+    "name": "CodinGame",
+    "category": "Videojuegos",
+    "image": "/logos/brand-codingame.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codingninjas",
+    "name": "Coding Ninjas",
+    "category": "Videojuegos",
+    "image": "/logos/brand-codingninjas.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-codio",
+    "name": "Codio",
+    "category": "Tecnología",
+    "image": "/logos/brand-codio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coffeescript",
+    "name": "CoffeeScript",
+    "category": "Bebidas",
+    "image": "/logos/brand-coffeescript.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coggle",
+    "name": "Coggle",
+    "category": "Tecnología",
+    "image": "/logos/brand-coggle.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-collaboraonline",
+    "name": "Collabora Online",
+    "category": "Redes sociales",
+    "image": "/logos/brand-collaboraonline.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-comicfury",
+    "name": "ComicFury",
+    "category": "Tecnología",
+    "image": "/logos/brand-comicfury.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-comma",
+    "name": "comma",
+    "category": "Tecnología",
+    "image": "/logos/brand-comma.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-commerzbank",
+    "name": "Commerzbank",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-commerzbank.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-commodore",
+    "name": "Commodore",
+    "category": "Tecnología",
+    "image": "/logos/brand-commodore.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-commonlisp",
+    "name": "Common Lisp",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-commonlisp.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-comptia",
+    "name": "CompTIA",
+    "category": "Tecnología",
+    "image": "/logos/brand-comptia.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-comsol",
+    "name": "Comsol",
+    "category": "Tecnología",
+    "image": "/logos/brand-comsol.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-conan",
+    "name": "Conan",
+    "category": "Tecnología",
+    "image": "/logos/brand-conan.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-concourse",
+    "name": "Concourse",
+    "category": "Tecnología",
+    "image": "/logos/brand-concourse.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-conekta",
+    "name": "Conekta",
+    "category": "Tecnología",
+    "image": "/logos/brand-conekta.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-construct3",
+    "name": "Construct 3",
+    "category": "Tecnología",
+    "image": "/logos/brand-construct3.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-contabo",
+    "name": "Contabo",
+    "category": "Tecnología",
+    "image": "/logos/brand-contabo.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-contactlesspayment",
+    "name": "Contactless Payment",
+    "category": "Finanzas",
+    "image": "/logos/brand-contactlesspayment.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-containerd",
+    "name": "containerd",
+    "category": "Tecnología",
+    "image": "/logos/brand-containerd.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-contao",
+    "name": "Contao",
+    "category": "Tecnología",
+    "image": "/logos/brand-contao.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-contentful",
+    "name": "Contentful",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-contentful.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-contentstack",
+    "name": "Contentstack",
+    "category": "Tecnología",
+    "image": "/logos/brand-contentstack.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-continente",
+    "name": "Continente",
+    "category": "Tecnología",
+    "image": "/logos/brand-continente.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-contributorcovenant",
+    "name": "Contributor Covenant",
+    "category": "Tecnología",
+    "image": "/logos/brand-contributorcovenant.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-convertio",
+    "name": "Convertio",
+    "category": "Tecnología",
+    "image": "/logos/brand-convertio.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-convex",
+    "name": "Convex",
+    "category": "Tecnología",
+    "image": "/logos/brand-convex.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coolermaster",
+    "name": "Cooler Master",
+    "category": "Tecnología",
+    "image": "/logos/brand-coolermaster.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coop",
+    "name": "Co-op",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-coop.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coppel",
+    "name": "Coppel",
+    "category": "Tecnología",
+    "image": "/logos/brand-coppel.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cora",
+    "name": "Cora",
+    "category": "Tecnología",
+    "image": "/logos/brand-cora.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coreboot",
+    "name": "Coreboot",
+    "category": "Tecnología",
+    "image": "/logos/brand-coreboot.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coronarenderer",
+    "name": "Corona Renderer",
+    "category": "Bebidas",
+    "image": "/logos/brand-coronarenderer.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-counterstrike",
+    "name": "Counter-Strike",
+    "category": "Tecnología",
+    "image": "/logos/brand-counterstrike.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-countingworkspro",
+    "name": "CountingWorks PRO",
+    "category": "Tecnología",
+    "image": "/logos/brand-countingworkspro.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coveralls",
+    "name": "Coveralls",
+    "category": "Tecnología",
+    "image": "/logos/brand-coveralls.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-coze",
+    "name": "Coze",
+    "category": "Tecnología",
+    "image": "/logos/brand-coze.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cpanel",
+    "name": "cPanel",
+    "category": "Tecnología",
+    "image": "/logos/brand-cpanel.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cplusplusbuilder",
+    "name": "C++ Builder",
+    "category": "Videojuegos",
+    "image": "/logos/brand-cplusplusbuilder.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-craftcms",
+    "name": "Craft CMS",
+    "category": "Tecnología",
+    "image": "/logos/brand-craftcms.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-craftsman",
+    "name": "Craftsman",
+    "category": "Tecnología",
+    "image": "/logos/brand-craftsman.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crayon",
+    "name": "Crayon",
+    "category": "Tecnología",
+    "image": "/logos/brand-crayon.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-creativecommons",
+    "name": "Creative Commons",
+    "category": "Automóviles",
+    "image": "/logos/brand-creativecommons.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-creativetechnology",
+    "name": "Creative Technology",
+    "category": "Videojuegos",
+    "image": "/logos/brand-creativetechnology.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-credly",
+    "name": "Credly",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-credly.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crehana",
+    "name": "Crehana",
+    "category": "Tecnología",
+    "image": "/logos/brand-crehana.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crewunited",
+    "name": "Crew United",
+    "category": "Tecnología",
+    "image": "/logos/brand-crewunited.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-criticalrole",
+    "name": "Critical Role",
+    "category": "Tecnología",
+    "image": "/logos/brand-criticalrole.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crowdin",
+    "name": "Crowdin",
+    "category": "Tecnología",
+    "image": "/logos/brand-crowdin.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crowdsource",
+    "name": "Crowdsource",
+    "category": "Tecnología",
+    "image": "/logos/brand-crowdsource.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crunchbase",
+    "name": "Crunchbase",
+    "category": "Tecnología",
+    "image": "/logos/brand-crunchbase.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cryptpad",
+    "name": "CryptPad",
+    "category": "Tecnología",
+    "image": "/logos/brand-cryptpad.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-crystal",
+    "name": "Crystal",
+    "category": "Entretenimiento",
+    "image": "/logos/brand-crystal.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-csdn",
+    "name": "CSDN",
+    "category": "Tecnología",
+    "image": "/logos/brand-csdn.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cssdesignawards",
+    "name": "CSS Design Awards",
+    "category": "Tecnología",
+    "image": "/logos/brand-cssdesignawards.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-csswizardry",
+    "name": "CSS Wizardry",
+    "category": "Tecnología",
+    "image": "/logos/brand-csswizardry.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cucumber",
+    "name": "Cucumber",
+    "category": "Tecnología",
+    "image": "/logos/brand-cucumber.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cultura",
+    "name": "Cultura",
+    "category": "Tecnología",
+    "image": "/logos/brand-cultura.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-curl",
+    "name": "curl",
+    "category": "Tecnología",
+    "image": "/logos/brand-curl.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cursor",
+    "name": "Cursor",
+    "category": "Tecnología",
+    "image": "/logos/brand-cursor.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-customink",
+    "name": "Custom Ink",
+    "category": "Tecnología",
+    "image": "/logos/brand-customink.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cyberdefenders",
+    "name": "CyberDefenders",
+    "category": "Electrónica",
+    "image": "/logos/brand-cyberdefenders.png",
+    "aliases": []
+  },
+  {
+    "id": "brand-cycling74",
+    "name": "Cycling '74",
+    "category": "Tecnología",
+    "image": "/logos/brand-cycling74.png",
+    "aliases": []
   }
 ];

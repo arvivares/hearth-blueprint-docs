@@ -99,7 +99,7 @@ function DemoPage() {
   const [isPlayingAuto, setIsPlayingAuto] = useState(true);
   const [userScore, setUserScore] = useState(1600);
   const [userAnswered, setUserAnswered] = useState(false);
-  const [userFeedback, setUserFeedback] = useState<{ status: "correct" | "incorrect"; points?: number } | null>(null);
+  const [userFeedback, setUserFeedback] = useState<{ status: "correct" | "incorrect"; points?: number; multiplier?: number } | null>(null);
 
   const activeBrand = brands[brandIndex % brands.length]!;
   const pixelatedSrc = usePixelatedLogo(activeBrand.image, stage, currentPhase === "ROUND_RESULTS");
@@ -153,10 +153,13 @@ function DemoPage() {
     );
 
     if (cleanGuess === correctName || correctName.includes(cleanGuess) || isAlias) {
-      const earned = Math.max(200, 1000 - (stage - 1) * 180);
+      const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+      const multiplier = Number((1.0 + remainingSec * 0.1).toFixed(2));
+      const basePoints = Math.max(200, 1000 - (stage - 1) * 200);
+      const earned = Math.round(basePoints * multiplier);
       setUserScore((s) => s + earned);
       setUserAnswered(true);
-      setUserFeedback({ status: "correct", points: earned });
+      setUserFeedback({ status: "correct", points: earned, multiplier });
     } else {
       setUserFeedback({ status: "incorrect" });
       setTimeout(() => setUserFeedback(null), 2500);
@@ -438,7 +441,7 @@ function DemoPage() {
                     connection="demo"
                     connectionError={null}
                     remainingMs={currentPhase === "ROUND_ACTIVE" ? remainingMs : null}
-                    lastResult={userFeedback ? { attemptId: "demo", roundId: snapshot.roundId, status: userFeedback.status, points: userFeedback.points } : null}
+                    lastResult={userFeedback ? { attemptId: "demo", roundId: snapshot.roundId, status: userFeedback.status, points: userFeedback.points, multiplier: userFeedback.multiplier } : null}
                     pending={false}
                     errorCode={null}
                     onSubmit={handlePlayerSubmit}
@@ -505,7 +508,7 @@ function DemoPage() {
               connection="demo"
               connectionError={null}
               remainingMs={currentPhase === "ROUND_ACTIVE" ? remainingMs : null}
-              lastResult={userFeedback ? { attemptId: "demo", roundId: snapshot.roundId, status: userFeedback.status, points: userFeedback.points } : null}
+              lastResult={userFeedback ? { attemptId: "demo", roundId: snapshot.roundId, status: userFeedback.status, points: userFeedback.points, multiplier: userFeedback.multiplier } : null}
               pending={false}
               errorCode={null}
               onSubmit={handlePlayerSubmit}

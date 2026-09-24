@@ -52,6 +52,7 @@ export const ServerMessages = {
     roundId: z.string(),
     status: AttemptStatus,
     points: z.number().int().optional(),
+    multiplier: z.number().optional(),
     retryAt: z.number().optional(),
   }),
   "round:media": z.object({ roundId: z.string(), stage: z.number().int(), mediaId: z.string() }),

@@ -4,6 +4,30 @@ export function pointsForStage(stage: number, table: readonly number[]): number 
   return table[Math.min(stage, table.length) - 1] ?? 0;
 }
 
+/**
+ * Puntuación dinámica con multiplicador de tiempo por segundo.
+ * Cada segundo restante otorga un multiplicador de +0.10x sobre los puntos base de la etapa.
+ * Quien adivina antes gana muchos más puntos gracias a la velocidad, lo que le da una
+ * ventaja decisiva en la partida y en el podio global de mejores puntuaciones.
+ *
+ * Ejemplo con ronda de 15 segundos:
+ * - Acierto en segundo 1 (14s restantes, etapa 1: 1000 pts base): 1.0 + 1.4 = x2.40 -> 2,400 pts
+ * - Acierto en segundo 5 (10s restantes, etapa 2: 800 pts base):  1.0 + 1.0 = x2.00 -> 1,600 pts
+ * - Acierto en segundo 10 (5s restantes, etapa 4: 400 pts base):  1.0 + 0.5 = x1.50 -> 600 pts
+ * - Acierto en segundo 14 (1s restante, etapa 5: 200 pts base):   1.0 + 0.1 = x1.10 -> 220 pts
+ */
+export function calculateDynamicScore(
+  stage: number,
+  table: readonly number[],
+  remainingMs: number,
+): { points: number; basePoints: number; multiplier: number; remainingSec: number } {
+  const basePoints = pointsForStage(stage, table);
+  const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+  const multiplier = Number((1.0 + remainingSec * 0.1).toFixed(2));
+  const points = Math.round(basePoints * multiplier);
+  return { points, basePoints, multiplier, remainingSec };
+}
+
 export interface Standing {
   playerId: string;
   score: number;

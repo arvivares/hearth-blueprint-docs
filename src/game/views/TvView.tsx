@@ -570,16 +570,25 @@ function StageDots({ stage, total }: { stage: number; total: number }) {
 function Timer({ remainingMs, phase }: { remainingMs: number | null; phase: string }) {
   if (remainingMs === null) return <span />;
   const urgent = remainingMs <= 5000 && phase === "ROUND_ACTIVE";
+  const seconds = Math.max(0, Math.ceil(remainingMs / 1000));
+  const multiplier = phase === "ROUND_ACTIVE" ? (1.0 + seconds * 0.1).toFixed(1) : null;
   return (
-    <div
-      className={cn(
-        "font-mono text-[4.5vw] font-bold leading-none tabular-nums transition-colors",
-        urgent ? "text-red-400" : "text-white",
+    <div className="flex items-center gap-3">
+      {multiplier && (
+        <span className="font-mono text-[1.4vw] font-bold text-amber-300 bg-amber-400/20 px-3 py-1 rounded-full border border-amber-400/30 animate-pulse">
+          ⚡ {multiplier}x
+        </span>
       )}
-      aria-live="off"
-    >
-      {formatSeconds(remainingMs)}
-      <span className="ml-1 text-[1.4vw] font-normal text-zinc-500">s</span>
+      <div
+        className={cn(
+          "font-mono text-[4.5vw] font-bold leading-none tabular-nums transition-colors",
+          urgent ? "text-red-400" : "text-white",
+        )}
+        aria-live="off"
+      >
+        {formatSeconds(remainingMs)}
+        <span className="ml-1 text-[1.4vw] font-normal text-zinc-500">s</span>
+      </div>
     </div>
   );
 }

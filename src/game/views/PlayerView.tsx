@@ -71,9 +71,16 @@ export function PlayerView(p: PlayerViewProps) {
             </span>
 
             {phase === "ROUND_ACTIVE" && (
-              <p className="font-mono text-6xl sm:text-7xl font-bold tabular-nums text-white tracking-tight">
-                {formatSeconds(p.remainingMs)}
-              </p>
+              <div className="flex items-center justify-center gap-3">
+                <p className="font-mono text-6xl sm:text-7xl font-bold tabular-nums text-white tracking-tight">
+                  {formatSeconds(p.remainingMs)}
+                </p>
+                {p.remainingMs !== null && p.remainingMs > 0 && (
+                  <span className="font-mono text-sm sm:text-base font-bold text-amber-300 bg-amber-400/20 px-2.5 py-1 rounded-full border border-amber-400/30 animate-pulse">
+                    ⚡ {(1.0 + Math.ceil(p.remainingMs / 1000) * 0.1).toFixed(1)}x
+                  </span>
+                )}
+              </div>
             )}
 
             <StatusMessage phase={phase} answered={!!me?.answeredThisRound} waiting={!!me?.waiting} />
@@ -102,7 +109,16 @@ export function PlayerView(p: PlayerViewProps) {
                 )}
               >
                 {feedback.title}
-                {result?.status === "correct" && result.points !== undefined && ` · +${result.points} pts`}
+                {result?.status === "correct" && result.points !== undefined && (
+                  <span>
+                    {` · +${result.points} pts`}
+                    {(result as any).multiplier && (result as any).multiplier > 1 && (
+                      <span className="ml-1.5 text-xs text-amber-300 font-bold bg-amber-400/20 px-2 py-0.5 rounded-full border border-amber-400/30">
+                        ⚡ {(result as any).multiplier}x
+                      </span>
+                    )}
+                  </span>
+                )}
               </div>
             )}
 
