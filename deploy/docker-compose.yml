@@ -28,7 +28,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    command: sh -c "npx tsx scripts/import-content.ts content/demo && npx tsx src/index.ts"
+    command: sh -c "npx tsx scripts/import-content.ts content/demo --deactivate-missing && npx tsx src/index.ts"
     environment:
       DATABASE_URL: postgres://logos:${POSTGRES_PASSWORD}@db:5432/logos
       TOKEN_SECRET: ${TOKEN_SECRET:?define TOKEN_SECRET}

@@ -6,7 +6,7 @@ echo "[deploy] Levantando contenedores con Docker Compose..."
 docker compose up -d --build --remove-orphans
 
 echo "[deploy] Esperando a que los servicios estén listos..."
-sleep 5
+sleep 8
 
 echo "[deploy] Verificando despliegue de producción..."
 node ../scripts/verify-production.mjs https://peekrush.inmerzion.io

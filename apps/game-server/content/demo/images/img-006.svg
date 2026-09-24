@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#f8fafc"/>
-  <g fill="#312e81"><polygon points="256,70 390,200 256,330 122,200"/></g>
-  <text x="256" y="236" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="110" fill="#a5f3fc">N</text>
-  <text x="256" y="430" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="58" fill="#312e81">Nébula Móvil</text>
-</svg>

@@ -52,4 +52,4 @@ export function demoSnapshot(phase: DemoPhase): RoomSnapshot {
 }
 
 export const DEMO_REMAINING_MS = 12_000;
-export const DEMO_ANSWER = "Empresa Ficticia";
+export const DEMO_ANSWER = "Apple";
