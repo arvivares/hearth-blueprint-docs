@@ -1,24 +1,69 @@
-# Despliegue independiente de Lovable: PostgreSQL + servidor de juego.
-# Uso: cp deploy/.env.example deploy/.env && docker compose -f deploy/docker-compose.yml up -d
+name: peekrush
+
 services:
   db:
-    image: postgres:17
+    image: postgres:17-alpine
+    container_name: peekrush-db
     restart: unless-stopped
     environment:
       POSTGRES_DB: logos
       POSTGRES_USER: logos
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?define POSTGRES_PASSWORD}
-    volumes: [pgdata:/var/lib/postgresql/data]
-    healthcheck: { test: ["CMD-SHELL", "pg_isready -U logos"], interval: 5s, retries: 10 }
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U logos"]
+      interval: 5s
+      retries: 10
+    networks:
+      - internal
+
   game:
-    build: { context: .., dockerfile: apps/game-server/Dockerfile }
+    image: ${GAME_IMAGE:-peekrush-game:local}
+    build:
+      context: ..
+      dockerfile: apps/game-server/Dockerfile
+    container_name: peekrush-game
     restart: unless-stopped
-    depends_on: { db: { condition: service_healthy } }
+    depends_on:
+      db:
+        condition: service_healthy
+    command: sh -c "npx tsx scripts/import-content.ts content/demo && npx tsx src/index.ts"
     environment:
       DATABASE_URL: postgres://logos:${POSTGRES_PASSWORD}@db:5432/logos
       TOKEN_SECRET: ${TOKEN_SECRET:?define TOKEN_SECRET}
-      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:?define ALLOWED_ORIGINS}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-https://peekrush.inmerzion.io}
       NODE_ENV: production
-    ports: ["2567:2567"]
+      PORT: "2567"
+      TRUST_PROXY: "1"
+    expose:
+      - "2567"
+    networks:
+      - internal
+      - proxy
+
+  web:
+    image: ${WEB_IMAGE:-peekrush-web:local}
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile.web
+    container_name: peekrush-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOST: 0.0.0.0
+    expose:
+      - "3000"
+    networks:
+      - internal
+      - proxy
+
+networks:
+  internal:
+  proxy:
+    external: true
+    name: mattermost
+
 volumes:
   pgdata:

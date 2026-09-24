@@ -1,0 +1,9 @@
+node_modules
+.git
+.output
+.nitro
+dist
+dist-ssr
+.wrangler
+apps/game-server/node_modules
+apps/game-server/dist
