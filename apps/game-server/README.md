@@ -81,3 +81,10 @@ Formato de paquete: `manifest.json` (`pack`, `items[]` con `id`, `answer`, `alia
 Pruebas: usan un PostgreSQL real y crean una base aislada por archivo (`TEST_DATABASE_URL`, por defecto `postgres://postgres@localhost:5433/postgres`).
 
 Despliegue: `deploy/docker-compose.yml` (PostgreSQL 17 + servidor) con `deploy/.env.example`. Tras el primer arranque: `docker compose exec game npm run db:seed`.
+
+## Auditoría y carga
+
+- `npm test` incluye `test/audit.test.ts` (permisos, spam, filtraciones, caídas de anfitrión/pantalla/servidor).
+- `npm run loadtest -- --rooms 2 --players 30 --rounds 3 --scale 0.1` lanza el servidor en un proceso aparte y mide latencia, errores, CPU y memoria (resultados en `docs/results/`).
+- `TRUST_PROXY=1` es obligatorio detrás de un proxy inverso para que el límite por IP funcione.
+- Informe completo: `docs/12-auditoria.md`; prueba con móviles reales: `docs/13-prueba-manual.md`.

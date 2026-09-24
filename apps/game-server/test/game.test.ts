@@ -52,8 +52,8 @@ async function joinPlayer(alias: string, token?: string): Promise<Player> {
   return p;
 }
 function attempt(p: Player, text: string, attemptId = randomUUID(), roundId = host.state.roundId) {
-  const before = p.results.length;
   p.room.send("player:attempt", { attemptId, roundId, text });
+  const before = p.results.length;
   return { attemptId, result: async () => { await waitFor(() => p.results.length > before, 3000, "resultado"); return p.results.at(-1); } };
 }
 const live = () => matchMaker.getLocalRoomById(roomId) as LogoRoom;
@@ -174,14 +174,15 @@ test("reconexión durante la ronda: conserva puntos y recibe sus resultados sin 
   const p = P[2]!;
   await waitFor(() => host.state.players.get(p.playerId).score > 0, 3000, "sincronía");
   const scoreBefore = host.state.players.get(p.playerId).score;
-  const before = p.results.length;
   await p.room.leave();
   await waitFor(() => host.state.players.get(p.playerId).connected === false);
   const again = await joinPlayer("x", p.token);
   assert.equal(again.playerId, p.playerId);
-  await waitFor(() => again.results.length >= before - 0 && again.results.length > 0, 3000, "historial");
+  await waitFor(() => again.results.length >= p.results.filter((r) => r.status === "correct" || r.status === "incorrect").length, 3000, "historial");
   await wait(100);
-  assert.deepEqual(again.results.map((r) => r.status), p.results.map((r) => r.status));
+  // Solo se reenvían los intentos evaluados (los rechazos por enfriamiento no se guardan).
+  const evaluated = p.results.filter((r) => r.status === "correct" || r.status === "incorrect");
+  assert.deepEqual(again.results.map((r) => r.status), evaluated.map((r) => r.status));
   assert.equal(host.state.players.get(p.playerId).score, scoreBefore);
   P[2] = again;
 });

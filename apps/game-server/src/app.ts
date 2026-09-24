@@ -64,13 +64,15 @@ export async function startServer(port = Number(process.env.PORT ?? 2567), opts:
   const available = await activeCatalogCount(db);
   if (available === 0) console.warn("[db] catálogo vacío: ejecuta npm run db:seed");
   const app = express();
+  // Detrás de un proxy inverso, sin esto todas las peticiones comparten la IP del proxy en el límite por IP.
+  if (process.env.TRUST_PROXY) app.set("trust proxy", Number(process.env.TRUST_PROXY) || process.env.TRUST_PROXY);
   const origins = (process.env.ALLOWED_ORIGINS ?? "").split(",").map((s) => s.trim()).filter(Boolean);
   if (origins.length === 0) console.warn("[http] ALLOWED_ORIGINS vacío: se aceptan todos los orígenes (solo desarrollo)");
   app.use(cors({ origin: origins.length ? origins : true }));
   app.use(express.json({ limit: "4kb" }));
 
   const httpServer = http.createServer(app);
-  const gameServer = new Server({ transport: new WebSocketTransport({ server: httpServer }) });
+  const gameServer = new Server({ transport: new WebSocketTransport({ server: httpServer, maxPayload: 16 * 1024 }) });
   gameServer.define("logo", LogoRoom);
 
   app.get("/health", (_req, res) => res.json({ ok: true, version: VERSION }));
@@ -80,7 +82,7 @@ export async function startServer(port = Number(process.env.PORT ?? 2567), opts:
     if (!parsed.success) return err(res, 400, "INVALID_INPUT");
     const config = GameConfig.parse(parsed.data.config ?? {});
     const roomCode = newRoomCode();
-    const cache = await matchMaker.createRoom("logo", {});
+    const cache = await matchMaker.createRoom("logo", { internalKey: settings.internalRoomKey });
     const rec: RoomRecord = {
       roomId: cache.roomId,
       roomCode,
