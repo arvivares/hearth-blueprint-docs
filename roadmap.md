@@ -31,3 +31,9 @@
 - [x] Importación y validación de contenido + paquete ficticio reproducible
 - [x] Persistencia de partidas, jugadores, rondas e intentos; selección sin repeticiones
 - [x] Pruebas con PostgreSQL real
+
+## Etapa 6 (en curso) — Auditoría y pruebas
+- [ ] Revisión de seguridad y robustez + correcciones
+- [ ] Pruebas automatizadas de auditoría (permisos, filtraciones, spam, caídas)
+- [ ] Carga: 2 salas x (30 jugadores + pantalla + anfitrión) con métricas
+- [ ] Documentación de resultados y prueba manual iOS/Android
