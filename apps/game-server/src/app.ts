@@ -208,7 +208,7 @@ export async function startServer(port = Number(process.env.PORT ?? 2567), opts:
         ? ["ROUND_ACTIVE", "ROUND_RESULTS"].includes(phase) && m.stage <= st.revealStage
         : phase === "ROUND_RESULTS");
     if (!allowed) return err(res, 403, "FORBIDDEN");
-    res.type("image/webp").send(m.data);
+    res.type("image/png").send(m.data);
   });
 
   await gameServer.listen(port);

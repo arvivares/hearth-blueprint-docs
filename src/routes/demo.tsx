@@ -20,23 +20,7 @@ import { PlayerView } from "@/game/views/PlayerView";
 import { TvView } from "@/game/views/TvView";
 import type { RoomSnapshot } from "@/game/useGameRoom";
 
-const REAL_BRANDS = [
-  { id: "brand-apple", name: "Apple", category: "Tecnología", image: "/logos/apple.svg" },
-  { id: "brand-nike", name: "Nike", category: "Deportes", image: "/logos/nike.svg" },
-  { id: "brand-google", name: "Google", category: "Tecnología", image: "/logos/google.svg" },
-  { id: "brand-mcdonalds", name: "McDonald's", category: "Alimentación", image: "/logos/mcdonalds.svg" },
-  { id: "brand-coca-cola", name: "Coca-Cola", category: "Bebidas", image: "/logos/coca-cola.svg" },
-  { id: "brand-spotify", name: "Spotify", category: "Música", image: "/logos/spotify.svg" },
-  { id: "brand-amazon", name: "Amazon", category: "Comercio", image: "/logos/amazon.svg" },
-  { id: "brand-microsoft", name: "Microsoft", category: "Software", image: "/logos/microsoft.svg" },
-  { id: "brand-starbucks", name: "Starbucks", category: "Cafetería", image: "/logos/starbucks.svg" },
-  { id: "brand-netflix", name: "Netflix", category: "Entretenimiento", image: "/logos/netflix.svg" },
-  { id: "brand-tesla", name: "Tesla", category: "Automoción", image: "/logos/tesla.svg" },
-  { id: "brand-adidas", name: "Adidas", category: "Deportes", image: "/logos/adidas.svg" },
-  { id: "brand-pepsi", name: "Pepsi", category: "Bebidas", image: "/logos/pepsi.svg" },
-  { id: "brand-youtube", name: "YouTube", category: "Vídeo", image: "/logos/youtube.svg" },
-  { id: "brand-instagram", name: "Instagram", category: "Redes", image: "/logos/instagram.svg" },
-];
+import { ALL_100_BRANDS } from "@/game/brands100";
 
 export const Route = createFileRoute("/demo")({
   validateSearch: z.object({
@@ -77,7 +61,7 @@ function usePixelatedLogo(logoUrl: string, stage: number, isRevealed: boolean) {
       offCanvas.height = smallSize;
       const offCtx = offCanvas.getContext("2d");
       if (!offCtx) return;
-      offCtx.fillStyle = "#ffffff";
+      offCtx.fillStyle = "#000000";
       offCtx.fillRect(0, 0, smallSize, smallSize);
       offCtx.drawImage(img, 0, 0, smallSize, smallSize);
 
@@ -100,6 +84,16 @@ function DemoPage() {
   const { view, phase: urlPhase } = Route.useSearch();
   const navigate = useNavigate();
 
+  // Barajar las 100 marcas aleatoriamente para cada sesión de demo
+  const [brands] = useState(() => {
+    const list = [...ALL_100_BRANDS];
+    for (let i = list.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [list[i], list[j]] = [list[j], list[i]];
+    }
+    return list;
+  });
+
   const [brandIndex, setBrandIndex] = useState(0);
   const [currentPhase, setCurrentPhase] = useState<DemoPhase>(urlPhase);
   const [stage, setStage] = useState(2);
@@ -109,7 +103,7 @@ function DemoPage() {
   const [userAnswered, setUserAnswered] = useState(false);
   const [userFeedback, setUserFeedback] = useState<{ status: "correct" | "incorrect"; points?: number } | null>(null);
 
-  const activeBrand = REAL_BRANDS[brandIndex % REAL_BRANDS.length]!;
+  const activeBrand = brands[brandIndex % brands.length]!;
   const pixelatedSrc = usePixelatedLogo(activeBrand.image, stage, currentPhase === "ROUND_RESULTS");
 
   // Motor de simulación en vivo (cuenta atrás, avance de etapas y transición automática)
@@ -137,7 +131,7 @@ function DemoPage() {
         setRemainingMs((prev) => {
           if (prev <= 1000) {
             // Siguiente marca y nueva ronda
-            setBrandIndex((b) => (b + 1) % REAL_BRANDS.length);
+            setBrandIndex((b) => (b + 1) % brands.length);
             setCurrentPhase("ROUND_ACTIVE");
             setStage(1);
             setUserAnswered(false);
@@ -232,10 +226,10 @@ function DemoPage() {
             </span>
           </div>
 
-          {/* Selector de Marcas Reales (15 marcas mundiales) */}
+          {/* Selector de Marcas Reales (100 marcas mundiales) */}
           <div className="flex items-center gap-1.5 pl-3 border-l border-white/[0.08] max-w-[220px] sm:max-w-[360px] md:max-w-[480px] xl:max-w-[620px] overflow-x-auto py-0.5 scrollbar-none">
             <span className="text-[11px] text-zinc-500 mr-1 shrink-0">Marca:</span>
-            {REAL_BRANDS.map((b, idx) => (
+            {brands.map((b, idx) => (
               <button
                 key={b.id}
                 type="button"
@@ -382,7 +376,7 @@ function DemoPage() {
                   <Tv className="h-3.5 w-3.5 text-zinc-400" /> Pantalla TV Principal (Salón / Sala de Juegos)
                 </span>
                 <span className="font-mono text-[11px] text-zinc-500">
-                  MARCA {brandIndex + 1}/{REAL_BRANDS.length} · {activeBrand.category.toUpperCase()}
+                  MARCA {brandIndex + 1}/{brands.length} · {activeBrand.category.toUpperCase()}
                 </span>
               </div>
 
@@ -411,7 +405,7 @@ function DemoPage() {
                       if (currentPhase === "ROUND_ACTIVE") {
                         setCurrentPhase("ROUND_RESULTS");
                       } else {
-                        setBrandIndex((b) => (b + 1) % REAL_BRANDS.length);
+                        setBrandIndex((b) => (b + 1) % brands.length);
                         setCurrentPhase("ROUND_ACTIVE");
                         setStage(1);
                         setUserAnswered(false);
@@ -485,7 +479,7 @@ function DemoPage() {
                   if (currentPhase === "ROUND_ACTIVE") {
                     setCurrentPhase("ROUND_RESULTS");
                   } else {
-                    setBrandIndex((b) => (b + 1) % REAL_BRANDS.length);
+                    setBrandIndex((b) => (b + 1) % brands.length);
                     setCurrentPhase("ROUND_ACTIVE");
                     setStage(1);
                     setUserAnswered(false);

@@ -32,6 +32,7 @@
     "@types/node": "22.20.4",
     "@types/pg": "8.23.1",
     "colyseus.js": "0.16.22",
+    "simple-icons": "^16.32.0",
     "typescript": "5.9.3"
   }
 }

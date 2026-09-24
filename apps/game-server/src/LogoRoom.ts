@@ -252,6 +252,11 @@ export class LogoRoom extends Room<LogoState> {
     try {
       const questions = await repo.selectQuestions(this.db, this.rec.config.rounds);
       if (questions.length === 0) throw new Error("Catálogo vacío");
+      // Mezclar el orden aleatoriamente para garantizar una experiencia distinta en cada partida
+      for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+      }
       const players = this.activePlayers();
       if (this.state.phase !== "LOBBY" || players.length === 0) return;
       const gameId = randomUUID();

@@ -31,18 +31,18 @@ export function blockSizes(stages: number): number[] {
 }
 
 export async function prepareRoundMedia(roomId: string, roundId: string, image: Buffer, stages: number) {
-  const original = await sharp(image).resize(512, 512, { fit: "contain", background: "#f8fafc" }).png().toBuffer();
+  const original = await sharp(image).resize(512, 512, { fit: "contain", background: "#000000" }).png().toBuffer();
   const size = 512;
   const stageIds: string[] = [];
   for (const [i, block] of blockSizes(stages).entries()) {
     const small = Math.max(2, Math.round(size / block));
     const down = await sharp(original).resize(small, small, { kernel: "cubic" }).toBuffer();
-    const data = await sharp(down).resize(size, size, { kernel: "nearest" }).webp({ quality: 80 }).toBuffer();
+    const data = await sharp(down).resize(size, size, { kernel: "nearest" }).png().toBuffer();
     const id = randomBytes(16).toString("hex");
     store.set(id, { roomId, roundId, kind: "stage", stage: i + 1, data });
     stageIds.push(id);
   }
   const fullId = randomBytes(16).toString("hex");
-  store.set(fullId, { roomId, roundId, kind: "full", stage: 0, data: await sharp(original).webp({ quality: 90 }).toBuffer() });
+  store.set(fullId, { roomId, roundId, kind: "full", stage: 0, data: await sharp(original).png().toBuffer() });
   return { stageIds, fullId };
 }
