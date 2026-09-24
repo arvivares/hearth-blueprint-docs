@@ -179,6 +179,7 @@ test("reconexión durante la ronda: conserva puntos y recibe sus resultados sin 
   await waitFor(() => host.state.players.get(p.playerId).connected === false);
   const again = await joinPlayer("x", p.token);
   assert.equal(again.playerId, p.playerId);
+  console.log("DBG", host.state.phase, JSON.stringify(p.results), [...live().attempts.values()].filter(a=>a.playerId===p.playerId).length);
   await waitFor(() => again.results.length >= before - 0 && again.results.length > 0, 3000, "historial");
   await wait(100);
   // Solo se reenvían los intentos evaluados (los rechazos por enfriamiento no se guardan).
