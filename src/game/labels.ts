@@ -21,7 +21,7 @@ export const ATTEMPT_TEXT: Record<string, { title: string; tone: "success" | "er
 
 export const SERVER_ERROR_TEXT: Record<string, string> = {
   FORBIDDEN: "No tienes permiso para esta acción.",
-  INVALID_PHASE: "El servidor no admite esta acción en la fase actual (el motor de rondas llega en la siguiente etapa).",
+  INVALID_PHASE: "Esta acción no está disponible en la fase actual.",
   INVALID_INPUT: "Datos no válidos.",
   RATE_LIMITED: "Demasiado rápido. Espera un momento.",
   ROUND_CLOSED: "La ronda ya ha terminado.",
