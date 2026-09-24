@@ -9,7 +9,9 @@
 import { randomUUID } from "node:crypto";
 import { Client, type Room } from "colyseus.js";
 import { startServer } from "../src/app";
+import { matchMaker } from "colyseus";
 import { DEMO_CATALOG } from "../src/content/catalog";
+import type { LogoRoom } from "../src/LogoRoom";
 
 const PLAYERS = Number(process.env.PLAYERS ?? 8);
 const ROUNDS = Number(process.env.ROUNDS ?? 3);
@@ -67,7 +69,9 @@ async function main() {
         const willKnow = rand() < b.skill;
         setTimeout(() => {
           // Primero un intento erróneo; si "sabe", prueba todas las candidatas respetando el enfriamiento.
-          const guesses = willKnow ? [...answers].sort(() => rand() - 0.5) : ["no lo sé"];
+          // Con servidor propio, el bot que "sabe" consulta la respuesta en proceso; con servidor remoto prueba el catálogo.
+          const local = close ? (matchMaker.getLocalRoomById(created.roomId) as LogoRoom | undefined)?.round?.item.answer : undefined;
+          const guesses = willKnow ? ["no lo sé", ...(local ? [local] : [...answers].sort(() => rand() - 0.5))] : ["no lo sé"];
           guesses.forEach((g, k) =>
             setTimeout(() => b.room.send("player:attempt", { attemptId: randomUUID(), roundId: s.roundId, text: g }), k * (2000 * SCALE + 20)),
           );
@@ -83,7 +87,8 @@ async function main() {
       if (s.phase === "ROUND_RESULTS" && shown !== s.roundId) {
         shown = s.roundId;
         setTimeout(() => {
-          const correct = Object.values(s.players as Record<string, any>).filter((p) => p.answeredThisRound).length;
+          const players = (host.state.toJSON() as any).players as Record<string, any>;
+          const correct = Object.values(players).filter((p) => p.answeredThisRound).length;
           console.log(`  Solución: ${revealed} · aciertos: ${correct}/${PLAYERS}`);
         }, 50);
       }
