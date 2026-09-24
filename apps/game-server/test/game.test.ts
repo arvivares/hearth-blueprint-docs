@@ -181,7 +181,9 @@ test("reconexión durante la ronda: conserva puntos y recibe sus resultados sin 
   assert.equal(again.playerId, p.playerId);
   await waitFor(() => again.results.length >= before - 0 && again.results.length > 0, 3000, "historial");
   await wait(100);
-  assert.deepEqual(again.results.map((r) => r.status), p.results.map((r) => r.status));
+  // Solo se reenvían los intentos evaluados (los rechazos por enfriamiento no se guardan).
+  const evaluated = p.results.filter((r) => r.status === "correct" || r.status === "incorrect");
+  assert.deepEqual(again.results.map((r) => r.status), evaluated.map((r) => r.status));
   assert.equal(host.state.players.get(p.playerId).score, scoreBefore);
   P[2] = again;
 });
