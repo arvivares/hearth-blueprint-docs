@@ -23,15 +23,37 @@ export const Route = createFileRoute("/tv")({
 function TvPage() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const [code, setCode] = useState(search.room ?? "");
+  const roomCode = (search.room ?? "").toUpperCase();
+  const [code, setCode] = useState(roomCode);
   const [pairingCode, setPairingCode] = useState("");
   const [session, setSession] = useState<StoredSession | null>(null);
+  const [hostSession, setHostSession] = useState<StoredSession | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [mediaSrc, setMediaSrc] = useState<string | null>(null);
+
   useEffect(() => {
-    if (search.room) setSession(loadSession("screen", search.room));
-  }, [search.room]);
+    if (!roomCode) return;
+    const s = loadSession("screen", roomCode);
+    const h = loadSession("host", roomCode);
+    setHostSession(h);
+    if (s) {
+      setSession(s);
+    } else if (h) {
+      // Si el anfitrión abrió esta pantalla, auto-vinculamos la pantalla de TV al instante
+      api
+        .screenPairing(roomCode, h.token)
+        .then((p) => api.linkScreen(roomCode, p.pairingCode))
+        .then((linked) => {
+          const newScreen = { roomId: h.roomId, token: linked.screenToken };
+          saveSession("screen", roomCode, newScreen);
+          setSession(newScreen);
+        })
+        .catch((err) => setError(errorText(err)));
+    }
+  }, [roomCode]);
+
   const room = useGameRoom(session?.roomId ?? null, session?.token ?? null);
+  const hostRoom = useGameRoom(hostSession?.roomId ?? null, hostSession?.token ?? null);
   const remaining = useRemaining(room.state?.phaseEndsAt || undefined, room.clockOffset);
 
   // Confirmar al servidor que la pantalla puede mostrar la ronda preparada.
@@ -135,7 +157,7 @@ function TvPage() {
       </Shell>
     );
 
-  const c = search.room!;
+  const c = roomCode || search.room!;
   if (!room.state)
     return (
       <div className="relative grid h-[100dvh] place-items-center bg-[#000000] text-zinc-400">
@@ -143,12 +165,15 @@ function TvPage() {
         <div className="relative z-10 flex flex-col items-center gap-4">
           <div className="h-7 w-7 animate-spin rounded-full border-2 border-white/20 border-t-white" />
           <p className="text-base font-medium tracking-tight text-zinc-300">
-            {room.error ?? "Conectando con la sala…"}{" "}
+            {room.error ?? "Iniciando tablero de juego…"}{" "}
             <span className="font-mono text-white font-bold">{c}</span>
           </p>
         </div>
       </div>
     );
+
+  const isHost = !!hostSession;
+  const activePlayers = Object.values(room.state.players).filter((p) => p.connected).length;
 
   return (
     <TvView
@@ -160,6 +185,20 @@ function TvPage() {
       mediaSrc={mediaSrc}
       revealAnswer={room.reveal && room.reveal.roundId === room.state.roundId ? room.reveal.answer : null}
       connection={room.status}
+      host={
+        isHost
+          ? {
+              canStart: room.state.phase === "LOBBY" && activePlayers > 0,
+              playerCount: activePlayers,
+              onStart: () => hostRoom.send("host:start", {}),
+              onPause: () => hostRoom.send("host:pause", {}),
+              onResume: () => hostRoom.send("host:resume", {}),
+              onNext: () => hostRoom.send("host:next", {}),
+              onAbort: () => hostRoom.send("host:abort", {}),
+              onReset: () => hostRoom.send("host:reset", {}),
+            }
+          : undefined
+      }
     />
   );
 }

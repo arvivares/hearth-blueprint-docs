@@ -1,7 +1,19 @@
+import { Play, Pause, FastForward, Smartphone, RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PHASE_LABEL, formatSeconds } from "../labels";
 import type { ConnectionStatus, RoomSnapshot } from "../useGameRoom";
 import { ConnectionDot, RoomQR } from "../ui";
+
+export interface HostControls {
+  canStart: boolean;
+  playerCount: number;
+  onStart: () => void;
+  onPause: () => void;
+  onResume: () => void;
+  onNext: () => void;
+  onAbort: () => void;
+  onReset: () => void;
+}
 
 export interface TvViewProps {
   s: RoomSnapshot;
@@ -14,6 +26,8 @@ export interface TvViewProps {
   connection: ConnectionStatus | "demo";
   /** Ocupa el contenedor en lugar de toda la ventana (usado en /demo). */
   fill?: boolean;
+  /** Controles del anfitrión si esta pantalla fue creada por el anfitrión */
+  host?: HostControls;
 }
 
 /** Pantalla compartida principal (TV 16:9) con diseño minimalista estilo Apple */
@@ -27,6 +41,7 @@ export function TvView({
   revealAnswer,
   connection,
   fill,
+  host,
 }: TvViewProps) {
   const players = Object.entries(s.players);
   const inLobby = s.phase === "LOBBY";
@@ -54,7 +69,72 @@ export function TvView({
           )}
         </div>
 
-        <div className="flex shrink-0 items-center gap-6">
+        <div className="flex shrink-0 items-center gap-5">
+          {/* Controles de anfitrión durante la partida */}
+          {host && !inLobby && (
+            <div className="flex items-center gap-2 mr-2">
+              {s.phase === "ROUND_ACTIVE" && (
+                <>
+                  <button
+                    type="button"
+                    onClick={host.onPause}
+                    className="flex items-center gap-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.1] px-3.5 py-1.5 text-[0.9vw] font-semibold text-white transition active:scale-95"
+                    title="Pausar el juego"
+                  >
+                    <Pause className="h-[0.9vw] w-[0.9vw]" />
+                    <span>Pausar</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={host.onNext}
+                    className="flex items-center gap-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.1] px-3.5 py-1.5 text-[0.9vw] font-semibold text-white transition active:scale-95"
+                    title="Cerrar ronda actual"
+                  >
+                    <FastForward className="h-[0.9vw] w-[0.9vw]" />
+                    <span>Cerrar ronda</span>
+                  </button>
+                </>
+              )}
+              {s.phase === "PAUSED" && (
+                <button
+                  type="button"
+                  onClick={host.onResume}
+                  className="flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-[0.9vw] font-semibold transition active:scale-95 shadow-sm"
+                >
+                  <Play className="h-[0.9vw] w-[0.9vw] fill-black" />
+                  <span>Reanudar</span>
+                </button>
+              )}
+              {s.phase === "ROUND_RESULTS" && (
+                <button
+                  type="button"
+                  onClick={host.onNext}
+                  className="flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-[0.9vw] font-semibold transition active:scale-95 shadow-sm"
+                >
+                  <FastForward className="h-[0.9vw] w-[0.9vw] fill-black" />
+                  <span>Siguiente ronda</span>
+                </button>
+              )}
+              {(s.phase === "FINAL_RESULTS" || s.phase === "ABORTED") && (
+                <button
+                  type="button"
+                  onClick={host.onReset}
+                  className="flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-[0.9vw] font-semibold transition active:scale-95 shadow-sm"
+                >
+                  <RotateCcw className="h-[0.9vw] w-[0.9vw]" />
+                  <span>Nueva partida</span>
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={() => confirm("¿Interrumpir partida?") && host.onAbort()}
+                className="flex items-center gap-1 rounded-full bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 px-3 py-1.5 text-[0.85vw] font-medium text-red-300 transition active:scale-95"
+              >
+                Interrumpir
+              </button>
+            </div>
+          )}
+
           <span className="text-[1.1vw] text-zinc-400">
             Código <strong className="font-mono text-[1.6vw] font-bold tracking-[0.2em] text-white ml-1">{code}</strong>
           </span>
@@ -103,6 +183,36 @@ export function TvView({
                 </li>
               ))}
             </ul>
+
+            {/* Controles de anfitrión en la sala de espera */}
+            {host && (
+              <div className="mt-auto pt-4 flex flex-wrap items-center gap-3">
+                <button
+                  type="button"
+                  onClick={host.onStart}
+                  disabled={!host.canStart}
+                  className={cn(
+                    "inline-flex items-center justify-center gap-2.5 rounded-2xl px-8 py-3.5 font-bold text-[1.2vw] transition-all shadow-lg",
+                    host.canStart
+                      ? "bg-white text-black hover:bg-zinc-200 active:scale-95 shadow-white/10"
+                      : "bg-white/[0.08] text-zinc-500 cursor-not-allowed border border-white/[0.08]",
+                  )}
+                >
+                  <Play className={cn("h-[1.2vw] w-[1.2vw]", host.canStart ? "fill-black" : "fill-zinc-500")} />
+                  <span>{host.canStart ? "Iniciar partida" : "Esperando al menos 1 jugador…"}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => window.open(joinUrl, "_blank")}
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.08] px-5 py-3.5 font-medium text-zinc-300 hover:text-white text-[1.05vw] transition active:scale-95"
+                  title="Abrir el mando móvil en una nueva pestaña para unirte tú también"
+                >
+                  <Smartphone className="h-[1.1vw] w-[1.1vw]" />
+                  <span>Jugar desde esta máquina</span>
+                </button>
+              </div>
+            )}
           </section>
         </main>
       ) : (

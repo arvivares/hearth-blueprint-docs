@@ -17,18 +17,15 @@ const I18N = {
     metaTitle: "PeekRush — Juego de logos para TV y móviles",
     metaDesc: "Crea una sala o entra con un código para adivinar logos en tiempo real desde tu móvil.",
     heroTitle: "Adivina el logo.\nEn tiempo real.",
-    heroSubtitle: "Juega en grupo frente a la pantalla de televisión respondiendo desde tu propio teléfono.",
+    heroSubtitle: "Juega en grupo frente a la pantalla respondiendo desde tu propio teléfono.",
     playerTitle: "Entrar a la partida",
     playerDesc: "Introduce el código de 5 letras que aparece en la televisión:",
     roomCodePlaceholder: "Código de sala (ej. 7KX9P)",
     joinBtn: "Entrar",
-    hostTitle: "Crear sala",
-    hostDesc: "Inicia una nueva partida como anfitrión y obtén el código de sincronización para la televisión.",
+    hostTitle: "Crear sala y empezar juego",
+    hostDesc: "Abre el tablero central en esta pantalla con el código QR para que todos jueguen desde su móvil.",
     createRoomBtn: "Crear sala",
-    creatingRoom: "Creando...",
-    screenTitle: "Pantalla TV",
-    screenDesc: "Convierte este televisor o monitor en el tablero central con el código QR gigante.",
-    linkScreenBtn: "Vincular pantalla",
+    creatingRoom: "Iniciando juego...",
     demoPrompt: "¿Quieres explorar la interfaz sin conectar dispositivos?",
     demoAction: "Abrir demostración",
     footerNote: "PeekRush · Desarrollado para disfrutar con amigos frente a la pantalla grande",
@@ -42,13 +39,10 @@ const I18N = {
     playerDesc: "Enter the 5-letter room code shown on the TV screen:",
     roomCodePlaceholder: "Room code (e.g. 7KX9P)",
     joinBtn: "Join",
-    hostTitle: "Create room",
-    hostDesc: "Host a new multiplayer match and generate the sync code for the big screen.",
+    hostTitle: "Create room & start game",
+    hostDesc: "Launch the main gameboard on this screen with the QR code so everyone can join from their phone.",
     createRoomBtn: "Create room",
-    creatingRoom: "Creating...",
-    screenTitle: "TV Screen",
-    screenDesc: "Turn this TV or display into the central gameboard with a giant QR code for players.",
-    linkScreenBtn: "Link screen",
+    creatingRoom: "Starting game...",
     demoPrompt: "Want to preview the interface without connecting devices?",
     demoAction: "Open demo",
     footerNote: "PeekRush · Designed for friends and family in front of the big screen",
@@ -96,7 +90,14 @@ function Home() {
     try {
       const r = await api.createRoom();
       saveSession("host", r.roomCode, { roomId: r.roomId, token: r.hostToken });
-      navigate({ to: "/host", search: { room: r.roomCode } });
+
+      // Auto-vincular la pantalla de televisión para arrancar el juego de inmediato
+      const pairing = await api.screenPairing(r.roomCode, r.hostToken);
+      const screen = await api.linkScreen(r.roomCode, pairing.pairingCode);
+      saveSession("screen", r.roomCode, { roomId: r.roomId, token: screen.screenToken });
+
+      // Lanzar directamente la pantalla de juego
+      navigate({ to: "/tv", search: { room: r.roomCode } });
     } catch (e) {
       setError(errorText(e));
     } finally {
@@ -217,67 +218,45 @@ function Home() {
           <PresenterAudio lang={lang} />
         </section>
 
-        {/* Bloques Secundarios: Anfitrión y Pantalla TV en 2 Columnas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-          {/* Tarjeta Anfitrión */}
-          <section
-            aria-label={t.hostTitle}
-            className="flex flex-col justify-between rounded-3xl apple-glass apple-glass-interactive p-6 space-y-6"
-          >
-            <div className="space-y-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/[0.06] border border-white/[0.08] text-white">
-                <Gamepad2 className="h-5 w-5" />
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-white">
-                  {t.hostTitle}
-                </h3>
-                <p className="mt-1 text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  {t.hostDesc}
-                </p>
-              </div>
+        {/* Bloque Crear sala: Inicia el juego en esta pantalla */}
+        <section
+          aria-label={t.hostTitle}
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 rounded-3xl apple-glass p-6 sm:p-8 border border-white/[0.08]"
+        >
+          <div className="flex items-start sm:items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06] border border-white/[0.08] text-white">
+              <Tv className="h-6 w-6" />
             </div>
 
-            <button
-              type="button"
-              onClick={create}
-              disabled={busy}
-              className="inline-flex items-center justify-center rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.1] px-4 py-3 text-sm font-medium text-white transition active:scale-[0.98] disabled:opacity-40"
-            >
-              {busy ? t.creatingRoom : t.createRoomBtn}
-            </button>
-          </section>
-
-          {/* Tarjeta Pantalla TV */}
-          <section
-            aria-label={t.screenTitle}
-            className="flex flex-col justify-between rounded-3xl apple-glass apple-glass-interactive p-6 space-y-6"
-          >
-            <div className="space-y-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/[0.06] border border-white/[0.08] text-white">
-                <Tv className="h-5 w-5" />
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold tracking-tight text-white">
-                  {t.screenTitle}
-                </h3>
-                <p className="mt-1 text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  {t.screenDesc}
-                </p>
-              </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-bold tracking-tight text-white">
+                {t.hostTitle}
+              </h3>
+              <p className="text-xs sm:text-sm text-zinc-400 max-w-md leading-relaxed">
+                {t.hostDesc}
+              </p>
             </div>
+          </div>
 
-            <button
-              type="button"
-              onClick={() => navigate({ to: "/tv" })}
-              className="inline-flex items-center justify-center rounded-xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.1] px-4 py-3 text-sm font-medium text-white transition active:scale-[0.98]"
-            >
-              {t.linkScreenBtn}
-            </button>
-          </section>
-        </div>
+          <button
+            type="button"
+            onClick={create}
+            disabled={busy}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-7 py-4 font-semibold text-black text-sm transition-all hover:bg-zinc-200 active:scale-[0.98] disabled:opacity-40 shadow-md shadow-white/10 shrink-0"
+          >
+            {busy ? (
+              <>
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-black/30 border-t-black" />
+                <span>{t.creatingRoom}</span>
+              </>
+            ) : (
+              <>
+                <span>{t.createRoomBtn}</span>
+                <ArrowRight className="h-4 w-4" />
+              </>
+            )}
+          </button>
+        </section>
 
         {/* Footer Minimalista */}
         <footer className="pt-4 pb-8 text-center space-y-3">

@@ -397,6 +397,31 @@ function DemoPage() {
                   revealAnswer={currentPhase === "ROUND_RESULTS" ? activeBrand.name : null}
                   connection="demo"
                   fill
+                  host={{
+                    canStart: true,
+                    playerCount: 5,
+                    onStart: () => {
+                      setCurrentPhase("ROUND_ACTIVE");
+                      setRemainingMs(25000);
+                      setStage(1);
+                    },
+                    onPause: () => setIsPlayingAuto(false),
+                    onResume: () => setIsPlayingAuto(true),
+                    onNext: () => {
+                      if (currentPhase === "ROUND_ACTIVE") {
+                        setCurrentPhase("ROUND_RESULTS");
+                      } else {
+                        setBrandIndex((b) => (b + 1) % REAL_BRANDS.length);
+                        setCurrentPhase("ROUND_ACTIVE");
+                        setStage(1);
+                        setUserAnswered(false);
+                        setUserFeedback(null);
+                        setRemainingMs(25000);
+                      }
+                    },
+                    onAbort: handleRestartDemo,
+                    onReset: handleRestartDemo,
+                  }}
                 />
               </div>
             </div>
@@ -446,6 +471,31 @@ function DemoPage() {
               revealAnswer={currentPhase === "ROUND_RESULTS" ? activeBrand.name : null}
               connection="demo"
               fill
+              host={{
+                canStart: true,
+                playerCount: 5,
+                onStart: () => {
+                  setCurrentPhase("ROUND_ACTIVE");
+                  setRemainingMs(25000);
+                  setStage(1);
+                },
+                onPause: () => setIsPlayingAuto(false),
+                onResume: () => setIsPlayingAuto(true),
+                onNext: () => {
+                  if (currentPhase === "ROUND_ACTIVE") {
+                    setCurrentPhase("ROUND_RESULTS");
+                  } else {
+                    setBrandIndex((b) => (b + 1) % REAL_BRANDS.length);
+                    setCurrentPhase("ROUND_ACTIVE");
+                    setStage(1);
+                    setUserAnswered(false);
+                    setUserFeedback(null);
+                    setRemainingMs(25000);
+                  }
+                },
+                onAbort: handleRestartDemo,
+                onReset: handleRestartDemo,
+              }}
             />
           </div>
         )}
