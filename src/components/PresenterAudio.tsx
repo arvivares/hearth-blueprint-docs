@@ -5,14 +5,11 @@ import {
   RotateCcw,
   Volume2,
   VolumeX,
-  Sparkles,
   ChevronDown,
   ChevronUp,
-  Activity,
-  Cpu,
-  Wifi,
+  Radio,
+  Sparkles,
 } from "lucide-react";
-import { Button } from "@/game/ui";
 import { cn } from "@/lib/utils";
 
 export type Language = "es" | "en";
@@ -20,56 +17,55 @@ export type Language = "es" | "en";
 interface Chapter {
   time: number;
   title: string;
+  shortTitle: string;
   desc: string;
 }
 
 const CONTENT = {
   es: {
     audioSrc: "/audio/presentadora-es.mp3",
-    badge: "Voz Neuronal ElevenLabs",
-    title: "Presentadora IA // PeekRush",
-    subtitleIdle: "Voz en frecuencia de espera · Haz clic para iniciar transmisión",
-    subtitlePlaying: "Transmisión en vivo activa",
-    listenBtn: "Transmitir voz",
+    badge: "Voz Neuronal",
+    title: "Cómo se juega",
+    subtitleIdle: "Pulsa reproducir para escuchar la guía de la presentadora",
+    subtitlePlaying: "Reproduciendo guía de audio",
+    listenBtn: "Reproducir",
     pauseBtn: "Pausar",
     restartAria: "Reiniciar audio",
     muteAria: "Silenciar",
     unmuteAria: "Activar sonido",
-    progressAria: "Progreso de la explicación",
-    showTranscript: "Ver teleprompter / transcripción",
-    hideTranscript: "Ocultar teleprompter",
-    hudLabel: "ANALIZADOR DE ESPECTRO",
+    progressAria: "Progreso del audio",
+    showTranscript: "Leer transcripción",
+    hideTranscript: "Ocultar transcripción",
     chapters: [
-      { time: 0, title: "01 // Concepto", desc: "TV compartida para el show y móviles para responder." },
-      { time: 13, title: "02 // Anfitrión", desc: "Crea sala y genera vinculación de pantalla." },
-      { time: 22, title: "03 // Pantalla TV", desc: "Muestra el QR gigante y logotipos por etapas." },
-      { time: 31, title: "04 // Jugadores", desc: "Escanear QR o entrar con código y alias." },
-      { time: 42, title: "05 // Puntos", desc: "El logo se devela en etapas; el más veloz gana." },
+      { time: 0, title: "01 · Concepto", shortTitle: "Concepto", desc: "TV compartida y móviles para responder." },
+      { time: 13, title: "02 · Anfitrión", shortTitle: "Anfitrión", desc: "Crea sala y vincula la pantalla." },
+      { time: 22, title: "03 · Pantalla TV", shortTitle: "Pantalla TV", desc: "Muestra el QR gigante y los logos." },
+      { time: 31, title: "04 · Jugadores", shortTitle: "Jugadores", desc: "Escanea el QR y elige tu alias." },
+      { time: 42, title: "05 · Puntos", shortTitle: "Puntos", desc: "Adivina rápido para sumar más puntos." },
     ] as Chapter[],
     fullTranscript: `¡Hola! Te doy la bienvenida a PeekRush. Jugar es facilísimo y muy divertido. Te cuento cómo funciona:
 PeekRush se juega en grupo frente a una pantalla principal compartida mientras cada jugador responde desde su propio teléfono móvil. Si vas a organizar la partida, pulsa en "Crear sala". En la televisión abre "Vincular pantalla" e introduce el código para ver el QR. Los jugadores solo tienen que escanear el QR con su móvil y elegir su alias. ¡El objetivo es adivinar la marca antes que nadie conforme se va revelando el logotipo!`,
   },
   en: {
     audioSrc: "/audio/presentadora-en.mp3",
-    badge: "ElevenLabs Neural Voice",
-    title: "AI Presenter // PeekRush",
-    subtitleIdle: "Voice frequency on standby · Click to begin transmission",
-    subtitlePlaying: "Live neural transmission active",
-    listenBtn: "Transmit Voice",
+    badge: "Neural Voice",
+    title: "How to Play",
+    subtitleIdle: "Press play to listen to the host audio guide",
+    subtitlePlaying: "Playing audio guide",
+    listenBtn: "Play Guide",
     pauseBtn: "Pause",
     restartAria: "Restart audio",
     muteAria: "Mute",
     unmuteAria: "Unmute",
-    progressAria: "Explanation progress",
-    showTranscript: "View teleprompter / transcript",
-    hideTranscript: "Hide teleprompter",
-    hudLabel: "SPECTRUM ANALYZER",
+    progressAria: "Audio progress",
+    showTranscript: "Read transcript",
+    hideTranscript: "Hide transcript",
     chapters: [
-      { time: 0, title: "01 // Concept", desc: "Shared TV for the show and smartphones as gamepads." },
-      { time: 12, title: "02 // Host Role", desc: "Create room and generate pairing code for TV." },
-      { time: 20, title: "03 // TV Screen", desc: "Displays giant QR code and multi-stage logos." },
-      { time: 28, title: "04 // Players Join", desc: "Scan QR with camera or enter code and alias." },
-      { time: 38, title: "05 // Scoring", desc: "Logo reveals gradually; faster correct guesses win." },
+      { time: 0, title: "01 · Concept", shortTitle: "Concept", desc: "Shared TV and smartphones as gamepads." },
+      { time: 12, title: "02 · Host Role", shortTitle: "Host", desc: "Create room and pair the TV." },
+      { time: 20, title: "03 · TV Screen", shortTitle: "TV Screen", desc: "Displays giant QR and multi-stage logos." },
+      { time: 28, title: "04 · Players", shortTitle: "Players", desc: "Scan QR and pick a nickname." },
+      { time: 38, title: "05 · Scoring", shortTitle: "Scoring", desc: "Guess early as the logo reveals to win." },
     ] as Chapter[],
     fullTranscript: `Hello and welcome to PeekRush! Playing is super easy and lots of fun. Let me explain how it works:
 PeekRush is played in a group in front of a shared main screen, such as a TV or projector, while every player submits their answers directly from their own mobile phone. If you are hosting the game, click on "Create room". On the TV screen, open "Link screen" and enter that code to display the giant QR code. Players simply scan the QR code with their phones and choose a nickname. The faster you guess the brand, the more points you score!`,
@@ -78,8 +74,6 @@ PeekRush is played in a group in front of a shared main screen, such as a TV or 
 
 export function PresenterAudio({
   lang = "es",
-  onLanguageChange,
-  showLanguageSwitcher = false,
   className,
 }: {
   lang?: Language;
@@ -101,7 +95,6 @@ export function PresenterAudio({
   const [isMuted, setIsMuted] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
-  const [peakDb, setPeakDb] = useState("-18.4");
 
   // Configurar elemento de audio único y persistente
   useEffect(() => {
@@ -124,7 +117,7 @@ export function PresenterAudio({
         setCurrentTime(0);
       };
       const onError = () => {
-        setAudioError(lang === "es" ? "Fallo al conectar con el stream de audio." : "Audio stream connection failed.");
+        setAudioError(lang === "es" ? "No se pudo cargar el audio." : "Unable to load audio.");
         setIsPlaying(false);
       };
 
@@ -171,7 +164,7 @@ export function PresenterAudio({
       const ctx = new AudioCtx();
       const analyser = ctx.createAnalyser();
       analyser.fftSize = 128;
-      analyser.smoothingTimeConstant = 0.82;
+      analyser.smoothingTimeConstant = 0.85;
 
       const source = ctx.createMediaElementSource(audioRef.current);
       source.connect(analyser);
@@ -181,11 +174,11 @@ export function PresenterAudio({
       analyserRef.current = analyser;
       sourceRef.current = source;
     } catch {
-      // Si el navegador restringe MediaElementSource, el audio sigue reproduciendo normalmente
+      // Audio continúa normalmente si Web Audio API no está disponible
     }
   };
 
-  // Render loop del visualizador de frecuencia en canvas
+  // Render loop del visualizador estilo Apple Voice Memos / Siri
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -193,7 +186,7 @@ export function PresenterAudio({
     if (!ctx) return;
 
     let running = true;
-    const numBars = 36;
+    const numBars = 44;
     const dataArray = new Uint8Array(64);
 
     const render = () => {
@@ -211,90 +204,52 @@ export function PresenterAudio({
         hasData = true;
       }
 
-      // Dibujar fondo de rejilla tecnológica en el canvas
-      ctx.strokeStyle = "rgba(0, 240, 255, 0.05)";
-      ctx.lineWidth = 1;
-      for (let x = 0; x < width; x += 16) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-      ctx.beginPath();
-      ctx.moveTo(0, height / 2);
-      ctx.lineTo(width, height / 2);
-      ctx.stroke();
-
-      // Línea base central
-      ctx.strokeStyle = "rgba(0, 240, 255, 0.2)";
-      ctx.beginPath();
-      ctx.moveTo(0, height - 2);
-      ctx.lineTo(width, height - 2);
-      ctx.stroke();
-
-      const barWidth = Math.floor(width / numBars) - 2;
+      const barWidth = 4;
+      const totalWidth = numBars * barWidth;
+      const gap = Math.max(2, Math.floor((width - totalWidth) / (numBars - 1)));
+      const startX = Math.max(0, Math.floor((width - (numBars * barWidth + (numBars - 1) * gap)) / 2));
       const now = Date.now() / 1000;
-      let sumAmp = 0;
 
       for (let i = 0; i < numBars; i++) {
         let barHeight = 0;
+
         if (hasData) {
-          const freqIndex = Math.floor((i / numBars) * 48);
+          const freqIndex = Math.floor((i / numBars) * 44);
           const raw = dataArray[freqIndex] || 0;
-          barHeight = Math.max(3, (raw / 255) * (height - 8));
-          sumAmp += raw;
+          barHeight = Math.max(4, (raw / 255) * (height - 10));
         } else {
-          // Animación idle holográfica pulsante cuando está en pausa
-          const idleWave = Math.sin(now * 3 + i * 0.35) * 0.5 + 0.5;
-          barHeight = 4 + idleWave * (isPlaying ? 12 : 8);
+          // Onda sutil de respiración armónica estilo Siri / Apple
+          const distFromCenter = Math.abs(i - numBars / 2) / (numBars / 2);
+          const centerWeight = 1 - distFromCenter * 0.6;
+          const idleWave = (Math.sin(now * 2.5 + i * 0.22) * 0.5 + 0.5) * centerWeight;
+          barHeight = 4 + idleWave * (isPlaying ? 14 : 10);
         }
 
-        const x = i * (barWidth + 2);
-        const y = height - barHeight - 2;
+        const x = startX + i * (barWidth + gap);
+        // Centrado vertical simétrico estilo Apple Voice Memos
+        const y = Math.floor((height - barHeight) / 2);
 
-        // Gradiente futurista: Cyan -> Amarillo neón -> Coral
-        const grad = ctx.createLinearGradient(0, height, 0, y);
-        grad.addColorStop(0, "rgba(0, 240, 255, 0.85)");
-        grad.addColorStop(0.65, "rgba(255, 230, 0, 0.95)");
-        grad.addColorStop(1, "rgba(255, 42, 95, 1)");
+        // Gradiente refinado Apple: azul hielo -> violeta sutil -> blanco perlado
+        const grad = ctx.createLinearGradient(0, y, 0, y + barHeight);
+        if (isPlaying) {
+          grad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+          grad.addColorStop(0.5, "rgba(165, 180, 252, 0.9)");
+          grad.addColorStop(1, "rgba(129, 140, 248, 0.75)");
+        } else {
+          grad.addColorStop(0, "rgba(255, 255, 255, 0.6)");
+          grad.addColorStop(1, "rgba(255, 255, 255, 0.2)");
+        }
 
         ctx.fillStyle = grad;
-        ctx.fillRect(x, y, barWidth, barHeight);
 
-        // Capa de brillo superior de cada barra
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(x, Math.max(0, y - 2), barWidth, 2);
-      }
-
-      // Trazo de osciloscopio holográfico superior cuando hay audio activo
-      if (hasData) {
-        ctx.strokeStyle = "rgba(0, 240, 255, 0.5)";
-        ctx.lineWidth = 1.5;
-        ctx.beginPath();
-        for (let i = 0; i < numBars; i++) {
-          const freqIndex = Math.floor((i / numBars) * 48);
-          const raw = dataArray[freqIndex] || 0;
-          const yWave = height - Math.max(5, (raw / 255) * (height - 12)) - 4;
-          const xWave = i * (barWidth + 2) + barWidth / 2;
-          if (i === 0) ctx.moveTo(xWave, yWave);
-          else ctx.lineTo(xWave, yWave);
+        // Dibujar cápsula redondeada
+        if (typeof ctx.roundRect === "function") {
+          ctx.beginPath();
+          ctx.roundRect(x, y, barWidth, barHeight, barWidth / 2);
+          ctx.fill();
+        } else {
+          ctx.fillRect(x, y, barWidth, barHeight);
         }
-        ctx.stroke();
-      }
-
-      // Marcas de frecuencias de audio militar / sci-fi
-      ctx.fillStyle = "rgba(0, 240, 255, 0.4)";
-      ctx.font = "8px 'JetBrains Mono', monospace";
-      ctx.fillText("60Hz", 8, height - 4);
-      ctx.fillText("250Hz", width * 0.25, height - 4);
-      ctx.fillText("1kHz", width * 0.5 - 10, height - 4);
-      ctx.fillText("4kHz", width * 0.75 - 10, height - 4);
-      ctx.fillText("16kHz", width - 36, height - 4);
-
-      if (hasData && numBars > 0) {
-        const avg = sumAmp / numBars;
-        const db = (-30 + (avg / 255) * 26).toFixed(1);
-        setPeakDb(`${db} dB`);
       }
 
       animFrameRef.current = requestAnimationFrame(render);
@@ -325,11 +280,7 @@ export function PresenterAudio({
         await audio.play();
         setIsPlaying(true);
       } catch {
-        setAudioError(
-          lang === "es"
-            ? "Interacción requerida: haz clic de nuevo para autorizar el audio."
-            : "Click again to authorize audio playback.",
-        );
+        setAudioError(lang === "es" ? "Haz clic de nuevo para autorizar el audio." : "Click again to start audio.");
         setIsPlaying(false);
       }
     }
@@ -385,45 +336,32 @@ export function PresenterAudio({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-3xl border border-cyan-500/40 bg-gradient-to-b from-[#0b101d] via-[#090d18] to-[#060810] p-5 shadow-2xl backdrop-blur-xl transition-all duration-300",
-        isPlaying ? "shadow-[0_0_35px_-5px_rgba(0,240,255,0.25)] border-cyan-400/60" : "hover:border-cyan-500/50",
+        "relative overflow-hidden rounded-3xl apple-glass p-5 sm:p-7 transition-all duration-300",
+        isPlaying ? "border-white/20 shadow-2xl" : "hover:border-white/12",
         className,
       )}
     >
-      {/* Líneas sutiles de escáner futurista decorativo */}
-      <div className="pointer-events-none absolute inset-0 cyber-grid opacity-30" />
-      <div className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -left-20 -bottom-20 h-48 w-48 rounded-full bg-primary/10 blur-3xl" />
-
-      <div className="relative z-10 flex flex-col gap-4">
-        {/* Cabecera HUD con Telemetría */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-cyan-500/20 pb-3">
+      <div className="relative z-10 flex flex-col gap-5">
+        {/* Cabecera Minimalista */}
+        <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            {/* Hologram Core Orb */}
-            <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-950/60 border border-cyan-400/40 shadow-inner">
-              <Activity className={cn("h-5 w-5 text-cyan-400 transition", isPlaying ? "animate-pulse" : "opacity-80")} />
-              <div
-                className={cn(
-                  "absolute inset-0 rounded-2xl border border-cyan-400/40",
-                  isPlaying ? "animate-ping opacity-40 duration-1000" : "hidden",
-                )}
-              />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06] border border-white/[0.08] text-white">
+              <Radio className={cn("h-4 w-4 transition-transform", isPlaying && "animate-pulse text-indigo-300")} />
             </div>
 
             <div>
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="font-display font-extrabold tracking-wide text-foreground text-base sm:text-lg">
+              <div className="flex items-center gap-2">
+                <h3 className="text-base font-semibold tracking-tight text-white">
                   {t.title}
                 </h3>
-                <span className="inline-flex items-center gap-1 rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-400">
-                  <Wifi className="h-2.5 w-2.5 animate-pulse" /> {t.badge}
+                <span className="rounded-full bg-white/[0.08] px-2.5 py-0.5 text-[11px] font-medium text-zinc-300">
+                  {t.badge}
                 </span>
               </div>
-              <p className="font-mono text-xs text-cyan-200/70">
+              <p className="text-xs text-zinc-400">
                 {isPlaying ? (
-                  <span className="flex items-center gap-1.5 text-primary font-bold">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary animate-ping" />
-                    {t.subtitlePlaying}: {currentChapter?.title}
+                  <span className="text-zinc-200">
+                    {currentChapter?.title}
                   </span>
                 ) : (
                   t.subtitleIdle
@@ -432,72 +370,32 @@ export function PresenterAudio({
             </div>
           </div>
 
-          {/* Telemetría de señal HUD */}
-          <div className="flex items-center gap-3 ml-auto">
-            <div className="flex flex-col text-right font-mono text-[10px] text-muted-foreground">
-              <span className="text-cyan-400 font-bold">DSP 44.1 kHz // PEAK {isPlaying ? peakDb : "IDLE"}</span>
-              <span className="hidden sm:inline">NEURAL ENGINE v2.4</span>
-            </div>
-
-            {showLanguageSwitcher && onLanguageChange && (
-              <div className="inline-flex rounded-xl border border-cyan-500/30 bg-black/40 p-1 text-xs font-mono font-bold shadow-inner">
-                <button
-                  type="button"
-                  onClick={() => onLanguageChange("es")}
-                  className={cn(
-                    "flex items-center gap-1 rounded-lg px-2.5 py-1 transition",
-                    lang === "es"
-                      ? "bg-cyan-500 text-black font-extrabold shadow-[0_0_12px_rgba(0,240,255,0.6)]"
-                      : "text-muted-foreground hover:text-cyan-300",
-                  )}
-                  aria-pressed={lang === "es"}
-                >
-                  <span>ES</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onLanguageChange("en")}
-                  className={cn(
-                    "flex items-center gap-1 rounded-lg px-2.5 py-1 transition",
-                    lang === "en"
-                      ? "bg-cyan-500 text-black font-extrabold shadow-[0_0_12px_rgba(0,240,255,0.6)]"
-                      : "text-muted-foreground hover:text-cyan-300",
-                  )}
-                  aria-pressed={lang === "en"}
-                >
-                  <span>EN</span>
-                </button>
-              </div>
-            )}
+          <div className="flex items-center gap-1.5 text-xs text-zinc-400">
+            <span
+              className={cn(
+                "h-2 w-2 rounded-full transition-colors",
+                isPlaying ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" : "bg-zinc-600",
+              )}
+            />
+            <span className="hidden sm:inline font-mono text-[11px] tracking-wide text-zinc-400">
+              {isPlaying ? "LIVE" : "STANDBY"}
+            </span>
           </div>
         </div>
 
-        {/* Visualizador de Frecuencia Real (Canvas Web Audio API) */}
-        <div className="relative rounded-2xl border border-cyan-500/30 bg-[#040711]/90 p-3 shadow-inner">
-          <div className="mb-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-cyan-400/80">
-            <span className="flex items-center gap-1">
-              <Cpu className="h-3 w-3" /> {t.hudLabel} // 64 BANDS
-            </span>
-            <span className="tabular-nums">
-              {isPlaying ? `TRANSMITTING · ${peakDb}` : "SYNTHESIS READY · STANDBY"}
-            </span>
-          </div>
-
+        {/* Visualizador de Frecuencia estilo Apple Voice Memos / Siri */}
+        <div className="relative flex items-center justify-center rounded-2xl bg-black/40 border border-white/[0.06] p-3 sm:p-4">
           <canvas
             ref={canvasRef}
-            width={640}
-            height={72}
-            className="w-full h-16 sm:h-20 rounded-xl bg-black/60 border border-cyan-900/40 shadow-inner"
-            aria-label="Visualizador espectral de frecuencia de voz de la presentadora"
+            width={580}
+            height={60}
+            className="w-full h-14 sm:h-16"
+            aria-label="Visualizador de frecuencia de audio"
           />
         </div>
 
-        {/* Barra de progreso interactiva con tiempo militar */}
+        {/* Barra de progreso minimalista */}
         <div className="space-y-1.5">
-          <div className="flex items-center justify-between font-mono text-xs font-bold text-muted-foreground">
-            <span className="text-cyan-400">{formatTime(currentTime)}</span>
-            <span className="text-muted-foreground/80">{formatTime(duration)}</span>
-          </div>
           <div className="relative flex items-center">
             <input
               type="range"
@@ -507,68 +405,72 @@ export function PresenterAudio({
               value={currentTime}
               onChange={handleSeek}
               aria-label={t.progressAria}
-              className="w-full h-2 cursor-pointer appearance-none rounded-lg bg-cyan-950/80 accent-cyan-400 focus:outline-none"
+              className="w-full h-1.5 cursor-pointer appearance-none rounded-full bg-white/[0.08] accent-white focus:outline-none"
             />
             <div
-              className="pointer-events-none absolute left-0 h-2 rounded-lg bg-gradient-to-r from-cyan-400 to-primary opacity-80"
+              className="pointer-events-none absolute left-0 h-1.5 rounded-full bg-white/80"
               style={{ width: `${progress}%` }}
             />
           </div>
-        </div>
 
-        {/* Controles Principales */}
-        <div className="flex flex-wrap items-center gap-3">
-          <Button
-            type="button"
-            onClick={togglePlay}
-            aria-label={isPlaying ? t.pauseBtn : t.listenBtn}
-            className={cn(
-              "flex-1 sm:flex-initial gap-2 px-6 font-mono font-extrabold uppercase tracking-wider text-sm transition-all duration-300",
-              isPlaying
-                ? "bg-amber-400 text-black hover:bg-amber-300 shadow-[0_0_20px_rgba(255,230,0,0.5)]"
-                : "bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_25px_rgba(0,240,255,0.6)]",
-            )}
-            size="md"
-          >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 fill-black" />}
-            <span>{isPlaying ? t.pauseBtn : t.listenBtn}</span>
-          </Button>
-
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={handleRestart}
-            aria-label={t.restartAria}
-            className="border-cyan-500/30 bg-cyan-950/40 text-cyan-300 hover:bg-cyan-900/60 p-2.5 rounded-xl"
-          >
-            <RotateCcw className="h-4 w-4" />
-          </Button>
-
-          <Button
-            type="button"
-            variant="ghost"
-            onClick={toggleMute}
-            aria-label={isMuted ? t.unmuteAria : t.muteAria}
-            className="border-cyan-500/30 bg-cyan-950/40 text-cyan-300 hover:bg-cyan-900/60 p-2.5 rounded-xl"
-          >
-            {isMuted ? <VolumeX className="h-4 w-4 text-destructive" /> : <Volume2 className="h-4 w-4" />}
-          </Button>
-
-          {/* Indicador de capítulo actual rápido */}
-          <div className="hidden lg:flex items-center gap-1.5 ml-auto font-mono text-xs text-cyan-300/80 bg-cyan-950/30 px-3 py-1.5 rounded-xl border border-cyan-500/20">
-            <Sparkles className="h-3.5 w-3.5 text-primary" />
-            <span>{currentChapter?.title}</span>
+          <div className="flex items-center justify-between text-[11px] font-mono text-zinc-400">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
           </div>
         </div>
 
+        {/* Controles estilo Apple */}
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={togglePlay}
+              aria-label={isPlaying ? t.pauseBtn : t.listenBtn}
+              className="flex h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-black transition-all hover:bg-zinc-200 active:scale-95 shadow-md shadow-white/10"
+            >
+              {isPlaying ? <Pause className="h-4 w-4 fill-black" /> : <Play className="h-4 w-4 fill-black" />}
+              <span>{isPlaying ? t.pauseBtn : t.listenBtn}</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleRestart}
+              aria-label={t.restartAria}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.08] text-zinc-300 hover:bg-white/[0.12] hover:text-white transition active:scale-95"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </button>
+
+            <button
+              type="button"
+              onClick={toggleMute}
+              aria-label={isMuted ? t.unmuteAria : t.muteAria}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.06] border border-white/[0.08] text-zinc-300 hover:bg-white/[0.12] hover:text-white transition active:scale-95"
+            >
+              {isMuted ? <VolumeX className="h-4 w-4 text-red-400" /> : <Volume2 className="h-4 w-4" />}
+            </button>
+          </div>
+
+          {/* Botón de transcripción minimalista */}
+          <button
+            type="button"
+            onClick={() => setShowTranscript(!showTranscript)}
+            className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-zinc-200 transition py-1"
+            aria-expanded={showTranscript}
+          >
+            <span>{showTranscript ? t.hideTranscript : t.showTranscript}</span>
+            {showTranscript ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
+          </button>
+        </div>
+
         {audioError && (
-          <p className="font-mono text-xs text-destructive font-semibold" role="alert">
-            [ERROR] {audioError}
+          <p className="text-xs text-red-400" role="alert">
+            {audioError}
           </p>
         )}
 
-        {/* Segmentos de capítulos interactivos HUD */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 pt-1">
+        {/* Chips de capítulos estilo Apple */}
+        <div className="flex flex-wrap gap-1.5 pt-1">
           {t.chapters.map((ch, idx) => {
             const isCurrent =
               currentTime >= ch.time && (idx === t.chapters.length - 1 || currentTime < t.chapters[idx + 1].time);
@@ -578,44 +480,26 @@ export function PresenterAudio({
                 type="button"
                 onClick={() => jumpToChapter(ch.time)}
                 className={cn(
-                  "flex flex-col text-left p-2 rounded-xl font-mono text-[11px] transition-all border",
+                  "rounded-full px-3 py-1 text-xs font-medium transition-all",
                   isCurrent
-                    ? "border-cyan-400 bg-cyan-500/20 text-cyan-200 shadow-[0_0_12px_rgba(0,240,255,0.3)]"
-                    : "border-cyan-900/40 bg-black/40 text-muted-foreground hover:border-cyan-500/40 hover:text-foreground",
+                    ? "bg-white text-black shadow-sm"
+                    : "bg-white/[0.04] text-zinc-400 hover:bg-white/[0.08] hover:text-white border border-white/[0.06]",
                 )}
               >
-                <span className={cn("font-bold", isCurrent ? "text-primary" : "text-cyan-400/80")}>
-                  {ch.title.split("//")[0]?.trim()}
-                </span>
-                <span className="truncate text-[10px] opacity-80">{ch.desc}</span>
+                <span>{ch.shortTitle}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Desplegable de teleprompter / transcripción */}
-        <div className="border-t border-cyan-500/20 pt-2">
-          <button
-            type="button"
-            onClick={() => setShowTranscript(!showTranscript)}
-            className="flex w-full items-center justify-between font-mono text-xs text-cyan-400/80 hover:text-cyan-200 transition py-1"
-            aria-expanded={showTranscript}
-          >
-            <span>{showTranscript ? t.hideTranscript : t.showTranscript}</span>
-            {showTranscript ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </button>
-
-          {showTranscript && (
-            <div className="mt-2.5 rounded-xl border border-cyan-500/30 bg-black/70 p-4 font-mono text-xs leading-relaxed text-cyan-100 shadow-inner">
-              <div className="mb-2 text-[10px] uppercase tracking-widest text-cyan-400 font-bold">
-                TELEPROMPTER TRANSCRIPTION // SARAH AI VOICE
-              </div>
-              <p className="italic text-muted-foreground leading-normal">
-                "{t.fullTranscript}"
-              </p>
-            </div>
-          )}
-        </div>
+        {/* Transcripción en lámina translúcida */}
+        {showTranscript && (
+          <div className="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-4 text-xs leading-relaxed text-zinc-300 shadow-inner">
+            <p className="italic text-zinc-400">
+              "{t.fullTranscript}"
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
