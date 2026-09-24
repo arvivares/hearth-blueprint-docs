@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as HostRouteImport } from './routes/host'
 import { Route as PlayRouteImport } from './routes/play'
 import { Route as TvRouteImport } from './routes/tv'
@@ -17,6 +18,11 @@ import { Route as TvRouteImport } from './routes/tv'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HostRoute = HostRouteImport.update({
@@ -37,12 +43,14 @@ const TvRoute = TvRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/host': typeof HostRoute
   '/play': typeof PlayRoute
   '/tv': typeof TvRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/host': typeof HostRoute
   '/play': typeof PlayRoute
   '/tv': typeof TvRoute
@@ -50,20 +58,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/host': typeof HostRoute
   '/play': typeof PlayRoute
   '/tv': typeof TvRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/host' | '/play' | '/tv'
+  fullPaths: '/' | '/demo' | '/host' | '/play' | '/tv'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/host' | '/play' | '/tv'
-  id: '__root__' | '/' | '/host' | '/play' | '/tv'
+  to: '/' | '/demo' | '/host' | '/play' | '/tv'
+  id: '__root__' | '/' | '/demo' | '/host' | '/play' | '/tv'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemoRoute: typeof DemoRoute
   HostRoute: typeof HostRoute
   PlayRoute: typeof PlayRoute
   TvRoute: typeof TvRoute
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/host': {
@@ -104,6 +121,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemoRoute: DemoRoute,
   HostRoute: HostRoute,
   PlayRoute: PlayRoute,
   TvRoute: TvRoute,

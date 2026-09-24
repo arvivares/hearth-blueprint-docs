@@ -186,3 +186,15 @@ test("anfitrión expulsa a un jugador y su token deja de servir", async () => {
   await waitFor(() => !A.host.state.players.has(target.playerId));
   await expectRejected(connect(A.roomId, { token: target.token }));
 });
+
+test("configuración: solo el anfitrión puede cambiarla y se refleja en el estado público", async () => {
+  const e = nextMessage(playersA[1].room, "error");
+  playersA[1].room.send("host:configure", { rounds: 3 });
+  assert.equal((await e).code, "FORBIDDEN");
+  B.host.send("host:configure", { rounds: 5, roundSeconds: 30 });
+  await waitFor(() => B.screen.state.totalRounds === 5 && B.screen.state.roundSeconds === 30);
+  assert.equal(A.host.state.totalRounds, 10);
+  const inv = nextMessage(A.host, "error");
+  A.host.send("host:configure", { maxPlayers: 2 });
+  assert.equal((await inv).code, "INVALID_INPUT");
+});

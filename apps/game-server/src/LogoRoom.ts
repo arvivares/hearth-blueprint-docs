@@ -1,7 +1,7 @@
 import { Room, ServerError, type Client } from "colyseus";
-import { MapSchema, Schema, type } from "@colyseus/schema";
+import { ArraySchema, MapSchema, Schema, type } from "@colyseus/schema";
 import { ClientMessages, MessageRole, type ClientMessageType } from "../../../packages/contracts/src/messages";
-import type { ErrorCode } from "../../../packages/contracts/src/common";
+import type { ErrorCode, GameConfig } from "../../../packages/contracts/src/common";
 import { verifyToken, type TokenClaims } from "./tokens";
 import { getById, unregisterRoom, type RoomRecord } from "./registry";
 
@@ -14,13 +14,27 @@ export class PlayerState extends Schema {
   @type("boolean") waiting = false;
 }
 
+export class RankEntry extends Schema {
+  @type("string") playerId = "";
+  @type("number") rank = 0;
+}
+
 export class LogoState extends Schema {
   @type("string") phase = "LOBBY";
+  @type("string") previousPhase = "";
   @type("string") roomCode = "";
   @type("number") maxPlayers = 0;
+  @type("number") roundIndex = 0;
+  @type("number") totalRounds = 0;
+  @type("number") roundSeconds = 0;
+  @type("string") roundId = "";
+  @type("number") revealStage = 0;
+  @type("number") totalStages = 0;
+  @type("number") phaseEndsAt = 0;
   @type("boolean") hostConnected = false;
   @type("boolean") screenConnected = false;
   @type({ map: PlayerState }) players = new MapSchema<PlayerState>();
+  @type([RankEntry]) ranking = new ArraySchema<RankEntry>();
 }
 
 const MAX_MESSAGE_BYTES = 2048;
@@ -44,7 +58,14 @@ export class LogoRoom extends Room<LogoState> {
   attach(rec: RoomRecord) {
     this.rec = rec;
     this.state.roomCode = rec.roomCode;
-    this.state.maxPlayers = rec.config.maxPlayers;
+    this.applyConfig(rec.config);
+  }
+
+  private applyConfig(c: GameConfig) {
+    this.state.maxPlayers = c.maxPlayers;
+    this.state.totalRounds = c.rounds;
+    this.state.roundSeconds = c.roundSeconds;
+    this.state.totalStages = c.revealStages;
   }
 
   onAuth(_client: Client, options: { token?: unknown }): TokenClaims {
@@ -158,6 +179,18 @@ export class LogoRoom extends Room<LogoState> {
           const a = c.userData as TokenClaims;
           if (a.role === "player" && a.sub === playerId) c.leave(4003, "KICKED");
         }
+        return;
+      }
+      case "host:configure": {
+        if (this.state.phase !== "LOBBY") return this.fail(client, "INVALID_PHASE", t);
+        const next = { ...this.rec.config, ...(parsed.data as Partial<GameConfig>) };
+        if (next.maxPlayers < this.rec.players.size) return this.fail(client, "INVALID_INPUT", t);
+        if (next.pointsByStage.length !== next.revealStages) {
+          next.pointsByStage = this.rec.config.pointsByStage.slice(0, next.revealStages);
+          while (next.pointsByStage.length < next.revealStages) next.pointsByStage.push(0);
+        }
+        this.rec.config = next;
+        this.applyConfig(next);
         return;
       }
       default:
