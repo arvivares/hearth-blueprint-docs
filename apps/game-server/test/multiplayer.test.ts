@@ -78,7 +78,7 @@ after(async () => {
   for (const r of [A?.host, A?.screen, B?.host, B?.screen, ...playersA.map((p) => p.room)]) {
     try { await r?.leave(); } catch {}
   }
-  await server.close();
+  await Promise.race([server.close(), new Promise((r) => setTimeout(r, 2000))]);
 
 });
 
