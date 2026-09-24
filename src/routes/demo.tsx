@@ -27,6 +27,15 @@ const REAL_BRANDS = [
   { id: "brand-mcdonalds", name: "McDonald's", category: "Alimentación", image: "/logos/mcdonalds.svg" },
   { id: "brand-coca-cola", name: "Coca-Cola", category: "Bebidas", image: "/logos/coca-cola.svg" },
   { id: "brand-spotify", name: "Spotify", category: "Música", image: "/logos/spotify.svg" },
+  { id: "brand-amazon", name: "Amazon", category: "Comercio", image: "/logos/amazon.svg" },
+  { id: "brand-microsoft", name: "Microsoft", category: "Software", image: "/logos/microsoft.svg" },
+  { id: "brand-starbucks", name: "Starbucks", category: "Cafetería", image: "/logos/starbucks.svg" },
+  { id: "brand-netflix", name: "Netflix", category: "Entretenimiento", image: "/logos/netflix.svg" },
+  { id: "brand-tesla", name: "Tesla", category: "Automoción", image: "/logos/tesla.svg" },
+  { id: "brand-adidas", name: "Adidas", category: "Deportes", image: "/logos/adidas.svg" },
+  { id: "brand-pepsi", name: "Pepsi", category: "Bebidas", image: "/logos/pepsi.svg" },
+  { id: "brand-youtube", name: "YouTube", category: "Vídeo", image: "/logos/youtube.svg" },
+  { id: "brand-instagram", name: "Instagram", category: "Redes", image: "/logos/instagram.svg" },
 ];
 
 export const Route = createFileRoute("/demo")({
@@ -223,9 +232,9 @@ function DemoPage() {
             </span>
           </div>
 
-          {/* Selector de Marcas Reales */}
-          <div className="hidden lg:flex items-center gap-1 pl-3 border-l border-white/[0.08]">
-            <span className="text-[11px] text-zinc-500 mr-1">Marca:</span>
+          {/* Selector de Marcas Reales (15 marcas mundiales) */}
+          <div className="flex items-center gap-1.5 pl-3 border-l border-white/[0.08] max-w-[220px] sm:max-w-[360px] md:max-w-[480px] xl:max-w-[620px] overflow-x-auto py-0.5 scrollbar-none">
+            <span className="text-[11px] text-zinc-500 mr-1 shrink-0">Marca:</span>
             {REAL_BRANDS.map((b, idx) => (
               <button
                 key={b.id}
@@ -238,10 +247,10 @@ function DemoPage() {
                   setUserAnswered(false);
                 }}
                 className={cn(
-                  "rounded-full px-2.5 py-0.5 text-[11px] font-medium transition",
+                  "rounded-full px-2.5 py-0.5 text-[11px] font-medium transition shrink-0 whitespace-nowrap",
                   brandIndex === idx
                     ? "bg-white text-black font-semibold shadow-sm"
-                    : "text-zinc-400 hover:text-white bg-white/[0.04]",
+                    : "text-zinc-400 hover:text-white bg-white/[0.04] border border-white/[0.06]",
                 )}
               >
                 {b.name}
@@ -362,12 +371,12 @@ function DemoPage() {
       </header>
 
       {/* Área Principal de Simulación */}
-      <main className="min-h-0 flex-1 overflow-auto bg-[#07070a]">
+      <main className="min-h-0 flex-1 overflow-auto bg-[#000000]">
         {/* VISTA SPLIT: PANTALLA DIVIDIDA (TV + MÓVIL EN DIRECTO) */}
         {currentView === "split" && (
           <div className="flex h-full flex-col lg:flex-row gap-4 p-3 sm:p-5">
             {/* Lado Izquierdo: Pantalla de Televisión 16:9 */}
-            <div className="flex-1 flex flex-col min-h-0 rounded-3xl border border-white/[0.1] bg-[#0c0e14] shadow-2xl overflow-hidden">
+            <div className="flex-1 flex flex-col min-h-0 rounded-3xl border border-white/[0.08] bg-[#08080a] shadow-2xl overflow-hidden">
               <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-2 bg-black/40 text-xs text-zinc-400">
                 <span className="flex items-center gap-1.5 font-medium text-white">
                   <Tv className="h-3.5 w-3.5 text-zinc-400" /> Pantalla TV Principal (Salón / Sala de Juegos)
@@ -394,7 +403,7 @@ function DemoPage() {
 
             {/* Lado Derecho: Marco de Teléfono Smartphone Simulado */}
             <div className="w-full lg:w-[380px] shrink-0 flex flex-col items-center justify-center p-1 sm:p-2">
-              <div className="w-full max-w-[360px] h-[640px] rounded-[44px] border-[5px] border-zinc-700 bg-black shadow-2xl overflow-hidden flex flex-col relative ring-1 ring-white/10">
+              <div className="w-full max-w-[360px] h-[640px] rounded-[44px] border-[5px] border-zinc-800 bg-black shadow-2xl overflow-hidden flex flex-col relative ring-1 ring-white/10">
                 {/* Dynamic Island / Notch */}
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2 h-5 w-24 rounded-full bg-zinc-900 z-50 flex items-center justify-center">
                   <div className="h-2.5 w-2.5 rounded-full bg-black/60 mr-2" />

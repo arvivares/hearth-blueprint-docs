@@ -11,9 +11,9 @@ export const Route = createFileRoute("/tv")({
   validateSearch: z.object({ room: z.string().optional() }),
   head: () => ({
     meta: [
-      { title: "Pantalla de la sala — Logos" },
+      { title: "Pantalla TV — PeekRush" },
       { name: "description", content: "Pantalla compartida: QR de entrada, logo, temporizador y clasificación." },
-      { property: "og:title", content: "Pantalla de la sala — Logos" },
+      { property: "og:title", content: "Pantalla TV — PeekRush" },
       { property: "og:description", content: "Pantalla compartida: QR de entrada, logo, temporizador y clasificación." },
     ],
   }),
@@ -76,18 +76,57 @@ function TvPage() {
 
   if (!session || room.status === "error" || (room.status === "closed" && room.error))
     return (
-      <Shell title="Vincular pantalla">
+      <Shell title="Vincular pantalla TV">
         <ErrorBox>{error || room.error}</ErrorBox>
-        <Card>
-          <p className="text-sm text-muted-foreground">El anfitrión genera el código de vinculación desde su panel.</p>
-          <form className="space-y-3" onSubmit={link}>
-            <Input aria-label="Código de sala" placeholder="Código de sala" value={code} onChange={(e) => setCode(e.target.value)} maxLength={5} className="font-mono uppercase tracking-widest" />
-            <Input aria-label="Código de vinculación" placeholder="Código de vinculación (6 dígitos)" value={pairingCode} onChange={(e) => setPairingCode(e.target.value)} maxLength={6} inputMode="numeric" className="font-mono tracking-widest" />
-            <div className="flex items-center gap-3">
-              <Button type="submit">Vincular</Button>
+        <Card className="space-y-5">
+          <div className="space-y-1">
+            <h2 className="text-base font-semibold text-white">Sincronizar monitor o televisor</h2>
+            <p className="text-xs text-zinc-400">
+              El anfitrión genera el código de vinculación de 6 dígitos desde su panel.
+            </p>
+          </div>
+          <form className="space-y-4" onSubmit={link}>
+            <div>
+              <label className="block text-xs font-medium text-zinc-400 mb-1.5" htmlFor="room-code">
+                Código de sala (5 letras)
+              </label>
+              <Input
+                id="room-code"
+                aria-label="Código de sala"
+                placeholder="EJ. 7KX9P"
+                value={code}
+                onChange={(e) => setCode(e.target.value.toUpperCase())}
+                maxLength={5}
+                className="font-mono uppercase tracking-widest text-lg py-3 bg-white/[0.05]"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-zinc-400 mb-1.5" htmlFor="pairing-code">
+                Código de vinculación (6 dígitos)
+              </label>
+              <Input
+                id="pairing-code"
+                aria-label="Código de vinculación"
+                placeholder="000000"
+                value={pairingCode}
+                onChange={(e) => setPairingCode(e.target.value)}
+                maxLength={6}
+                inputMode="numeric"
+                className="font-mono tracking-[0.25em] text-lg py-3 bg-white/[0.05]"
+              />
+            </div>
+            <div className="flex items-center gap-3 pt-2">
+              <Button type="submit" className="w-full sm:w-auto">Vincular pantalla</Button>
               {session && (
-                <button type="button" className="text-sm underline" onClick={() => { clearSession("screen", code); setSession(null); }}>
-                  Olvidar sesión anterior
+                <button
+                  type="button"
+                  className="text-xs text-zinc-400 hover:text-white underline underline-offset-4"
+                  onClick={() => {
+                    clearSession("screen", code);
+                    setSession(null);
+                  }}
+                >
+                  Olvidar sesión previa
                 </button>
               )}
             </div>
@@ -98,7 +137,18 @@ function TvPage() {
 
   const c = search.room!;
   if (!room.state)
-    return <div className="grid h-[100dvh] place-items-center text-2xl text-muted-foreground">{room.error ?? "Conectando con el servidor…"}</div>;
+    return (
+      <div className="relative grid h-[100dvh] place-items-center bg-[#000000] text-zinc-400">
+        <div className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 h-[350px] w-full max-w-4xl apple-glow opacity-60" />
+        <div className="relative z-10 flex flex-col items-center gap-4">
+          <div className="h-7 w-7 animate-spin rounded-full border-2 border-white/20 border-t-white" />
+          <p className="text-base font-medium tracking-tight text-zinc-300">
+            {room.error ?? "Conectando con la sala…"}{" "}
+            <span className="font-mono text-white font-bold">{c}</span>
+          </p>
+        </div>
+      </div>
+    );
 
   return (
     <TvView

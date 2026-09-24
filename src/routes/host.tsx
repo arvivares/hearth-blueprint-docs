@@ -11,9 +11,9 @@ export const Route = createFileRoute("/host")({
   validateSearch: z.object({ room: z.string().optional() }),
   head: () => ({
     meta: [
-      { title: "Panel del anfitrión — Logos" },
+      { title: "Panel del anfitrión — PeekRush" },
       { name: "description", content: "Configura la sala, vincula la pantalla y controla la partida." },
-      { property: "og:title", content: "Panel del anfitrión — Logos" },
+      { property: "og:title", content: "Panel del anfitrión — PeekRush" },
       { property: "og:description", content: "Configura la sala, vincula la pantalla y controla la partida." },
     ],
   }),
@@ -37,7 +37,14 @@ function HostPage() {
     return (
       <Shell title="Panel del anfitrión">
         <ErrorBox>No hay credenciales de anfitrión para esta sala en este navegador.</ErrorBox>
-        <Link to="/" className="underline">Volver</Link>
+        <div className="pt-2">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center rounded-2xl bg-white px-6 py-3.5 text-sm font-semibold text-black hover:bg-zinc-200 transition active:scale-95 shadow-md shadow-white/5"
+          >
+            Volver al inicio
+          </Link>
+        </div>
       </Shell>
     );
 
