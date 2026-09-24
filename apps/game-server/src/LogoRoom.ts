@@ -65,6 +65,11 @@ interface RoundData {
 }
 
 const MAX_MESSAGE_BYTES = 2048;
+/** Límite de mensajes por conexión (cubo de fichas): ráfaga de 20, recarga 10/s. */
+const MSG_BURST = 20;
+const MSG_REFILL_PER_S = 10;
+/** Mensajes descartados en 10 s a partir de los cuales se cierra la conexión. */
+const MSG_DROP_DISCONNECT = 100;
 const IDLE_DISPOSE_MS = 10 * 60_000;
 const TICK_MS = 50;
 const ACTIVE_PHASES = ["PREPARING", "COUNTDOWN", "ROUND_ACTIVE", "ROUND_RESULTS"];
@@ -98,7 +103,9 @@ export class LogoRoom extends Room<LogoState> {
     p.catch((e) => console.error(`[db] fallo al guardar ${what} (sala ${this.state.roomCode})`, e));
   }
 
-  onCreate() {
+  onCreate(options: { internalKey?: unknown } = {}) {
+    // Las salas solo se crean desde POST /api/rooms; /matchmake/create queda rechazado.
+    if (options?.internalKey !== settings.internalRoomKey) throw new ServerError(403, "FORBIDDEN");
     this.autoDispose = false;
     this.setState(new LogoState());
     this.clock.setInterval(() => this.housekeeping(), 5_000);
@@ -464,6 +471,10 @@ export class LogoRoom extends Room<LogoState> {
     const p = this.state.players.get(playerId);
     if (!p || p.waiting) return this.fail(client, "INVALID_PHASE", "player:attempt");
 
+    // Respuestas no evaluadas (cerrada, ya acertó, enfriamiento): se responden sin guardarse,
+    // para que el spam con attemptId nuevos no haga crecer memoria ni base de datos.
+    const reject = (status: AttemptStatus, extra: { retryAt?: number } = {}) =>
+      client.send("attempt:result", { attemptId: data.attemptId, roundId: data.roundId, status, points: undefined, retryAt: extra.retryAt });
     const record = (status: AttemptStatus, extra: Partial<AttemptRecord> = {}) => {
       const a: AttemptRecord = {
         attemptId: data.attemptId,
@@ -487,11 +498,11 @@ export class LogoRoom extends Room<LogoState> {
     };
 
     const open = this.state.phase === "ROUND_ACTIVE" && this.round && data.roundId === this.round.roundId && now < this.state.phaseEndsAt;
-    if (!open) return record("round_closed");
-    if (p.answeredThisRound) return record("already_scored");
+    if (!open) return reject("round_closed");
+    if (p.answeredThisRound) return reject("already_scored");
     const cooldown = scaled(this.rec.config.attemptCooldownMs);
     const last = this.lastAttemptAt.get(playerId) ?? 0;
-    if (now - last < cooldown) return record("rate_limited", { retryAt: last + cooldown });
+    if (now - last < cooldown) return reject("rate_limited", { retryAt: last + cooldown });
     this.lastAttemptAt.set(playerId, now);
 
     if (isCorrectAnswer(data.text, this.round!.item.answer, this.round!.item.aliases)) {
@@ -510,9 +521,27 @@ export class LogoRoom extends Room<LogoState> {
     client.send("error", { code, ref });
   }
 
+  private buckets = new WeakMap<Client, { tokens: number; at: number; dropped: number; windowAt: number; warnedAt: number }>();
+
+  /** true si el mensaje puede procesarse. Descarta el exceso y cierra conexiones abusivas. */
+  private allowMessage(client: Client): boolean {
+    const now = Date.now();
+    let b = this.buckets.get(client);
+    if (!b) this.buckets.set(client, (b = { tokens: MSG_BURST, at: now, dropped: 0, windowAt: now, warnedAt: 0 }));
+    b.tokens = Math.min(MSG_BURST, b.tokens + ((now - b.at) / 1000) * MSG_REFILL_PER_S);
+    b.at = now;
+    if (b.tokens >= 1) { b.tokens -= 1; return true; }
+    if (now - b.windowAt > 10_000) { b.windowAt = now; b.dropped = 0; }
+    b.dropped += 1;
+    if (b.dropped >= MSG_DROP_DISCONNECT) { client.leave(4008, "RATE_LIMITED"); return false; }
+    if (now - b.warnedAt > 1000) { b.warnedAt = now; this.fail(client, "RATE_LIMITED"); }
+    return false;
+  }
+
   private handleMessage(client: Client, type: string, payload: unknown) {
     const auth = client.userData as TokenClaims;
-    if (!(type in ClientMessages)) return this.fail(client, "INVALID_INPUT", type);
+    if (!auth || !this.allowMessage(client)) return;
+    if (!Object.prototype.hasOwnProperty.call(ClientMessages, type)) return this.fail(client, "INVALID_INPUT", type);
     const t = type as ClientMessageType;
     if (JSON.stringify(payload ?? {}).length > MAX_MESSAGE_BYTES) return this.fail(client, "INVALID_INPUT", t);
     const needed = MessageRole[t];
