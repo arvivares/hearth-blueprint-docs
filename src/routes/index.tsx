@@ -60,6 +60,12 @@ function Home() {
         <h2 className="font-semibold">Pantalla (TV)</h2>
         <Button onClick={() => navigate({ to: "/tv" })}>Vincular esta pantalla</Button>
       </Card>
+      <p className="text-center text-sm text-muted-foreground">
+        ¿Solo quieres ver el diseño?{" "}
+        <button className="underline" onClick={() => navigate({ to: "/demo", search: { view: "tv", phase: "LOBBY" } })}>
+          Abrir la demostración (datos ficticios)
+        </button>
+      </p>
     </Shell>
   );
 }

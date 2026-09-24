@@ -14,3 +14,8 @@
 - [x] Servidor Colyseus independiente (salas, tokens por rol, QR, pantalla, sesión)
 - [x] Cliente real mínimo (/host, /tv, /play)
 - [x] Prueba reproducible multi-cliente (aislamiento, permisos, capacidad)
+
+## Etapa 3 (en curso) — Interfaces TV / móvil / anfitrión
+- [ ] Sistema visual y vistas TV (horizontal), móvil (vertical), anfitrión
+- [ ] Estado público ampliado en servidor (ronda, reloj, etapa, clasificación) + host:configure
+- [ ] Demostración separada e identificada (/demo)
