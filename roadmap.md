@@ -20,8 +20,8 @@
 - [x] Estado público ampliado en servidor (ronda, reloj, etapa, clasificación) + host:configure
 - [x] Demostración separada e identificada (/demo)
 
-## Etapa 4 (en curso) — Motor de juego
-- [ ] Reglas puras (normalización, alias, puntos, clasificación) + pruebas
-- [ ] Ciclo de ronda en servidor (preparación, cuenta atrás, etapas, cierre, final, pausa)
-- [ ] Imágenes por etapa protegidas con catálogo ficticio propio
-- [ ] Pruebas de integración y simulación de partida completa
+## Etapa 4 (hecha) — Motor de juego
+- [x] Reglas puras (normalización, alias, puntos, clasificación) + pruebas
+- [x] Ciclo de ronda en servidor (preparación, cuenta atrás, etapas, cierre, final, pausa)
+- [x] Imágenes por etapa protegidas con catálogo ficticio propio
+- [x] Pruebas de integración y simulación de partida completa
