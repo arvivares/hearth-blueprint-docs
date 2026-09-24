@@ -36,6 +36,8 @@ services:
       NODE_ENV: production
       PORT: "2567"
       TRUST_PROXY: "1"
+      ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY:-}
+      ELEVENLABS_VOICE_ID: ${ELEVENLABS_VOICE_ID:-dNjJKg63Fr5AXwIdkATa}
     expose:
       - "2567"
     networks:

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { api, errorText } from "@/game/api";
 import { saveSession } from "@/game/session";
 import { Button, Card, ErrorBox, Input, Shell } from "@/game/ui";
+import { PresenterAudio } from "@/components/PresenterAudio";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,8 +38,9 @@ function Home() {
   }
 
   return (
-    <Shell title="Logos">
+    <Shell title="PeekRush">
       <ErrorBox>{error}</ErrorBox>
+      <PresenterAudio />
       <Card>
         <h2 className="font-semibold">Anfitrión</h2>
         <Button onClick={create} disabled={busy}>Crear sala</Button>
