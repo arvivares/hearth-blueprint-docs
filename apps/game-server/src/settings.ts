@@ -1,5 +1,7 @@
+import type { Db } from "./db/pool";
 /** Ajustes del proceso. `timeScale` < 1 acelera todos los tiempos (solo pruebas y simulación). */
 export const settings = {
+  db: null as Db | null,
   timeScale: Number(process.env.GAME_TIME_SCALE ?? 1),
   countdownMs: 3000,
   resultsMs: 8000,

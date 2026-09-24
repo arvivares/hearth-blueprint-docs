@@ -25,7 +25,7 @@ export const DEMO_CATALOG: CatalogItem[] = [
   { id: "c09", version: 1, answer: "Arkeon", aliases: [], logo: { bg: "#0c4a6e", fg: "#e0f2fe", shape: "triangle", mark: "A" } },
   { id: "c10", version: 1, answer: "Vélez Hogar", aliases: ["Velez"], logo: { bg: "#4d7c0f", fg: "#ecfccb", shape: "square", mark: "V" } },
   { id: "c11", version: 1, answer: "Quasmo", aliases: [], logo: { bg: "#581c87", fg: "#fae8ff", shape: "diamond", mark: "Q" } },
-  { id: "c12", version: 1, answer: "Brisamar", aliases: ["Brisa Mar"], logo: { bg: "#155e75", fg: "#cffafe", shape: "circle", mark: "B" } },
+  { id: "c12", version: 1, answer: "Brisamar", aliases: ["Brisamar Viajes"], logo: { bg: "#155e75", fg: "#cffafe", shape: "circle", mark: "B" } },
 ];
 
 function shapePath(shape: CatalogItem["logo"]["shape"]): string {

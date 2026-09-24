@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f8fafc"/>
+  <g fill="#0c4a6e"><polygon points="256,70 386,320 126,320"/></g>
+  <text x="256" y="280" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="110" fill="#e0f2fe">A</text>
+  <text x="256" y="430" text-anchor="middle" font-family="DejaVu Sans, Arial, sans-serif" font-weight="700" font-size="58" fill="#0c4a6e">Arkeon</text>
+</svg>

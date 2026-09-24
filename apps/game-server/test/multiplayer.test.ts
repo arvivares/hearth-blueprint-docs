@@ -7,6 +7,8 @@ import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import { Client, type Room } from "colyseus.js";
 import { startServer } from "../src/app";
+import { createTestDb } from "./db-helper";
+let testDb: Awaited<ReturnType<typeof createTestDb>>;
 
 const PLAYERS = Number(process.env.TEST_PLAYERS ?? 30);
 let base = "";
@@ -67,7 +69,8 @@ let B: Awaited<ReturnType<typeof createRoomWithScreen>>;
 const playersA: { room: Room; token: string; playerId: string }[] = [];
 
 before(async () => {
-  server = await startServer(0);
+  testDb = await createTestDb();
+  server = await startServer(0, { databaseUrl: testDb.url });
   base = `http://localhost:${server.port}`;
   ws = `ws://localhost:${server.port}`;
   A = await createRoomWithScreen();
@@ -79,6 +82,7 @@ after(async () => {
     try { await Promise.race([r?.leave(), new Promise((ok) => setTimeout(ok, 300))]); } catch {}
   }
   await Promise.race([server.close(), new Promise((r) => setTimeout(r, 2000))]);
+  await testDb.drop();
 
 });
 
