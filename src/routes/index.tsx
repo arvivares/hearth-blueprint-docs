@@ -4,7 +4,6 @@ import {
   Gamepad2,
   Tv,
   ArrowRight,
-  Sparkles,
   User,
 } from "lucide-react";
 import { api, errorText } from "@/game/api";
@@ -166,15 +165,11 @@ function Home() {
           </div>
         </header>
 
-        {/* Hero con Titular a la Izquierda y "Cómo se juega" a la Derecha */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-2">
+        {/* Hero con Titular a la Izquierda y Player a la Derecha */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center pt-2">
           {/* Columna Izquierda: Adivina el logo / En tiempo real */}
           <div className="lg:col-span-5 flex flex-col justify-center space-y-4 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 self-center lg:self-start rounded-full bg-white/[0.06] border border-white/[0.08] px-3.5 py-1 text-xs font-medium text-amber-300">
-              <Sparkles className="h-3.5 w-3.5 text-amber-400" />
-              <span>{lang === "es" ? "Multijugador en tiempo real" : "Real-time multiplayer"}</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white whitespace-pre-line leading-[1.05]">
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white whitespace-pre-line leading-[1.08]">
               {t.heroTitle}
             </h1>
             <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed max-w-lg mx-auto lg:mx-0">
@@ -182,11 +177,9 @@ function Home() {
             </p>
           </div>
 
-          {/* Columna Derecha: Cómo se juega (PresenterAudio con Animación y Locución) */}
+          {/* Columna Derecha: Solo el player y subtítulos en tiempo real */}
           <div className="lg:col-span-7">
-            <section aria-label="Cómo se juega">
-              <PresenterAudio lang={lang} />
-            </section>
+            <PresenterAudio lang={lang} />
           </div>
         </div>
 
