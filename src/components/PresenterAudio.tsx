@@ -64,8 +64,8 @@ const SCENE_CONFIG: Record<Language, SceneInfo[]> = {
       number: "04",
       badge: "Multiplicador",
       fullTitle: "04 · Logotipos y multiplicador",
-      desc: "El logotipo se revela poco a poco. ¡Adivina antes que nadie para conseguir el mayor multiplicador de velocidad!",
-      handNote: "⚡ 2.8x · Adivina antes",
+      desc: "El logotipo se revela poco a poco en tu pantalla. ¡Escribe la marca en tu móvil antes que nadie para conseguir el mayor multiplicador de velocidad!",
+      handNote: "⚡ 2.8x · Tu móvil responde",
     },
     {
       id: "podium",

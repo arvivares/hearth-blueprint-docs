@@ -271,7 +271,335 @@ export function getSceneForTime(t: number, lang: ExplainerLanguage = "es") {
 }
 
 // -------------------------------------------------------------
-// CANVAS FRAME RENDERING ENGINE
+// UNIFIED SAFE TOP BANNER (Never overflows, leaves space for live badge)
+// -------------------------------------------------------------
+function drawTopBanner(
+  ctx: CanvasRenderingContext2D,
+  W: number,
+  chapterTag: string,
+  title: string
+) {
+  ctx.save();
+  const bannerY = 30;
+
+  // Chapter pill badge
+  ctx.font = "900 11px system-ui, sans-serif";
+  const tagW = ctx.measureText(chapterTag).width + 16;
+  ctx.font = "bold 13px system-ui, sans-serif";
+  const totalW = tagW + 12 + ctx.measureText(title).width;
+  const startX = Math.max(28, (W - 145 - totalW) / 2);
+
+  // Pill
+  ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
+  ctx.strokeStyle = "rgba(56, 189, 248, 0.5)";
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.roundRect(startX, bannerY - 13, tagW, 20, 10);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#38bdf8";
+  ctx.textAlign = "center";
+  ctx.fillText(chapterTag, startX + tagW / 2, bannerY + 1);
+
+  // Main title text
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 13px system-ui, sans-serif";
+  ctx.textAlign = "left";
+  ctx.fillText(title, startX + tagW + 10, bannerY + 1);
+
+  ctx.restore();
+}
+
+// -------------------------------------------------------------
+// REFINED HAND-HELD SMARTPHONE RENDERING
+// Natural anatomical flow, elegant silhouette, clean stylized fingers
+// -------------------------------------------------------------
+interface HandPhoneOptions {
+  sceneT: number;
+  thumbPose: "tap" | "buzzer" | "resting";
+  tapProgress?: number; // 0..1
+  isPressed?: boolean;
+  hapticWaves?: boolean;
+  renderScreen: (scrX: number, scrY: number, scrW: number, scrH: number) => void;
+}
+
+function drawHandHoldingPhone(
+  ctx: CanvasRenderingContext2D,
+  phoneX: number,
+  phoneY: number,
+  phoneW: number,
+  phoneH: number,
+  opt: HandPhoneOptions
+) {
+  const { sceneT, thumbPose, tapProgress = 0, isPressed = false, hapticWaves = false, renderScreen } = opt;
+
+  const skin = "#fed7aa";
+  const skinShade = "#f4a27e";
+  const skinDeep = "#ee9068";
+  const skinLight = "#fff7ed";
+  const ink = "#1e293b";
+
+  ctx.save();
+
+  // ============================================================
+  // LAYER 1: FOREARM & PALM CRADLE (Symmetric, clean, balanced arm from below)
+  // ============================================================
+  ctx.save();
+  const armGrad = ctx.createLinearGradient(phoneX + 80, 450, phoneX + 180, phoneY + phoneH);
+  armGrad.addColorStop(0, skinShade);
+  armGrad.addColorStop(0.5, skin);
+  armGrad.addColorStop(1, skinLight);
+
+  ctx.fillStyle = armGrad;
+  ctx.strokeStyle = ink;
+  ctx.lineWidth = 2.2;
+
+  const armLeftX = phoneX + 85;
+  const armRightX = phoneX + 175;
+  const wristLeftX = phoneX + 95;
+  const wristRightX = phoneX + phoneW + 10;
+  const wristY = phoneY + phoneH;
+
+  ctx.beginPath();
+  ctx.moveTo(armLeftX, 450);
+  ctx.bezierCurveTo(armLeftX + 5, 410, wristLeftX - 5, wristY + 15, wristLeftX, wristY + 2);
+  ctx.lineTo(phoneX + phoneW - 10, wristY + 2);
+  ctx.bezierCurveTo(phoneX + phoneW + 8, wristY + 2, wristRightX + 5, wristY - 10, wristRightX, phoneY + 285);
+  ctx.bezierCurveTo(wristRightX + 8, 370, armRightX + 10, 410, armRightX, 450);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Wrist fold line
+  ctx.strokeStyle = "rgba(194, 65, 12, 0.35)";
+  ctx.lineWidth = 1.3;
+  ctx.beginPath();
+  ctx.arc(phoneX + 130, wristY + 14, 20, 0.4, 1.3);
+  ctx.stroke();
+
+  // ============================================================
+  // LAYER 2: 4 COMPACT FINGERS BEHIND PHONE (Natural cartoon grouping)
+  // ============================================================
+  const fingerDefs = [
+    { y: 86, reach: 24, h: 25, wrap: 13 },
+    { y: 118, reach: 28, h: 25, wrap: 15 },
+    { y: 150, reach: 26, h: 24, wrap: 14 },
+    { y: 182, reach: 21, h: 23, wrap: 11 },
+  ];
+
+  fingerDefs.forEach((f) => {
+    const fy = phoneY + f.y;
+    const r = f.h / 2;
+
+    ctx.fillStyle = skin;
+    ctx.strokeStyle = ink;
+    ctx.lineWidth = 2.0;
+
+    ctx.beginPath();
+    ctx.roundRect(phoneX - f.reach, fy, f.reach + 20, f.h, [r, 0, 0, r]);
+    ctx.fill();
+    ctx.stroke();
+  });
+
+  // ============================================================
+  // LAYER 3: PHONE CHASSIS & SCREEN GLASS
+  // ============================================================
+  ctx.fillStyle = "#161928";
+  ctx.beginPath();
+  ctx.roundRect(phoneX, phoneY, phoneW, phoneH, 26);
+  ctx.fill();
+
+  ctx.strokeStyle = "#475569";
+  ctx.lineWidth = 2.4;
+  ctx.stroke();
+
+  // Dynamic Island
+  ctx.fillStyle = "#000000";
+  ctx.beginPath();
+  ctx.roundRect(phoneX + phoneW / 2 - 22, phoneY + 10, 44, 12, 6);
+  ctx.fill();
+  ctx.fillStyle = "#1e293b";
+  ctx.beginPath();
+  ctx.arc(phoneX + phoneW / 2 + 10, phoneY + 16, 2.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Screen Glass
+  const scrX = phoneX + 8;
+  const scrY = phoneY + 28;
+  const scrW = phoneW - 16;
+  const scrH = phoneH - 38;
+
+  ctx.fillStyle = "#090a12";
+  ctx.beginPath();
+  ctx.roundRect(scrX, scrY, scrW, scrH, 18);
+  ctx.fill();
+
+  // Screen Content via Callback
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(scrX, scrY, scrW, scrH, 18);
+  ctx.clip();
+  renderScreen(scrX, scrY, scrW, scrH);
+  ctx.restore();
+
+  // ============================================================
+  // LAYER 4: CLEAN FINGERTIPS CURLING ONTO FRONT BEZEL
+  // ============================================================
+  fingerDefs.forEach((f) => {
+    const fy = phoneY + f.y;
+    const r = f.h / 2;
+
+    // Contact shadow on glass
+    ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+    ctx.beginPath();
+    ctx.ellipse(phoneX + f.wrap * 0.45, fy + r + 1, f.wrap * 0.55, r * 0.8, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Curled lobe on front
+    ctx.fillStyle = skin;
+    ctx.beginPath();
+    ctx.moveTo(phoneX, fy);
+    ctx.lineTo(phoneX + f.wrap - r, fy);
+    ctx.arc(phoneX + f.wrap - r, fy + r, r, -Math.PI / 2, Math.PI / 2, false);
+    ctx.lineTo(phoneX, fy + f.h);
+    ctx.closePath();
+    ctx.fill();
+
+    // Stroke only the curved front contour (no back cut!)
+    ctx.strokeStyle = ink;
+    ctx.lineWidth = 2.0;
+    ctx.beginPath();
+    ctx.moveTo(phoneX + 1, fy);
+    ctx.lineTo(phoneX + f.wrap - r, fy);
+    ctx.arc(phoneX + f.wrap - r, fy + r, r, -Math.PI / 2, Math.PI / 2, false);
+    ctx.lineTo(phoneX + 1, fy + f.h);
+    ctx.stroke();
+  });
+
+  // ============================================================
+  // LAYER 5: THE THUMB (Natural animated cartoon thumb)
+  // ============================================================
+  const thumbBaseX = phoneX + phoneW;
+  const thumbBaseY = phoneY + 285;
+  const knuckleRestX = phoneX + phoneW + 14;
+  const knuckleRestY = phoneY + 255;
+  const tipRestX = phoneX + phoneW - 14;
+  const tipRestY = phoneY + 225;
+
+  const targetX = scrX + scrW / 2;
+  const targetY = scrY + scrH - 58;
+
+  let kx = knuckleRestX;
+  let ky = knuckleRestY;
+  let tx = tipRestX;
+  let ty = tipRestY;
+  let pressed = false;
+
+  if (thumbPose === "tap") {
+    const p = clamp(tapProgress, 0, 1);
+    const ease = p * p * (3 - 2 * p);
+    kx = lerp(knuckleRestX, phoneX + phoneW - 12, ease);
+    ky = lerp(knuckleRestY, targetY + 32, ease);
+    tx = lerp(tipRestX, targetX + 4, ease);
+    ty = lerp(tipRestY, targetY + 2, ease);
+    pressed = p >= 0.95;
+  } else if (thumbPose === "buzzer") {
+    if (isPressed) {
+      kx = phoneX + phoneW - 14;
+      ky = targetY + 30;
+      tx = targetX + 4;
+      ty = targetY + 2;
+      pressed = true;
+    } else {
+      // Poised hovering near button
+      kx = phoneX + phoneW + 4;
+      ky = targetY + 40;
+      tx = targetX + 26;
+      ty = targetY + 16;
+    }
+  }
+
+  // Thumb drop shadow
+  ctx.fillStyle = "rgba(0, 0, 0, 0.32)";
+  ctx.beginPath();
+  ctx.ellipse(tx + 2, ty + 4, pressed ? 16 : 13, pressed ? 10 : 12, 0.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = skin;
+  ctx.strokeStyle = ink;
+  ctx.lineWidth = 2.2;
+
+  const isReaching = thumbPose === "tap" ? (tapProgress > 0.1) : (thumbPose === "buzzer" && isPressed);
+
+  ctx.beginPath();
+  // Starts at outer palm right edge
+  ctx.moveTo(thumbBaseX + 6, thumbBaseY);
+
+  if (isReaching) {
+    // When reaching across: smooth organic arc to the button
+    const midX = (thumbBaseX + tx) / 2 + 10;
+    const midY = (thumbBaseY + ty) / 2 + 10;
+    ctx.quadraticCurveTo(thumbBaseX + 8, midY - 8, tx + 6, ty - 6);
+    ctx.arc(tx, ty + 3, pressed ? 12 : 11, -1.2, 1.2, true);
+    ctx.quadraticCurveTo(midX - 10, midY + 12, thumbBaseX - 2, thumbBaseY - 10);
+  } else {
+    // Resting along right bezel
+    ctx.bezierCurveTo(thumbBaseX + 14, ky + 15, kx + 8, ky, kx, ky - 8);
+    ctx.bezierCurveTo(knuckleRestX - 6, knuckleRestY - 18, tipRestX + 16, tipRestY - 14, tipRestX + 6, tipRestY - 6);
+    ctx.arc(tipRestX, tipRestY + 4, 11, -1.2, 1.2, true);
+    ctx.bezierCurveTo(tipRestX + 12, tipRestY + 18, thumbBaseX - 4, phoneY + 255, thumbBaseX - 4, thumbBaseY - 15);
+  }
+  ctx.bezierCurveTo(thumbBaseX - 4, thumbBaseY, thumbBaseX, thumbBaseY + 5, thumbBaseX + 6, thumbBaseY);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  // Cute fingernail on thumb
+  ctx.fillStyle = "#fff7ed";
+  ctx.strokeStyle = "#d97757";
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.ellipse(tx + 2, ty - 2, 6, 4, 0.25, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  // Specular shine on nail
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+  ctx.lineWidth = 1.0;
+  ctx.beginPath();
+  ctx.arc(tx + 2, ty - 3, 2.8, 0.4, 2.2);
+  ctx.stroke();
+
+  ctx.restore();
+
+  // Haptic / Vibration waves
+  if (hapticWaves) {
+    const waveAlpha = Math.sin(sceneT * 8) * 0.4 + 0.6;
+    ctx.save();
+    ctx.strokeStyle = "#38bdf8";
+    ctx.globalAlpha = waveAlpha;
+    ctx.lineWidth = 2.0;
+    // Left haptic arcs
+    [-24, -48].forEach((off) => {
+      ctx.beginPath();
+      ctx.arc(phoneX + off, phoneY + phoneH * 0.4, 36, -0.6, 0.6);
+      ctx.stroke();
+    });
+    // Right haptic arcs
+    [phoneW + 24, phoneW + 48].forEach((off) => {
+      ctx.beginPath();
+      ctx.arc(phoneX + off, phoneY + phoneH * 0.4, 36, Math.PI - 0.6, Math.PI + 0.6);
+      ctx.stroke();
+    });
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+// -------------------------------------------------------------
+// MAIN CANVAS FRAME RENDERING ENGINE
 // -------------------------------------------------------------
 
 function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: ExplainerLanguage = "es") {
@@ -301,10 +629,10 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
   ctx.fillRect(0, 0, W, H);
 
   // Subtle paper grain & framing vignette
-  grain(ctx, [0, 0, W, H], 340, "#ffffff", 0.04, 42);
+  grain(ctx, [0, 0, W, H], 300, "#ffffff", 0.035, 42);
 
   // Background sketchbook border
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.07)";
   ctx.lineWidth = 1.2;
   wob(ctx, [[14, 14], [W - 14, 14], [W - 14, H - 14], [14, H - 14]], 1.5, 99, true);
 
@@ -319,108 +647,89 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
   if (sceneIdx === 0) {
     const isLobbyPhase = (lang === "es" ? sceneT < 12.0 : sceneT < 10.5);
     const tvW = 440;
-    const tvH = 265;
+    const tvH = 246;
     const tvX = (W - tvW) / 2;
-    const tvY = 85;
+    const tvY = 94;
 
-    const tvBreath = drift(sceneT, 11, { amp: 1.5, freq: 0.6 });
+    const tvBreath = drift(sceneT, 11, { amp: 1.4, freq: 0.6 });
 
     ctx.save();
     ctx.translate(W / 2, tvY + tvH / 2);
     ctx.translate(-W / 2, -(tvY + tvH / 2) + tvBreath);
 
-    // Antennas atop TV
+    // Antennas atop TV (angled outward and safely below banner at y=32)
     const antLeft: [number, number][] = [
-      [tvX + tvW / 2 - 30, tvY],
-      [tvX + tvW / 2 - 80, tvY - 55 + drift(sceneT, 1, { amp: 3, freq: 1.2 })],
+      [tvX + tvW / 2 - 35, tvY],
+      [tvX + tvW / 2 - 95, tvY - 26 + drift(sceneT, 1, { amp: 1.8, freq: 1.2 })],
     ];
     const antRight: [number, number][] = [
-      [tvX + tvW / 2 + 30, tvY],
-      [tvX + tvW / 2 + 85, tvY - 60 + drift(sceneT, 2, { amp: 3, freq: 1.1 })],
+      [tvX + tvW / 2 + 35, tvY],
+      [tvX + tvW / 2 + 95, tvY - 28 + drift(sceneT, 2, { amp: 1.8, freq: 1.1 })],
     ];
     ctx.strokeStyle = "#e2e8f0";
     ctx.lineWidth = 2.4;
     wob(ctx, antLeft, 1.8, 12);
     wob(ctx, antRight, 1.8, 15);
 
-    // Knobs at antenna tips
+    // Antenna tip knobs
     ctx.fillStyle = "#38bdf8";
     ctx.beginPath();
     ctx.arc(antLeft[1][0], antLeft[1][1], 5, 0, Math.PI * 2);
     ctx.arc(antRight[1][0], antRight[1][1], 5, 0, Math.PI * 2);
     ctx.fill();
 
-    // Outer TV Chassis (Rounded Bezel)
-    const chassisPts: [number, number][] = [
-      [tvX, tvY],
-      [tvX + tvW, tvY],
-      [tvX + tvW, tvY + tvH],
-      [tvX, tvY + tvH],
-    ];
-    ctx.fillStyle = "#161822";
-    ctx.strokeStyle = "#f8fafc";
-    ctx.lineWidth = 3.2;
+    // TV Chassis
+    ctx.fillStyle = "#151722";
     ctx.beginPath();
-    ctx.roundRect?.(tvX, tvY, tvW, tvH, 24) || ctx.rect(tvX, tvY, tvW, tvH);
+    ctx.roundRect?.(tvX, tvY, tvW, tvH, 22) || ctx.rect(tvX, tvY, tvW, tvH);
     ctx.fill();
-    wob(ctx, chassisPts, 2.0, 101, true, { corner: 0.6, pressure: 0.4 });
+    ctx.strokeStyle = "#f8fafc";
+    ctx.lineWidth = 3.0;
+    wob(ctx, [[tvX, tvY], [tvX + tvW, tvY], [tvX + tvW, tvY + tvH], [tvX, tvY + tvH]], 1.8, 101, true, { corner: 0.6 });
 
     // TV Legs
-    const legL: [number, number][] = [
-      [tvX + 55, tvY + tvH],
-      [tvX + 28, tvY + tvH + 34],
-    ];
-    const legR: [number, number][] = [
-      [tvX + tvW - 55, tvY + tvH],
-      [tvX + tvW - 28, tvY + tvH + 34],
-    ];
+    const legL: [number, number][] = [[tvX + 55, tvY + tvH], [tvX + 28, tvY + tvH + 32]];
+    const legR: [number, number][] = [[tvX + tvW - 55, tvY + tvH], [tvX + tvW - 28, tvY + tvH + 32]];
     ctx.strokeStyle = "#94a3b8";
-    ctx.lineWidth = 3.2;
+    ctx.lineWidth = 3.0;
     wob(ctx, legL, 1.5, 102);
     wob(ctx, legR, 1.5, 103);
 
-    // TV Screen Glass
-    const scrX = tvX + 18;
-    const scrY = tvY + 18;
-    const scrW = tvW - 36;
-    const scrH = tvH - 36;
+    // Screen Glass
+    const scrX = tvX + 16;
+    const scrY = tvY + 16;
+    const scrW = tvW - 32;
+    const scrH = tvH - 32;
     ctx.fillStyle = "#0c0d14";
     ctx.fillRect(scrX, scrY, scrW, scrH);
 
-    // Glass sheen
-    ctx.save();
-    ctx.beginPath();
-    ctx.rect(scrX, scrY, scrW, scrH);
-    ctx.clip();
-    const grad = ctx.createLinearGradient(scrX, scrY, scrX + scrW, scrY + scrH);
-    grad.addColorStop(0, "rgba(255, 255, 255, 0.08)");
-    grad.addColorStop(0.4, "transparent");
-    grad.addColorStop(1, "rgba(56, 189, 248, 0.05)");
-    ctx.fillStyle = grad;
-    ctx.fillRect(scrX, scrY, scrW, scrH);
-    ctx.restore();
-
     // -------------------------------------------------------------
-    // PHASE A: BIENVENIDA Y MODOS DE JUEGO (0s - 12s)
+    // PHASE A: BIENVENIDA Y MODOS (0s - 12s)
     // -------------------------------------------------------------
     if (isLobbyPhase) {
-      // Game Title on TV
+      drawTopBanner(
+        ctx,
+        W,
+        lang === "es" ? "01 · LA TELE" : "01 · THE SCREEN",
+        lang === "es" ? "Juega en grupo o tú solo en el navegador" : "Play with friends or solo in your browser"
+      );
+
       ctx.fillStyle = "#38bdf8";
-      ctx.font = "900 24px system-ui, sans-serif";
+      ctx.font = "900 23px system-ui, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText("PEEKRUSH", scrX + scrW / 2, scrY + 38);
-      aster(ctx, scrX + scrW / 2 + 82, scrY + 30, 8, "#fbbf24", 4, sceneT * 2);
+      ctx.fillText("PEEKRUSH", scrX + scrW / 2, scrY + 36);
+      aster(ctx, scrX + scrW / 2 + 80, scrY + 28, 7, "#fbbf24", 4, sceneT * 2);
 
       ctx.fillStyle = "#94a3b8";
       ctx.font = "bold 11px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "JUEGA EN GRUPO O TÚ SOLO DIRECTAMENTE" : "PLAY WITH FRIENDS OR SOLO IN YOUR BROWSER", scrX + scrW / 2, scrY + 58);
+      ctx.fillText(lang === "es" ? "ELIGE CÓMO QUIERES JUGAR HOY" : "CHOOSE HOW YOU WANT TO PLAY TODAY", scrX + scrW / 2, scrY + 54);
 
-      // Two Mode Cards on Screen
-      const cardW = 175;
-      const cardH = 120;
-      const cardY = scrY + 74;
+      // Two Mode Cards
+      const cardW = 172;
+      const cardH = 114;
+      const cardY = scrY + 68;
 
-      // Card 1: En Grupo (Highlighted)
+      // Card 1: En Grupo
       const c1X = scrX + 18;
       ctx.fillStyle = "#1e293b";
       ctx.fillRect(c1X, cardY, cardW, cardH);
@@ -430,16 +739,16 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
 
       ctx.fillStyle = "#38bdf8";
       ctx.font = "bold 13px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "👥 EN GRUPO" : "👥 WITH FRIENDS", c1X + cardW / 2, cardY + 28);
+      ctx.fillText(lang === "es" ? "👥 EN GRUPO" : "👥 WITH FRIENDS", c1X + cardW / 2, cardY + 26);
 
       ctx.fillStyle = "#ffffff";
       ctx.font = "bold 11px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "Crear Sala" : "Create Room", c1X + cardW / 2, cardY + 52);
+      ctx.fillText(lang === "es" ? "Crear Sala" : "Create Room", c1X + cardW / 2, cardY + 48);
 
       ctx.fillStyle = "#94a3b8";
       ctx.font = "10px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "TV + Móviles" : "TV + Mobiles", c1X + cardW / 2, cardY + 70);
-      ctx.fillText(lang === "es" ? "Código QR gigante" : "Giant QR Code", c1X + cardW / 2, cardY + 86);
+      ctx.fillText(lang === "es" ? "TV + Móviles con QR" : "TV + Mobiles with QR", c1X + cardW / 2, cardY + 68);
+      ctx.fillText(lang === "es" ? "Sin instalar nada" : "Zero app downloads", c1X + cardW / 2, cardY + 84);
 
       // Card 2: Modo Solo
       const c2X = scrX + scrW - cardW - 18;
@@ -451,587 +760,342 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
 
       ctx.fillStyle = "#e2e8f0";
       ctx.font = "bold 13px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "👤 MODO SOLO" : "👤 PLAY SOLO", c2X + cardW / 2, cardY + 28);
+      ctx.fillText(lang === "es" ? "👤 MODO SOLO" : "👤 PLAY SOLO", c2X + cardW / 2, cardY + 26);
 
       ctx.fillStyle = "#94a3b8";
       ctx.font = "bold 11px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "Jugar Solo" : "Single Player", c2X + cardW / 2, cardY + 52);
+      ctx.fillText(lang === "es" ? "Jugar Solo" : "Single Player", c2X + cardW / 2, cardY + 48);
 
       ctx.fillStyle = "#64748b";
       ctx.font = "10px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "Con tu teclado" : "Use your keyboard", c2X + cardW / 2, cardY + 70);
-      ctx.fillText(lang === "es" ? "Récords globales" : "Global records", c2X + cardW / 2, cardY + 86);
+      ctx.fillText(lang === "es" ? "Con tu teclado" : "With your keyboard", c2X + cardW / 2, cardY + 68);
+      ctx.fillText(lang === "es" ? "Récords globales" : "Global records", c2X + cardW / 2, cardY + 84);
 
-      // Hand-drawn mouse cursor hovering and preparing to click "Crear sala"
+      // Hand-drawn mouse cursor hovering "Crear sala"
       const curX = c1X + cardW / 2 + 10 + Math.sin(sceneT * 2) * 8;
-      const curY = cardY + 50 + Math.cos(sceneT * 2) * 5;
+      const curY = cardY + 46 + Math.cos(sceneT * 2) * 4;
       ctx.fillStyle = "#ffffff";
       ctx.strokeStyle = "#000000";
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(curX, curY);
-      ctx.lineTo(curX, curY + 16);
-      ctx.lineTo(curX + 5, curY + 12);
-      ctx.lineTo(curX + 11, curY + 18);
-      ctx.lineTo(curX + 14, curY + 15);
-      ctx.lineTo(curX + 8, curY + 10);
-      ctx.lineTo(curX + 13, curY + 10);
+      ctx.lineTo(curX, curY + 15);
+      ctx.lineTo(curX + 5, curY + 11);
+      ctx.lineTo(curX + 10, curY + 17);
+      ctx.lineTo(curX + 13, curY + 14);
+      ctx.lineTo(curX + 8, curY + 9);
+      ctx.lineTo(curX + 12, curY + 9);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
-      // Top banner
       ctx.restore();
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 15px system-ui, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText(lang === "es" ? "¡Juega en grupo frente a la tele o tú solo en el navegador!" : "Play with friends on the TV or solo in your browser!", W / 2, 45);
     }
     // -------------------------------------------------------------
     // PHASE B: CREAR SALA Y QR GIGANTE (12s - 22s)
     // -------------------------------------------------------------
     else {
-      const qrSize = 136;
+      drawTopBanner(
+        ctx,
+        W,
+        lang === "es" ? "01 · LA TELE" : "01 · THE SCREEN",
+        lang === "es" ? "Crea tu sala y proyecta el código QR gigante" : "Create room to display the giant QR code"
+      );
+
+      const qrSize = 132;
       const qrX = scrX + 24;
       const qrY = scrY + (scrH - qrSize) / 2;
 
-      // Giant QR Code on the TV
+      // QR Code Box
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(qrX, qrY, qrSize, qrSize);
-      wob(ctx, [
-        [qrX, qrY],
-        [qrX + qrSize, qrY],
-        [qrX + qrSize, qrY + qrSize],
-        [qrX, qrY + qrSize],
-      ], 1.4, 201, true);
+      wob(ctx, [[qrX, qrY], [qrX + qrSize, qrY], [qrX + qrSize, qrY + qrSize], [qrX, qrY + qrSize]], 1.4, 201, true);
 
-      // QR finder patterns
+      // Finder patterns
       const drawFinder = (fx: number, fy: number) => {
         ctx.fillStyle = "#000000";
-        ctx.fillRect(fx, fy, 32, 32);
+        ctx.fillRect(fx, fy, 30, 30);
         ctx.fillStyle = "#ffffff";
-        ctx.fillRect(fx + 6, fy + 6, 20, 20);
+        ctx.fillRect(fx + 5, fy + 5, 20, 20);
         ctx.fillStyle = "#000000";
-        ctx.fillRect(fx + 10, fy + 10, 12, 12);
+        ctx.fillRect(fx + 9, fy + 9, 12, 12);
       };
       drawFinder(qrX + 6, qrY + 6);
-      drawFinder(qrX + qrSize - 38, qrY + 6);
-      drawFinder(qrX + 6, qrY + qrSize - 38);
+      drawFinder(qrX + qrSize - 36, qrY + 6);
+      drawFinder(qrX + 6, qrY + qrSize - 36);
 
-      // Hand-drawn QR pixel grid
+      // QR pixel grid
       ctx.fillStyle = "#000000";
       for (let r = 0; r < 9; r++) {
         for (let c = 0; c < 9; c++) {
           if ((r < 3 && c < 3) || (r < 3 && c > 5) || (r > 5 && c < 3)) continue;
           if (hash(r * 9 + c, 5) > 0.45) {
-            ctx.fillRect(qrX + 16 + c * 11, qrY + 16 + r * 11, 9, 9);
+            ctx.fillRect(qrX + 15 + c * 11, qrY + 15 + r * 11, 9, 9);
           }
         }
       }
 
-      // Scanning sweep line over the QR code
+      // Scanning sweep line
       const scanProgress = (Math.sin(sceneT * 2.5) * 0.5 + 0.5);
       const scanY = qrY + scanProgress * qrSize;
       ctx.strokeStyle = "rgba(56, 189, 248, 0.95)";
-      ctx.lineWidth = 2.5;
+      ctx.lineWidth = 2.4;
       ctx.beginPath();
       ctx.moveTo(qrX - 4, scanY);
       ctx.lineTo(qrX + qrSize + 4, scanY);
       ctx.stroke();
 
-      // Right Column: Room Code & Instructions
-      const textX = scrX + qrSize + 48;
+      // Right Side Info inside screen
+      const textX = scrX + qrSize + 46;
       ctx.fillStyle = "#38bdf8";
-      ctx.font = "bold 12px system-ui, sans-serif";
+      ctx.font = "bold 11px system-ui, sans-serif";
       ctx.textAlign = "left";
-      ctx.fillText("PEEKRUSH TV", textX, scrY + 45);
+      ctx.fillText("PEEKRUSH TV", textX, scrY + 40);
 
       ctx.fillStyle = "#ffffff";
-      ctx.font = "900 32px monospace";
-      ctx.fillText("7 K X 9 P", textX, scrY + 86);
+      ctx.font = "900 30px monospace";
+      ctx.fillText("7 K X 9 P", textX, scrY + 80);
 
-      // Hand-drawn box around room code
+      // Room code frame
       ctx.strokeStyle = "#38bdf8";
       ctx.lineWidth = 1.6;
-      wob(ctx, [
-        [textX - 8, scrY + 54],
-        [textX + 165, scrY + 54],
-        [textX + 165, scrY + 98],
-        [textX - 8, scrY + 98],
-      ], 1.6, 203, true);
+      wob(ctx, [[textX - 8, scrY + 50], [textX + 155, scrY + 50], [textX + 155, scrY + 92], [textX - 8, scrY + 92]], 1.5, 203, true);
 
       ctx.fillStyle = "#94a3b8";
       ctx.font = "11px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "ESCANEA CON TU MÓVIL" : "SCAN WITH YOUR PHONE", textX, scrY + 125);
-      ctx.fillText("peekrush.inmerzion.io", textX, scrY + 144);
+      ctx.fillText(lang === "es" ? "ESCANEA CON LA CÁMARA" : "SCAN WITH YOUR CAMERA", textX, scrY + 118);
+      ctx.fillText("peekrush.inmerzion.io", textX, scrY + 136);
 
       ctx.fillStyle = "#22c55e";
       ctx.font = "bold 11px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "● EN ESPERA DE JUGADORES" : "● WAITING FOR PLAYERS", textX, scrY + 172);
+      ctx.fillText(lang === "es" ? "● EN ESPERA DE JUGADORES" : "● WAITING FOR PLAYERS", textX, scrY + 164);
 
       ctx.restore();
 
-      // Floating arrow pointing to QR
-      const arrowX = tvX - 60 + drift(sceneT, 20, { amp: 4, freq: 1.0 });
-      const arrowY = tvY + 130;
+      // Left Safe Callout Badge (Safely placed inside x=25 to x=155)
+      const calloutX = 92;
+      const calloutY = tvY + 110;
+      ctx.save();
+      ctx.translate(calloutX, calloutY + drift(sceneT, 20, { amp: 3, freq: 1.0 }));
+
+      // Speech card
+      ctx.fillStyle = "#1e293b";
       ctx.strokeStyle = "#fbbf24";
-      ctx.lineWidth = 2.4;
-      wob(ctx, [[arrowX - 40, arrowY], [arrowX, arrowY]], 1.5, 301);
-      wob(ctx, [[arrowX - 10, arrowY - 8], [arrowX, arrowY], [arrowX - 10, arrowY + 8]], 1.2, 302);
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.roundRect(-58, -32, 116, 64, 12);
+      ctx.fill();
+      ctx.stroke();
 
       ctx.fillStyle = "#fbbf24";
-      ctx.font = "bold 13px system-ui, sans-serif";
-      ctx.textAlign = "right";
-      ctx.fillText(lang === "es" ? "¡Tus amigos escanean aquí!" : "Friends scan here!", arrowX - 46, arrowY + 4);
-
-      // Top banner
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 15px system-ui, sans-serif";
+      ctx.font = "bold 11px system-ui, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText(lang === "es" ? "¡Pulsa 'Crear sala' para mostrar el código QR gigante!" : "Click 'Create room' to display the giant QR code!", W / 2, 45);
+      ctx.fillText(lang === "es" ? "¡Tus amigos" : "Friends scan", 0, -10);
+      ctx.fillText(lang === "es" ? "escanean aquí!" : "the QR code!", 0, 6);
+
+      // Arrow pointing right to the TV
+      ctx.strokeStyle = "#fbbf24";
+      ctx.lineWidth = 2.0;
+      ctx.beginPath();
+      ctx.moveTo(18, 18);
+      ctx.lineTo(44, 18);
+      ctx.lineTo(38, 12);
+      ctx.moveTo(44, 18);
+      ctx.lineTo(38, 24);
+      ctx.stroke();
+
+      ctx.restore();
     }
   }
 
   // -----------------------------------------------------------------
-  // SCENE 1: TU MÓVIL ES EL MANDO (Phone Controller + Realistic Hand)
+  // SCENE 1: TU MÓVIL ES EL MANDO (Phone Controller + Refined Hand)
   // Audio ES (22.0s - 30.5s):
   // "Tus amigos solo tienen que escanear el código QR con la cámara de su móvil
   //  y escribir su nombre para unirse al instante."
   // -----------------------------------------------------------------
   else if (sceneIdx === 1) {
-    const phoneW = 196;
-    const phoneH = 330;
-    const phoneX = (W - phoneW) / 2;
-    const phoneY = 52;
+    drawTopBanner(
+      ctx,
+      W,
+      lang === "es" ? "02 · TU MÓVIL" : "02 · YOUR PHONE",
+      lang === "es" ? "Tus amigos escanean el QR y juegan desde su móvil" : "Friends scan the QR code to play on their phone"
+    );
 
-    const isTapPhase = sceneT >= 5.5;
+    const phoneW = 184;
+    const phoneH = 320;
+    const phoneX = 215;
+    const phoneY = 64;
+
+    const isTapPhase = sceneT >= 5.0;
     const isCameraPhase = sceneT < 3.2;
-    const phoneBreath = drift(sceneT, 33, { amp: 1.6, freq: 0.8 });
+    const tapProg = clamp((sceneT - 5.0) / 0.5, 0, 1);
 
-    // Warm, editorial hand & skin palette
-    const skin = "#fed7aa";
-    const skinShade = "#f4a27e";
-    const skinLight = "#fef3c7";
-    const ink = "#1e293b";
+    drawHandHoldingPhone(ctx, phoneX, phoneY, phoneW, phoneH, {
+      sceneT,
+      thumbPose: "tap",
+      tapProgress: isTapPhase ? tapProg : 0,
+      renderScreen: (pScrX, pScrY, pScrW, pScrH) => {
+        // SCREEN PHASE A: SCANNING QR WITH CAMERA
+        if (isCameraPhase) {
+          ctx.fillStyle = "#1e293b";
+          ctx.fillRect(pScrX, pScrY, pScrW, 24);
+          ctx.fillStyle = "#94a3b8";
+          ctx.font = "bold 9px system-ui, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("0.5x    1x    2x", pScrX + pScrW / 2, pScrY + 15);
 
-    ctx.save();
-    ctx.translate(0, phoneBreath);
+          // Viewfinder
+          const vfSize = 78;
+          const vfX = pScrX + (pScrW - vfSize) / 2;
+          const vfY = pScrY + 46;
+          ctx.strokeStyle = "#38bdf8";
+          ctx.lineWidth = 2.2;
+          const bLen = 12;
+          ctx.beginPath();
+          ctx.moveTo(vfX, vfY + bLen); ctx.lineTo(vfX, vfY); ctx.lineTo(vfX + bLen, vfY);
+          ctx.moveTo(vfX + vfSize - bLen, vfY); ctx.lineTo(vfX + vfSize, vfY); ctx.lineTo(vfX + vfSize, vfY + bLen);
+          ctx.moveTo(vfX, vfY + vfSize - bLen); ctx.lineTo(vfX, vfY + vfSize); ctx.lineTo(vfX + bLen, vfY + vfSize);
+          ctx.moveTo(vfX + vfSize - bLen, vfY + vfSize); ctx.lineTo(vfX + vfSize, vfY + vfSize); ctx.lineTo(vfX + vfSize, vfY + vfSize - bLen);
+          ctx.stroke();
 
-    // ============================================================
-    // LAYER 1: HAND BEHIND PHONE (Four Finger Cylinders on left)
-    // ============================================================
-    const fingers = [
-      { y: 84, len: 26, h: 25 },
-      { y: 132, len: 30, h: 27 },
-      { y: 180, len: 28, h: 26 },
-      { y: 228, len: 22, h: 24 },
-    ];
+          // QR Target
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(vfX + 18, vfY + 18, 42, 42);
+          ctx.fillStyle = "#000000";
+          ctx.fillRect(vfX + 22, vfY + 22, 11, 11);
+          ctx.fillRect(vfX + 45, vfY + 22, 11, 11);
+          ctx.fillRect(vfX + 22, vfY + 45, 11, 11);
 
-    fingers.forEach((f) => {
-      const fy = phoneY + f.y;
+          // QR detect card
+          const notifY = pScrY + 148;
+          ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 8, notifY, pScrW - 16, 38, 10);
+          ctx.fill();
+          ctx.strokeStyle = "#38bdf8";
+          ctx.lineWidth = 1.3;
+          ctx.stroke();
 
-      // Finger body extending left behind phone
-      ctx.fillStyle = skin;
-      ctx.beginPath();
-      ctx.roundRect(phoneX - f.len, fy, f.len + 20, f.h, [f.h / 2, 0, 0, f.h / 2]);
-      ctx.fill();
+          ctx.fillStyle = "#22c55e";
+          ctx.font = "bold 11px system-ui, sans-serif";
+          ctx.fillText(lang === "es" ? "✓ QR DETECTADO" : "✓ QR DETECTED", pScrX + pScrW / 2, notifY + 15);
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "10px system-ui, sans-serif";
+          ctx.fillText("peekrush.inmerzion.io", pScrX + pScrW / 2, notifY + 30);
+        }
+        // SCREEN PHASE B: NAME INPUT & TAP JOIN
+        else {
+          // Address bar
+          ctx.fillStyle = "#1e293b";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 8, pScrY + 8, pScrW - 16, 20, 5);
+          ctx.fill();
+          ctx.fillStyle = "#94a3b8";
+          ctx.font = "9px system-ui, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("peekrush.inmerzion.io", pScrX + pScrW / 2, pScrY + 21);
 
-      // Finger lower shadow
-      ctx.fillStyle = "rgba(229, 152, 116, 0.35)";
-      ctx.beginPath();
-      ctx.roundRect(phoneX - f.len, fy + f.h * 0.5, f.len + 20, f.h * 0.5, [0, 0, 0, f.h / 2]);
-      ctx.fill();
+          // Brand Title
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 14px system-ui, sans-serif";
+          ctx.fillText("PeekRush", pScrX + pScrW / 2, pScrY + 50);
 
-      // Outer finger contour
-      ctx.strokeStyle = ink;
-      ctx.lineWidth = 2.0;
-      ctx.beginPath();
-      ctx.moveTo(phoneX + 2, fy);
-      ctx.lineTo(phoneX - f.len + f.h / 2, fy);
-      ctx.arc(phoneX - f.len + f.h / 2, fy + f.h / 2, f.h / 2, -Math.PI / 2, Math.PI / 2, true);
-      ctx.lineTo(phoneX + 2, fy + f.h);
-      ctx.stroke();
+          // Room code pill
+          const inp1Y = pScrY + 66;
+          ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 12, inp1Y, pScrW - 24, 32, 8);
+          ctx.fill();
+          ctx.strokeStyle = "#38bdf8";
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+          ctx.fillStyle = "#38bdf8";
+          ctx.font = "bold 15px monospace";
+          ctx.fillText("7 K X 9 P", pScrX + pScrW / 2, inp1Y + 21);
+
+          // Alias Input field: "Alex ✨"
+          const inp2Y = pScrY + 108;
+          ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 12, inp2Y, pScrW - 24, 32, 8);
+          ctx.fill();
+          ctx.strokeStyle = "#94a3b8";
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 13px system-ui, sans-serif";
+          ctx.fillText("Alex ✨", pScrX + pScrW / 2, inp2Y + 21);
+
+          // Big Join Button
+          const btnY = pScrY + 152;
+          ctx.fillStyle = isTapPhase ? "#22c55e" : "#ffffff";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 12, btnY, pScrW - 24, 40, 10);
+          ctx.fill();
+          ctx.fillStyle = isTapPhase ? "#ffffff" : "#000000";
+          ctx.font = "900 13px system-ui, sans-serif";
+          ctx.fillText(isTapPhase ? (lang === "es" ? "¡CONECTADO!" : "CONNECTED!") : (lang === "es" ? "¡ENTRAR!" : "JOIN!"), pScrX + pScrW / 2, btnY + 25);
+
+          // Tap shockwave ripple
+          if (isTapPhase) {
+            ctx.strokeStyle = "#22c55e";
+            ctx.lineWidth = 2.0;
+            const ripR = (sceneT - 5.0) * 35;
+            ctx.beginPath();
+            ctx.arc(pScrX + pScrW / 2, btnY + 20, ripR % 40, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+        }
+      },
     });
 
-    // ============================================================
-    // LAYER 2: THE SMARTPHONE CHASSIS & SCREEN
-    // ============================================================
-    // Phone Chassis Body
-    ctx.fillStyle = "#181a26";
-    ctx.beginPath();
-    ctx.roundRect(phoneX, phoneY, phoneW, phoneH, 28);
-    ctx.fill();
-
-    ctx.strokeStyle = "#475569";
-    ctx.lineWidth = 2.4;
-    ctx.beginPath();
-    ctx.roundRect(phoneX, phoneY, phoneW, phoneH, 28);
-    ctx.stroke();
-
-    // Dynamic Island / Camera Pill
-    ctx.fillStyle = "#000000";
-    ctx.beginPath();
-    ctx.roundRect(phoneX + phoneW / 2 - 24, phoneY + 12, 48, 14, 7);
-    ctx.fill();
-    ctx.fillStyle = "#1e293b";
-    ctx.beginPath();
-    ctx.arc(phoneX + phoneW / 2 + 10, phoneY + 19, 3.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Phone Screen Glass
-    const pScrX = phoneX + 10;
-    const pScrY = phoneY + 34;
-    const pScrW = phoneW - 20;
-    const pScrH = phoneH - 46;
-
-    ctx.fillStyle = "#07080e";
-    ctx.beginPath();
-    ctx.roundRect(pScrX, pScrY, pScrW, pScrH, 20);
-    ctx.fill();
-
-    // -------------------------------------------------------------
-    // SCREEN PHASE 1: SCANNING QR WITH CAMERA (22s - 25.2s)
-    // -------------------------------------------------------------
-    if (isCameraPhase) {
-      // Camera top bar
-      ctx.fillStyle = "#1e293b";
-      ctx.fillRect(pScrX, pScrY, pScrW, 26);
-      ctx.fillStyle = "#94a3b8";
-      ctx.font = "bold 9px system-ui, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText("0.5x    1x    2x", pScrX + pScrW / 2, pScrY + 16);
-
-      // Camera viewfinder center
-      const vfSize = 84;
-      const vfX = pScrX + (pScrW - vfSize) / 2;
-      const vfY = pScrY + 50;
-
-      // Viewfinder brackets in cyan
-      ctx.strokeStyle = "#38bdf8";
-      ctx.lineWidth = 2.4;
-      const bLen = 14;
-      // Top-left
-      ctx.beginPath(); ctx.moveTo(vfX, vfY + bLen); ctx.lineTo(vfX, vfY); ctx.lineTo(vfX + bLen, vfY); ctx.stroke();
-      // Top-right
-      ctx.beginPath(); ctx.moveTo(vfX + vfSize - bLen, vfY); ctx.lineTo(vfX + vfSize, vfY); ctx.lineTo(vfX + vfSize, vfY + bLen); ctx.stroke();
-      // Bottom-left
-      ctx.beginPath(); ctx.moveTo(vfX, vfY + vfSize - bLen); ctx.lineTo(vfX, vfY + vfSize); ctx.lineTo(vfX + bLen, vfY + vfSize); ctx.stroke();
-      // Bottom-right
-      ctx.beginPath(); ctx.moveTo(vfX + vfSize - bLen, vfY + vfSize); ctx.lineTo(vfX + vfSize, vfY + vfSize); ctx.lineTo(vfX + vfSize, vfY + vfSize - bLen); ctx.stroke();
-
-      // Mini QR target inside camera
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(vfX + 20, vfY + 20, 44, 44);
-      ctx.fillStyle = "#000000";
-      ctx.fillRect(vfX + 24, vfY + 24, 12, 12);
-      ctx.fillRect(vfX + 48, vfY + 24, 12, 12);
-      ctx.fillRect(vfX + 24, vfY + 48, 12, 12);
-
-      // Notification banner / QR detect pill
-      const notifY = pScrY + 155;
-      ctx.fillStyle = "rgba(56, 189, 248, 0.15)";
-      ctx.beginPath();
-      ctx.roundRect(pScrX + 8, notifY, pScrW - 16, 40, 10);
-      ctx.fill();
-      ctx.strokeStyle = "#38bdf8";
-      ctx.lineWidth = 1.4;
-      ctx.stroke();
-
-      ctx.fillStyle = "#22c55e";
-      ctx.font = "bold 11px system-ui, sans-serif";
-      ctx.fillText(lang === "es" ? "✓ QR DETECTADO" : "✓ QR DETECTED", pScrX + pScrW / 2, notifY + 16);
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "10px system-ui, sans-serif";
-      ctx.fillText("peekrush.inmerzion.io", pScrX + pScrW / 2, notifY + 31);
-    }
-    // -------------------------------------------------------------
-    // SCREEN PHASE 2: NAME INPUT & TAP JOIN (25.2s - 30.5s)
-    // -------------------------------------------------------------
-    else {
-      // URL Bar
-      ctx.fillStyle = "#1e293b";
-      ctx.beginPath();
-      ctx.roundRect(pScrX + 8, pScrY + 10, pScrW - 16, 22, 6);
-      ctx.fill();
-      ctx.fillStyle = "#94a3b8";
-      ctx.font = "9px system-ui, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText("peekrush.inmerzion.io", pScrX + pScrW / 2, pScrY + 24);
-
-      // Title
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 15px system-ui, sans-serif";
-      ctx.fillText("PeekRush", pScrX + pScrW / 2, pScrY + 54);
-
-      // Room code pill
-      const inp1Y = pScrY + 70;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
-      ctx.beginPath();
-      ctx.roundRect(pScrX + 12, inp1Y, pScrW - 24, 34, 8);
-      ctx.fill();
-      ctx.strokeStyle = "#38bdf8";
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-      ctx.fillStyle = "#38bdf8";
-      ctx.font = "bold 16px monospace";
-      ctx.fillText("7 K X 9 P", pScrX + pScrW / 2, inp1Y + 23);
-
-      // Alias Input field: "Alex ✨"
-      const inp2Y = pScrY + 114;
-      ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
-      ctx.beginPath();
-      ctx.roundRect(pScrX + 12, inp2Y, pScrW - 24, 34, 8);
-      ctx.fill();
-      ctx.strokeStyle = "#94a3b8";
-      ctx.lineWidth = 1.2;
-      ctx.stroke();
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "bold 14px system-ui, sans-serif";
-      ctx.fillText("Alex ✨", pScrX + pScrW / 2, inp2Y + 22);
-
-      // Big Join Button: "¡ENTRAR!" / "¡CONECTADO!"
-      const btnY = pScrY + 160;
-      ctx.fillStyle = isTapPhase ? "#22c55e" : "#ffffff";
-      ctx.beginPath();
-      ctx.roundRect(pScrX + 12, btnY, pScrW - 24, 42, 10);
-      ctx.fill();
-      ctx.fillStyle = isTapPhase ? "#ffffff" : "#000000";
-      ctx.font = "900 13px system-ui, sans-serif";
-      ctx.fillText(isTapPhase ? (lang === "es" ? "¡CONECTADO!" : "CONNECTED!") : (lang === "es" ? "¡ENTRAR!" : "JOIN!"), pScrX + pScrW / 2, btnY + 26);
-
-      // Tap shockwave ripple
-      if (isTapPhase) {
-        ctx.strokeStyle = "#22c55e";
-        ctx.lineWidth = 2.4;
-        const ripR = (sceneT - 5.5) * 35;
-        ctx.beginPath();
-        ctx.arc(pScrX + pScrW / 2, btnY + 21, ripR % 45, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-    }
-
-    // ============================================================
-    // LAYER 3: FINGER PADS, PALM CRADLE & THUMB OVER GLASS
-    // ============================================================
-
-    // 1. Four Fingertip Pads curling over the left bezel
-    fingers.forEach((f, idx) => {
-      const fy = phoneY + f.y;
-      const wrapW = idx === 3 ? 14 : idx === 1 ? 19 : 17;
-
-      ctx.save();
-      // Drop shadow on glass
-      ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
-      ctx.beginPath();
-      ctx.ellipse(phoneX + wrapW * 0.45, fy + f.h / 2 + 2, wrapW * 0.5, f.h * 0.42, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Finger pad lobe: starts from phoneX - 4 and wraps onto the screen
-      const padGrad = ctx.createLinearGradient(phoneX - 4, fy, phoneX + wrapW, fy + f.h);
-      padGrad.addColorStop(0, skinShade);
-      padGrad.addColorStop(0.35, skin);
-      padGrad.addColorStop(1, skinLight);
-
-      ctx.fillStyle = padGrad;
-      ctx.beginPath();
-      ctx.moveTo(phoneX - 3, fy);
-      ctx.lineTo(phoneX + wrapW - f.h / 2, fy);
-      ctx.arc(phoneX + wrapW - f.h / 2, fy + f.h / 2, f.h / 2, -Math.PI / 2, Math.PI / 2, false);
-      ctx.lineTo(phoneX - 3, fy + f.h);
-      ctx.closePath();
-      ctx.fill();
-
-      // Stroke only the curled lobe on the glass
-      ctx.strokeStyle = ink;
-      ctx.lineWidth = 2.0;
-      ctx.beginPath();
-      ctx.moveTo(phoneX - 3, fy);
-      ctx.lineTo(phoneX + wrapW - f.h / 2, fy);
-      ctx.arc(phoneX + wrapW - f.h / 2, fy + f.h / 2, f.h / 2, -Math.PI / 2, Math.PI / 2, false);
-      ctx.lineTo(phoneX - 3, fy + f.h);
-      ctx.stroke();
-
-      // Rosy capillary blush
-      ctx.fillStyle = "rgba(244, 63, 94, 0.22)";
-      ctx.beginPath();
-      ctx.ellipse(phoneX + wrapW - 6, fy + f.h / 2, 4.5, f.h * 0.3, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Fingerprint ridge highlight
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
-      ctx.lineWidth = 1.0;
-      ctx.beginPath();
-      ctx.arc(phoneX + wrapW - 5, fy + f.h / 2, 3, -1.0, 1.0);
-      ctx.stroke();
-
-      ctx.restore();
-    });
-
-    // 2. Hand Foundation (Forearm, Wrist, Palm Cradle under Phone)
-    const armGrad = ctx.createLinearGradient(phoneX + 90, 420, phoneX + phoneW + 30, phoneY + 280);
-    armGrad.addColorStop(0, "#ee9068");
-    armGrad.addColorStop(0.4, skinShade);
-    armGrad.addColorStop(0.7, skin);
-    armGrad.addColorStop(1, skinLight);
-
-    ctx.fillStyle = armGrad;
-    ctx.beginPath();
-    // Inner forearm bottom
-    ctx.moveTo(phoneX + 90, 420);
-    // Up along inner wrist to palm cradle under phone
-    ctx.bezierCurveTo(phoneX + 105, phoneY + phoneH + 18, phoneX + 115, phoneY + phoneH + 4, phoneX + 135, phoneY + phoneH + 2);
-    // Across bottom edge of phone (cradling phone bottom)
-    ctx.lineTo(phoneX + phoneW - 20, phoneY + phoneH + 2);
-    // Around bottom-right corner to heel of palm
-    ctx.bezierCurveTo(phoneX + phoneW + 15, phoneY + phoneH + 2, phoneX + phoneW + 28, phoneY + phoneH - 10, phoneX + phoneW + 30, phoneY + 330);
-    // Down through hypothenar & styloid wrist bump to outer forearm
-    ctx.bezierCurveTo(phoneX + phoneW + 32, 375, phoneX + phoneW + 46, 395, phoneX + phoneW + 55, 420);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.strokeStyle = ink;
-    ctx.lineWidth = 2.4;
-    ctx.stroke();
-
-    // Wrist creases
-    ctx.strokeStyle = "rgba(194, 65, 12, 0.4)";
-    ctx.lineWidth = 1.3;
-    ctx.beginPath();
-    ctx.arc(phoneX + 130, phoneY + phoneH + 20, 24, 0.3, 1.2);
-    ctx.stroke();
-
-    // 3. The Natural Thumb (Resting vs Tapping Animation)
-    const btnY = pScrY + 160;
-
-    // Thumb anchor base at thenar muscle
-    const baseX = phoneX + phoneW - 4;
-    const baseY = phoneY + 300;
-
-    // Resting Thumb: naturally curved at height 230 along lower-right bezel
-    const restKnuckleX = phoneX + phoneW + 4;
-    const restKnuckleY = phoneY + 255;
-    const restTipX = phoneX + phoneW - 22;
-    const restTipY = phoneY + 230;
-
-    // Tapping Thumb: reaches over button
-    const tapKnuckleX = phoneX + phoneW - 22;
-    const tapKnuckleY = phoneY + 265;
-    const tapTipX = pScrX + pScrW / 2 + 10;
-    const tapTipY = btnY + 22;
-
-    let knuckleX = restKnuckleX;
-    let knuckleY = restKnuckleY;
-    let tipX = restTipX;
-    let tipY = restTipY;
-
-    if (sceneT >= 5.0) {
-      const tapProg = Math.min(1, Math.max(0, (sceneT - 5.0) / 0.5));
-      const easeProg = tapProg * tapProg * (3 - 2 * tapProg);
-      knuckleX = restKnuckleX + (tapKnuckleX - restKnuckleX) * easeProg;
-      knuckleY = restKnuckleY + (tapKnuckleY - restKnuckleY) * easeProg;
-      tipX = restTipX + (tapTipX - restTipX) * easeProg;
-      tipY = restTipY + (tapTipY - restTipY) * easeProg;
-    }
-
+    // Right Side Clean Editorial Callouts (Safely placed in x=455 to x=760)
+    const calloutX = 455;
     ctx.save();
-
-    // Contact shadow on glass
-    ctx.fillStyle = "rgba(0, 0, 0, 0.35)";
-    ctx.beginPath();
-    ctx.ellipse(tipX + 2, tipY + 4, 16, 12, 0.25, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Thumb Solid Shape
-    const thumbGrad = ctx.createLinearGradient(baseX, baseY, tipX, tipY);
-    thumbGrad.addColorStop(0, skinShade);
-    thumbGrad.addColorStop(0.45, skin);
-    thumbGrad.addColorStop(0.85, skinLight);
-
-    ctx.fillStyle = thumbGrad;
-    ctx.beginPath();
-    // Start at outer thenar base
-    ctx.moveTo(baseX + 16, baseY);
-    // Outer contour to knuckle
-    ctx.bezierCurveTo(baseX + 20, knuckleY + 20, knuckleX + 16, knuckleY + 6, knuckleX + 6, knuckleY - 4);
-    // Outer knuckle to distal thumb tip
-    ctx.bezierCurveTo(knuckleX - 4, knuckleY - 14, tipX + 16, tipY - 14, tipX + 6, tipY - 8);
-    // Rounded distal thumb pad (fleshy tip)
-    ctx.bezierCurveTo(tipX - 12, tipY - 4, tipX - 12, tipY + 12, tipX + 4, tipY + 14);
-    // Inner contour back to thenar fold
-    ctx.bezierCurveTo(tipX + 16, tipY + 14, knuckleX - 10, knuckleY + 16, baseX - 8, baseY - 12);
-    // Down to thenar base
-    ctx.bezierCurveTo(baseX - 4, baseY, baseX + 6, baseY + 6, baseX + 16, baseY);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.strokeStyle = ink;
-    ctx.lineWidth = 2.2;
-    ctx.stroke();
-
-    // Rosy capillary blush on thumb pad
-    ctx.fillStyle = "rgba(244, 63, 94, 0.22)";
-    ctx.beginPath();
-    ctx.ellipse(tipX - 2, tipY + 2, 7.5, 6.5, 0.15, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Oval Thumbnail on dorsal upper surface
-    ctx.fillStyle = "#fff5f0";
-    ctx.strokeStyle = "#d97757";
-    ctx.lineWidth = 1.3;
-    ctx.beginPath();
-    ctx.ellipse(tipX + 4, tipY - 4, 7.5, 5, 0.35, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-
-    // Specular shine on nail
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
-    ctx.lineWidth = 1.1;
-    ctx.beginPath();
-    ctx.arc(tipX + 4, tipY - 5, 3.5, 0.3, 2.2);
-    ctx.stroke();
-
-    // Knuckle skin fold lines (subtle, soft)
-    ctx.strokeStyle = "rgba(194, 65, 12, 0.4)";
-    ctx.lineWidth = 1.2;
-    ctx.beginPath();
-    ctx.arc(knuckleX + 2, knuckleY + 4, 7, -1.0, 0.6);
-    ctx.stroke();
-
-    ctx.restore();
-
-    // Wi-Fi signal radiating
-    if (isTapPhase) {
-      const waveAlpha = Math.sin(sceneT * 6) * 0.5 + 0.5;
-      ctx.save();
-      ctx.strokeStyle = "#22c55e";
-      ctx.globalAlpha = waveAlpha;
-      ctx.lineWidth = 2.4;
-      [40, 75, 110].forEach((r) => {
-        ctx.beginPath();
-        ctx.arc(phoneX - 30, phoneY + 120, r, -0.6, 0.6);
-        ctx.stroke();
-      });
-      ctx.restore();
-    }
-
-    // Side callouts
-    ctx.fillStyle = "#38bdf8";
-    ctx.font = "bold 16px system-ui, sans-serif";
     ctx.textAlign = "left";
-    ctx.fillText(lang === "es" ? "⚡ ¡Sin instalar Apps!" : "⚡ No App Downloads!", phoneX + phoneW + 48, phoneY + 120);
+
+    // Heading
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "900 16px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "⚡ ¡Sin instalar Apps!" : "⚡ Zero App Downloads!", calloutX, phoneY + 50);
+
+    // Bullets
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 13px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "1. Abre la cámara del móvil" : "1. Open your phone camera", calloutX, phoneY + 84);
     ctx.fillStyle = "#94a3b8";
     ctx.font = "12px system-ui, sans-serif";
-    ctx.fillText(lang === "es" ? "Escanea el QR con la cámara del móvil." : "Scan the QR code with phone camera.", phoneX + phoneW + 48, phoneY + 145);
-    ctx.fillText(lang === "es" ? "Escribe tu nombre y únete al instante." : "Type your nickname and join instantly.", phoneX + phoneW + 48, phoneY + 165);
-    ctx.fillText(lang === "es" ? "Tu móvil es tu mando para responder." : "Your phone becomes your buzzer controller.", phoneX + phoneW + 48, phoneY + 185);
+    ctx.fillText(lang === "es" ? "Enfoca al código QR gigante de la tele." : "Point it at the giant QR on the TV.", calloutX + 16, phoneY + 104);
+
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 13px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "2. Escribe tu alias o nombre" : "2. Type your nickname", calloutX, phoneY + 138);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "El código de sala se rellena solo." : "The room code auto-fills instantly.", calloutX + 16, phoneY + 158);
+
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 13px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "3. ¡Tu móvil es tu mando!" : "3. Your phone is your buzzer!", calloutX, phoneY + 192);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "Responde a toda velocidad en cada ronda." : "Answer at maximum speed every round.", calloutX + 16, phoneY + 212);
+
+    // Status Pill
+    ctx.fillStyle = "rgba(34, 197, 94, 0.15)";
+    ctx.strokeStyle = "rgba(34, 197, 94, 0.4)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.roundRect(calloutX, phoneY + 242, 270, 32, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#22c55e";
+    ctx.font = "bold 11px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "✓ Conexión en 2 segundos por WebSocket" : "✓ Connected in 2 seconds via WebSocket", calloutX + 12, phoneY + 262);
 
     ctx.restore();
-
-    // Top banner
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 15px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText(lang === "es" ? "¡Tus amigos solo escanean el QR y escriben su nombre!" : "Friends simply scan the QR code and type their nickname!", W / 2, 40);
   }
 
   // -----------------------------------------------------------------
@@ -1041,301 +1105,385 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
   //  partida individual y responder directamente con tu teclado."
   // -----------------------------------------------------------------
   else if (sceneIdx === 2) {
-    const lapW = 400;
-    const lapH = 220;
-    const lapX = (W - lapW) / 2;
-    const lapY = 75;
+    drawTopBanner(
+      ctx,
+      W,
+      lang === "es" ? "03 · MODO SOLO" : "03 · PLAY SOLO",
+      lang === "es" ? "Modo individual: responde directamente con tu teclado" : "Single player: answer directly with your keyboard"
+    );
 
-    // Laptop Display Frame
+    const lapW = 380;
+    const lapH = 205;
+    const lapX = 180;
+    const lapY = 82;
+
+    // Laptop Frame
     ctx.fillStyle = "#161822";
-    ctx.strokeStyle = "#f8fafc";
-    ctx.lineWidth = 3.0;
     ctx.beginPath();
-    ctx.roundRect?.(lapX, lapY, lapW, lapH, 18) || ctx.rect(lapX, lapY, lapW, lapH);
+    ctx.roundRect?.(lapX, lapY, lapW, lapH, 16) || ctx.rect(lapX, lapY, lapW, lapH);
     ctx.fill();
-    wob(ctx, [
-      [lapX, lapY],
-      [lapX + lapW, lapY],
-      [lapX + lapW, lapY + lapH],
-      [lapX, lapY + lapH],
-    ], 1.8, 441, true);
+    ctx.strokeStyle = "#f8fafc";
+    ctx.lineWidth = 2.8;
+    wob(ctx, [[lapX, lapY], [lapX + lapW, lapY], [lapX + lapW, lapY + lapH], [lapX, lapY + lapH]], 1.6, 441, true);
 
     // Screen Glass
-    const lScrX = lapX + 14;
-    const lScrY = lapY + 14;
-    const lScrW = lapW - 28;
-    const lScrH = lapH - 28;
+    const lScrX = lapX + 12;
+    const lScrY = lapY + 12;
+    const lScrW = lapW - 24;
+    const lScrH = lapH - 24;
     ctx.fillStyle = "#0c0d14";
     ctx.fillRect(lScrX, lScrY, lScrW, lScrH);
 
-    // App header inside screen
+    // Header inside screen
     ctx.fillStyle = "#1e293b";
-    ctx.fillRect(lScrX, lScrY, lScrW, 28);
+    ctx.fillRect(lScrX, lScrY, lScrW, 26);
     ctx.fillStyle = "#38bdf8";
     ctx.font = "bold 11px system-ui, sans-serif";
     ctx.textAlign = "left";
-    ctx.fillText(lang === "es" ? "PEEKRUSH SOLO · 1 JUGADOR" : "PEEKRUSH SOLO · 1 PLAYER", lScrX + 12, lScrY + 18);
+    ctx.fillText(lang === "es" ? "PEEKRUSH SOLO · 1 JUGADOR" : "PEEKRUSH SOLO · 1 PLAYER", lScrX + 12, lScrY + 17);
 
     ctx.fillStyle = "#22c55e";
     ctx.font = "bold 10px monospace";
     ctx.textAlign = "right";
-    ctx.fillText("● DIRECT PLAY", lScrX + lScrW - 12, lScrY + 18);
+    ctx.fillText("● DIRECT PLAY", lScrX + lScrW - 12, lScrY + 17);
 
-    // Challenge Box on Screen
+    // Prompt
     ctx.fillStyle = "#ffffff";
     ctx.font = "bold 12px system-ui, sans-serif";
     ctx.textAlign = "center";
-    ctx.fillText(lang === "es" ? "ADIVINA LA MARCA CON TU TECLADO:" : "GUESS THE BRAND ON YOUR KEYBOARD:", lScrX + lScrW / 2, lScrY + 54);
+    ctx.fillText(lang === "es" ? "ADIVINA LA MARCA CON TU TECLADO:" : "GUESS THE BRAND ON YOUR KEYBOARD:", lScrX + lScrW / 2, lScrY + 50);
 
-    // Mystery brand icon box
-    const iconBoxW = 80;
-    const iconBoxH = 45;
+    // Mystery brand box
+    const iconBoxW = 76;
+    const iconBoxH = 42;
     const iconBoxX = lScrX + (lScrW - iconBoxW) / 2;
-    const iconBoxY = lScrY + 65;
+    const iconBoxY = lScrY + 62;
     ctx.fillStyle = "#1e293b";
     ctx.fillRect(iconBoxX, iconBoxY, iconBoxW, iconBoxH);
     ctx.strokeStyle = "#38bdf8";
-    ctx.lineWidth = 1.6;
-    wob(ctx, [
-      [iconBoxX, iconBoxY],
-      [iconBoxX + iconBoxW, iconBoxY],
-      [iconBoxX + iconBoxW, iconBoxY + iconBoxH],
-      [iconBoxX, iconBoxY + iconBoxH],
-    ], 1.2, 442, true);
+    ctx.lineWidth = 1.5;
+    wob(ctx, [[iconBoxX, iconBoxY], [iconBoxX + iconBoxW, iconBoxY], [iconBoxX + iconBoxW, iconBoxY + iconBoxH], [iconBoxX, iconBoxY + iconBoxH]], 1.2, 442, true);
 
     ctx.fillStyle = "#fbbf24";
-    ctx.font = "900 24px monospace";
-    ctx.fillText("?", iconBoxX + iconBoxW / 2, iconBoxY + 31);
+    ctx.font = "900 22px monospace";
+    ctx.fillText("?", iconBoxX + iconBoxW / 2, iconBoxY + 29);
 
-    // Typing letters sequence: N -> I -> K -> E
+    // Typing letters: N -> I -> K -> E
     const typeLetters = ["N", "I", "K", "E"];
     const typeCount = clamp(Math.floor(sceneT * 1.5), 1, 4);
     const typedText = typeLetters.slice(0, typeCount).join(" ");
     const isAnswered = sceneT >= 3.2;
 
     // Input Field
-    const inpY = lScrY + 124;
+    const inpY = lScrY + 118;
     ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
-    ctx.fillRect(lScrX + 45, inpY, lScrW - 90, 36);
+    ctx.fillRect(lScrX + 40, inpY, lScrW - 80, 34);
     ctx.strokeStyle = isAnswered ? "#22c55e" : "#38bdf8";
-    ctx.lineWidth = 1.8;
-    wob(ctx, [
-      [lScrX + 45, inpY],
-      [lScrX + lScrW - 45, inpY],
-      [lScrX + lScrW - 45, inpY + 36],
-      [lScrX + 45, inpY + 36],
-    ], 1.2, 443, true);
+    ctx.lineWidth = 1.6;
+    wob(ctx, [[lScrX + 40, inpY], [lScrX + lScrW - 40, inpY], [lScrX + lScrW - 40, inpY + 34], [lScrX + 40, inpY + 34]], 1.2, 443, true);
 
     ctx.fillStyle = isAnswered ? "#22c55e" : "#ffffff";
-    ctx.font = "900 16px monospace";
-    ctx.fillText(isAnswered ? "✓ N I K E  (+720 PTS)" : `${typedText} _`, lScrX + lScrW / 2, inpY + 23);
+    ctx.font = "900 15px monospace";
+    ctx.fillText(isAnswered ? "✓ N I K E  (+720 PTS)" : `${typedText} _`, lScrX + lScrW / 2, inpY + 22);
 
     // Laptop Base & Keyboard Chassis
-    const kbW = 460;
-    const kbH = 65;
+    const kbW = 430;
+    const kbH = 60;
     const kbX = (W - kbW) / 2;
     const kbY = lapY + lapH - 2;
 
     ctx.fillStyle = "#1e2230";
     ctx.strokeStyle = "#94a3b8";
-    ctx.lineWidth = 2.4;
+    ctx.lineWidth = 2.2;
     ctx.beginPath();
-    ctx.roundRect?.(kbX, kbY, kbW, kbH, [4, 4, 16, 16]) || ctx.rect(kbX, kbY, kbW, kbH);
+    ctx.roundRect?.(kbX, kbY, kbW, kbH, [4, 4, 14, 14]) || ctx.rect(kbX, kbY, kbW, kbH);
     ctx.fill();
-    wob(ctx, [
-      [kbX, kbY],
-      [kbX + kbW, kbY],
-      [kbX + kbW - 12, kbY + kbH],
-      [kbX + 12, kbY + kbH],
-    ], 1.6, 445, true);
+    wob(ctx, [[kbX, kbY], [kbX + kbW, kbY], [kbX + kbW - 10, kbY + kbH], [kbX + 10, kbY + kbH]], 1.5, 445, true);
 
-    // Hand-drawn Keyboard Key Grid
+    // Keyboard keys
     const keyChars = ["N", "I", "K", "E", "↵"];
     keyChars.forEach((kc, i) => {
-      const kx = kbX + 145 + i * 36;
-      const ky = kbY + 12;
+      const kx = kbX + 135 + i * 34;
+      const ky = kbY + 10;
       const isLit = i < typeCount || (i === 4 && isAnswered);
       ctx.fillStyle = isLit ? "#38bdf8" : "#2a3144";
-      ctx.fillRect(kx, ky, 28, 22);
+      ctx.fillRect(kx, ky, 26, 20);
       ctx.strokeStyle = isLit ? "#ffffff" : "#475569";
-      ctx.lineWidth = 1.2;
-      ctx.strokeRect(kx, ky, 28, 22);
+      ctx.lineWidth = 1.1;
+      ctx.strokeRect(kx, ky, 26, 20);
 
       ctx.fillStyle = isLit ? "#000000" : "#cbd5e1";
       ctx.font = "bold 11px monospace";
-      ctx.fillText(kc, kx + 14, ky + 15);
+      ctx.textAlign = "center";
+      ctx.fillText(kc, kx + 13, ky + 14);
     });
 
     // Spacebar
     ctx.fillStyle = "#2a3144";
-    ctx.fillRect(kbX + 160, kbY + 38, 140, 16);
+    ctx.fillRect(kbX + 150, kbY + 35, 130, 14);
     ctx.strokeStyle = "#475569";
     ctx.lineWidth = 1;
-    ctx.strokeRect(kbX + 160, kbY + 38, 140, 16);
+    ctx.strokeRect(kbX + 150, kbY + 35, 130, 14);
 
-    // Side callouts
-    ctx.fillStyle = "#38bdf8";
-    ctx.font = "bold 15px system-ui, sans-serif";
+    // Right Side Clean Editorial Callouts (Safely placed in x=590 to x=770)
+    const calloutX = 590;
+    ctx.save();
     ctx.textAlign = "left";
-    ctx.fillText(lang === "es" ? "👤 ¡Modo Solo instantáneo!" : "👤 Instant Solo Play!", lapX + lapW + 28, lapY + 50);
-    ctx.fillStyle = "#94a3b8";
-    ctx.font = "12px system-ui, sans-serif";
-    ctx.fillText(lang === "es" ? "Responde con tu teclado." : "Answer with your keyboard.", lapX + lapW + 28, lapY + 75);
-    ctx.fillText(lang === "es" ? "Sin esperar a otros jugadores." : "No waiting for others.", lapX + lapW + 28, lapY + 95);
-    ctx.fillText(lang === "es" ? "Récords globales en juego." : "Compete for global records.", lapX + lapW + 28, lapY + 115);
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "900 15px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "👤 ¡Modo Solo!" : "👤 Solo Play!", calloutX, lapY + 36);
 
-    // Top banner
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 15px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText(lang === "es" ? "¡Si estás solo, pulsa 'Jugar solo' y responde directamente con tu teclado!" : "Playing alone? Click 'Play solo' and answer right on your keyboard!", W / 2, 40);
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "• Juega al instante" : "• Instant Play", calloutX, lapY + 68);
+    ctx.fillText(lang === "es" ? "• Con tu teclado físico" : "• Physical keyboard", calloutX, lapY + 92);
+    ctx.fillText(lang === "es" ? "• Bate récords globales" : "• Global records", calloutX, lapY + 116);
+    ctx.fillText(lang === "es" ? "• Sin esperar a nadie" : "• No waiting", calloutX, lapY + 140);
+    ctx.restore();
   }
 
   // -----------------------------------------------------------------
-  // SCENE 3: REVELADO Y MULTIPLICADOR (Authentic Apple Logo Reveal)
+  // SCENE 3: MULTIPLICADOR Y REVELADO (SMARTPHONE INTERFACE + Refined Hand)
   // Audio ES (38.5s - 50.5s):
   // "Cuando empiece la partida, aparecerá un logotipo que se irá revelando
   //  poco a poco. ¡Tu objetivo es adivinar la marca antes que nadie!
   //  Cuanto más rápido aciertes, más puntos conseguirás."
   // -----------------------------------------------------------------
   else if (sceneIdx === 3) {
-    const boardW = 440;
-    const boardH = 280;
-    const boardX = (W - boardW) / 2;
-    const boardY = 70;
+    drawTopBanner(
+      ctx,
+      W,
+      lang === "es" ? "04 · MULTIPLICADOR" : "04 · MULTIPLIER",
+      lang === "es" ? "Adivina la marca en tu móvil y gana puntos" : "Guess on your phone and score multiplier points"
+    );
 
-    // Background chalkboard frame
-    ctx.fillStyle = "#0c0d14";
-    ctx.fillRect(boardX, boardY, boardW, boardH);
+    const phoneW = 184;
+    const phoneH = 320;
+    const phoneX = 215;
+    const phoneY = 64;
 
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 2.8;
-    wob(ctx, [
-      [boardX, boardY],
-      [boardX + boardW, boardY],
-      [boardX + boardW, boardY + boardH],
-      [boardX, boardY + boardH],
-    ], 1.8, 901, true);
-
-    // Multiplier loop
     const cycleT = sceneT % 6.0;
-    const revealProgress = clamp(cycleT / 3.8, 0.15, 1.0);
+    const revealProgress = clamp(cycleT / 3.6, 0.18, 1.0);
     const multVal = Math.max(1.5, 3.0 - cycleT * 0.4).toFixed(1);
-    const isFast = Number(multVal) > 1.8;
     const isAnswered = cycleT >= 3.6;
 
-    ctx.fillStyle = isFast ? "#f59e0b" : "#ef4444";
-    ctx.font = "900 28px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText(`⚡ ${multVal}x`, boardX + boardW / 2, boardY + 45);
+    drawHandHoldingPhone(ctx, phoneX, phoneY, phoneW, phoneH, {
+      sceneT,
+      thumbPose: "buzzer",
+      isPressed: isAnswered,
+      hapticWaves: isAnswered,
+      renderScreen: (pScrX, pScrY, pScrW, pScrH) => {
+        // iOS Header inside phone screen
+        ctx.fillStyle = "#131625";
+        ctx.fillRect(pScrX, pScrY, pScrW, 26);
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 10px system-ui, sans-serif";
+        ctx.textAlign = "left";
+        ctx.fillText("Alex ✨", pScrX + 10, pScrY + 17);
 
-    ctx.fillStyle = "#94a3b8";
-    ctx.font = "11px system-ui, sans-serif";
-    ctx.fillText(lang === "es" ? "MULTIPLICADOR DE VELOCIDAD" : "SPEED MULTIPLIER", boardX + boardW / 2, boardY + 62);
+        ctx.fillStyle = "#fbbf24";
+        ctx.font = "bold 10px monospace";
+        ctx.textAlign = "right";
+        ctx.fillText(isAnswered ? "850 PTS" : "0 PTS", pScrX + pScrW - 10, pScrY + 17);
 
-    // The Brand Logo revealing progressively: Authentic Apple Logo
-    const logoCx = boardX + boardW / 2;
-    const logoCy = boardY + 155;
-    const applePath = new Path2D(APPLE_SVG_PATH);
-    const s = 110 / 19.3;
+        // Speed Multiplier Pill at top of game area
+        const multY = pScrY + 34;
+        const isFast = Number(multVal) > 1.8;
+        ctx.fillStyle = isFast ? "rgba(245, 158, 11, 0.2)" : "rgba(239, 68, 68, 0.2)";
+        ctx.strokeStyle = isFast ? "#f59e0b" : "#ef4444";
+        ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.roundRect(pScrX + 14, multY, pScrW - 28, 26, 13);
+        ctx.fill();
+        ctx.stroke();
 
-    ctx.save();
-    ctx.translate(logoCx - 12.0 * s, logoCy - 13.15 * s);
-    ctx.scale(s, s);
-    ctx.fillStyle = "#ffffff";
-    ctx.fill(applePath);
-    ctx.restore();
+        ctx.fillStyle = isFast ? "#fbbf24" : "#f87171";
+        ctx.font = "900 13px system-ui, sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(`⚡ ${multVal}x MULTIPLICADOR`, pScrX + pScrW / 2, multY + 17);
 
-    // Obscuring puzzle blocks that vanish
-    if (!isAnswered && revealProgress < 0.95) {
-      ctx.fillStyle = "#0c0d14";
-      const bSize = 18;
-      for (let bx = -4; bx <= 4; bx++) {
-        for (let by = -4; by <= 4; by++) {
-          const h = hash(bx + by * 13, 88);
-          if (h > revealProgress) {
-            const blkX = logoCx + bx * bSize - bSize / 2;
-            const blkY = logoCy + by * bSize - bSize / 2;
-            ctx.fillRect(blkX, blkY, bSize + 1, bSize + 1);
-            ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-            ctx.lineWidth = 1;
-            ctx.strokeRect(blkX, blkY, bSize + 1, bSize + 1);
+        // Brand Reveal Canvas on Phone Screen: Authentic Apple Logo
+        const logoBoxY = pScrY + 68;
+        const logoBoxH = 100;
+        ctx.fillStyle = "#0c0d14";
+        ctx.fillRect(pScrX + 10, logoBoxY, pScrW - 20, logoBoxH);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(pScrX + 10, logoBoxY, pScrW - 20, logoBoxH);
+
+        const logoCx = pScrX + pScrW / 2;
+        const logoCy = logoBoxY + logoBoxH / 2;
+
+        // Authentic Apple vector scaled for phone screen
+        const applePath = new Path2D(APPLE_SVG_PATH);
+        const s = 58 / 19.3;
+        ctx.save();
+        ctx.translate(logoCx - 12.0 * s, logoCy - 13.15 * s);
+        ctx.scale(s, s);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill(applePath);
+        ctx.restore();
+
+        // Progressive obscuring puzzle tiles
+        if (!isAnswered && revealProgress < 0.95) {
+          ctx.fillStyle = "#0c0d14";
+          const bSize = 13;
+          for (let bx = -3; bx <= 3; bx++) {
+            for (let by = -3; by <= 3; by++) {
+              const h = hash(bx + by * 13, 88);
+              if (h > revealProgress) {
+                const blkX = logoCx + bx * bSize - bSize / 2;
+                const blkY = logoCy + by * bSize - bSize / 2;
+                ctx.fillRect(blkX, blkY, bSize + 1, bSize + 1);
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+                ctx.lineWidth = 0.8;
+                ctx.strokeRect(blkX, blkY, bSize + 1, bSize + 1);
+              }
+            }
           }
         }
-      }
-    }
 
-    // Answer buzzer reaction
-    if (isAnswered) {
-      const popT = cycleT - 3.6;
-      const popScale = spring(popT * 2.5, { freq: 3.0, damp: 0.5 });
+        // Bottom Action Area: Guess Input / Buzzer Feedback
+        const bottomY = pScrY + 178;
 
-      ctx.save();
-      ctx.translate(boardX + boardW / 2, boardY + boardH - 35);
-      ctx.scale(popScale, popScale);
+        if (isAnswered) {
+          // Success Feedback Banner
+          ctx.fillStyle = "rgba(34, 197, 94, 0.25)";
+          ctx.strokeStyle = "#22c55e";
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 10, bottomY, pScrW - 20, 68, 10);
+          ctx.fill();
+          ctx.stroke();
 
-      // Success banner: "¡CORRECTO! APPLE (+850 PTS · ⚡ 2.8x)"
-      ctx.fillStyle = "#22c55e";
-      ctx.fillRect(-175, -20, 350, 40);
-      wob(ctx, [[-175, -20], [175, -20], [175, 20], [-175, 20]], 1.4, 999, true);
+          ctx.fillStyle = "#22c55e";
+          ctx.font = "900 13px system-ui, sans-serif";
+          ctx.textAlign = "center";
+          ctx.fillText("✓ ¡CORRECTO!", pScrX + pScrW / 2, bottomY + 22);
 
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "900 15px system-ui, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText(lang === "es" ? "¡CORRECTO! APPLE (+850 PTS · ⚡ 2.8x)" : "CORRECT! APPLE (+850 PTS · ⚡ 2.8x)", 0, 6);
-      ctx.restore();
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 12px system-ui, sans-serif";
+          ctx.fillText("APPLE · +850 PTS", pScrX + pScrW / 2, bottomY + 40);
 
-      // Golden Celebration stars
-      for (let k = 0; k < 6; k++) {
-        const starAngle = (k / 6) * Math.PI * 2 + popT * 2;
-        const starDist = 70 + popT * 40;
-        const sx = logoCx + Math.cos(starAngle) * starDist;
-        const sy = logoCy + Math.sin(starAngle) * starDist * 0.7;
-        aster(ctx, sx, sy, 7, "#fbbf24", 4, starAngle);
-      }
-    }
+          ctx.fillStyle = "#fbbf24";
+          ctx.font = "900 11px system-ui, sans-serif";
+          ctx.fillText("⚡ 2.8x VELOCIDAD", pScrX + pScrW / 2, bottomY + 56);
 
-    // Top banner
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 15px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText(lang === "es" ? "¡Adivina la marca antes que nadie y multiplica tus puntos!" : "Guess before anyone else and score maximum multiplier points!", W / 2, 40);
+          // Mini Celebration Stars
+          aster(ctx, pScrX + 26, bottomY + 20, 5, "#fbbf24", 4, cycleT * 3);
+          aster(ctx, pScrX + pScrW - 26, bottomY + 20, 5, "#fbbf24", 4, -cycleT * 3);
+        } else {
+          // Answer typing input
+          ctx.fillStyle = "rgba(255, 255, 255, 0.06)";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 10, bottomY, pScrW - 20, 32, 6);
+          ctx.fill();
+          ctx.strokeStyle = "#38bdf8";
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+
+          const typed = ["A", "P", "P", "L", "E"].slice(0, clamp(Math.floor(cycleT * 2), 1, 5)).join(" ");
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "900 13px monospace";
+          ctx.textAlign = "center";
+          ctx.fillText(`${typed} _`, pScrX + pScrW / 2, bottomY + 21);
+
+          // Buzzer Button
+          const btnY = bottomY + 40;
+          ctx.fillStyle = "#38bdf8";
+          ctx.beginPath();
+          ctx.roundRect(pScrX + 10, btnY, pScrW - 20, 30, 8);
+          ctx.fill();
+
+          ctx.fillStyle = "#000000";
+          ctx.font = "900 11px system-ui, sans-serif";
+          ctx.fillText(lang === "es" ? "¡ENVIAR!" : "SUBMIT!", pScrX + pScrW / 2, btnY + 19);
+        }
+      },
+    });
+
+    // Right Side Clean Editorial Callouts (Safely placed in x=455 to x=760)
+    const calloutX = 455;
+    ctx.save();
+    ctx.textAlign = "left";
+
+    // Heading
+    ctx.fillStyle = "#38bdf8";
+    ctx.font = "900 16px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "⚡ Multiplicador de velocidad" : "⚡ Speed Multiplier", calloutX, phoneY + 40);
+
+    // Bullets
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 13px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "• El logo se revela bloque a bloque" : "• Logo reveals block by block", calloutX, phoneY + 74);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "Aparece progresivamente en tu pantalla." : "Progressively unveiled on your screen.", calloutX + 14, phoneY + 94);
+
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 13px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "• Adivina antes que nadie en tu móvil" : "• Guess first on your phone", calloutX, phoneY + 128);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "Escribe la marca y pulsa el botón." : "Type the brand name and tap submit.", calloutX + 14, phoneY + 148);
+
+    ctx.fillStyle = "#e2e8f0";
+    ctx.font = "bold 13px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "• El multiplicador baja cada segundo" : "• Multiplier ticks down every second", calloutX, phoneY + 182);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "Cuanto más rápido seas, más puntuación." : "The faster you answer, the higher your score.", calloutX + 14, phoneY + 202);
+
+    // Multiplier Guide Box
+    ctx.fillStyle = "rgba(245, 158, 11, 0.12)";
+    ctx.strokeStyle = "rgba(245, 158, 11, 0.4)";
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.roundRect(calloutX, phoneY + 226, 275, 48, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#fbbf24";
+    ctx.font = "900 12px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "⚡ 3.0x  ➔  Acierto en los primeros segundos" : "⚡ 3.0x  ➔  Immediate lightning guess", calloutX + 12, phoneY + 246);
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "11px system-ui, sans-serif";
+    ctx.fillText(lang === "es" ? "⚡ 1.5x  ➔  Multiplicador base al final" : "⚡ 1.5x  ➔  Base multiplier towards the end", calloutX + 12, phoneY + 264);
+
+    ctx.restore();
   }
 
   // -----------------------------------------------------------------
-  // SCENE 4: PODIO Y RÉCORDS (Fixed 3rd Place & Baseline Podium)
+  // SCENE 4: PODIO Y RÉCORDS (Fixed 3rd Place & Zero Overlapping Text)
   // Audio ES (50.5s - 56.8s):
   // "Al final veremos el podio de la partida y la tabla de récords globales.
   //  ¡Mucha suerte y a jugar!"
   // -----------------------------------------------------------------
   else if (sceneIdx === 4) {
+    drawTopBanner(
+      ctx,
+      W,
+      lang === "es" ? "05 · PODIO" : "05 · PODIUM",
+      lang === "es" ? "Podio de ganadores y récord mundial" : "Winners podium and world records"
+    );
+
     const groundY = 380;
     const stepW = 120;
     const centerPodX = (W - stepW) / 2; // 340
     const gap = 8;
 
-    // Ground Floor Line across podium
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.22)";
+    // Ground Floor Line
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
     ctx.lineWidth = 2.4;
     wob(ctx, [[120, groundY], [680, groundY]], 1.5, 401);
 
-    // Floor drop shadow hatch
-    for (let x = 140; x < 660; x += 14) {
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.moveTo(x, groundY + 2);
-      ctx.lineTo(x - 8, groundY + 12);
-      ctx.stroke();
-    }
-
     // Step heights:
-    // 1st Place (Center, Gold): Highest
-    // 2nd Place (Left, Silver): Middle height
-    // 3rd Place (Right, Bronze): Lowest height, resting on floor!
-    const podH1 = 150; // 1st Place (top at 380 - 150 = 230)
-    const podH2 = 95;  // 2nd Place (top at 380 - 95 = 285)
-    const podH3 = 55;  // 3rd Place (top at 380 - 55 = 325)
+    // 1st Place (Center, Gold): Highest (150px)
+    // 2nd Place (Left, Silver): Mid (95px)
+    // 3rd Place (Right, Bronze): Lowest (55px), grounded firmly on floor!
+    const podH1 = 150; // top at 380 - 150 = 230
+    const podH2 = 95;  // top at 380 - 95 = 285
+    const podH3 = 55;  // top at 380 - 55 = 325
 
     // ============================================================
     // STEP 2: 2nd Place (Left, Silver)
@@ -1352,8 +1500,11 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
     ctx.font = "900 36px system-ui, sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("2", x2 + stepW / 2, y2 + 58);
+
+    // Clean Player Badge: No overlap!
+    ctx.fillStyle = "#e2e8f0";
     ctx.font = "bold 13px system-ui, sans-serif";
-    ctx.fillText("🥈 Hugo (1,920)", x2 + stepW / 2, y2 - 14);
+    ctx.fillText("🥈 Hugo (1,920)", x2 + stepW / 2, y2 - 16);
 
     // ============================================================
     // STEP 3: 3rd Place (Right, Bronze - Fully Fixed Lower Height)
@@ -1370,8 +1521,11 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
     ctx.font = "900 32px system-ui, sans-serif";
     ctx.textAlign = "center";
     ctx.fillText("3", x3 + stepW / 2, y3 + 40);
+
+    // Clean Player Badge: No overlap!
+    ctx.fillStyle = "#d97706";
     ctx.font = "bold 13px system-ui, sans-serif";
-    ctx.fillText("🥉 Dani (1,480)", x3 + stepW / 2, y3 - 14);
+    ctx.fillText("🥉 Dani (1,480)", x3 + stepW / 2, y3 - 16);
 
     // ============================================================
     // STEP 1: 1st Place (Center, Gold - Highest Step)
@@ -1392,26 +1546,24 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
     ctx.fillStyle = "#fbbf24";
     ctx.font = "900 52px system-ui, sans-serif";
     ctx.fillText("1", x1 + stepW / 2, y1 + 75);
-    ctx.font = "900 15px system-ui, sans-serif";
-    ctx.fillText("👑 Sara (3,420)", x1 + stepW / 2, y1 - 48);
 
-    // Golden Trophy atop Step 1
+    // Golden Trophy atop Step 1 (y: 206)
     const trophyX = x1 + stepW / 2;
-    const trophyY = y1 - 22;
-    const trophyWob = drift(sceneT, 9, { amp: 2.2, freq: 1.0 });
+    const trophyY = y1 - 24; // 206
+    const trophyWob = drift(sceneT, 9, { amp: 2.0, freq: 1.0 });
 
     ctx.save();
     ctx.translate(trophyX, trophyY + trophyWob);
     // Trophy cup
     ctx.fillStyle = "#fbbf24";
     ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 2.2;
+    ctx.lineWidth = 2.0;
     const cupPts: [number, number][] = [
-      [-20, -25],
-      [20, -25],
-      [16, -2],
-      [0, 10],
-      [-16, -2],
+      [-18, -22],
+      [18, -22],
+      [14, -2],
+      [0, 8],
+      [-14, -2],
     ];
     ctx.beginPath();
     cupPts.forEach((p, i) => (i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1])));
@@ -1420,55 +1572,66 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
     wob(ctx, cupPts, 1.2, 501, true);
 
     // Trophy base
-    ctx.fillRect(-14, 10, 28, 5);
-    ctx.fillRect(-18, 15, 36, 6);
+    ctx.fillRect(-12, 8, 24, 4);
+    ctx.fillRect(-16, 12, 32, 5);
 
-    // Sparkles on trophy
-    aster(ctx, -22, -18, 8, "#ffffff", 4, sceneT * 3);
-    aster(ctx, 22, -18, 8, "#fbbf24", 4, -sceneT * 3);
+    // Sparkles
+    aster(ctx, -20, -16, 7, "#ffffff", 4, sceneT * 3);
+    aster(ctx, 20, -16, 7, "#fbbf24", 4, -sceneT * 3);
     ctx.restore();
 
-    // Confetti physics: Fluttering organic falling marks
+    // 1st Place Player Name Badge: Positioned ABOVE the trophy with zero overlap!
+    ctx.save();
+    const badgeY = y1 - 66; // 164 (comfortably above the trophy top at 184!)
+    ctx.fillStyle = "#1e293b";
+    ctx.strokeStyle = "#fbbf24";
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.roundRect(x1 - 10, badgeY - 14, stepW + 20, 26, 13);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "#fbbf24";
+    ctx.font = "900 13px system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("👑 Sara (3,420)", x1 + stepW / 2, badgeY + 4);
+    ctx.restore();
+
+    // Confetti physics: Fluttering falling marks
     const confColors = ["#f43f5e", "#38bdf8", "#fbbf24", "#22c55e", "#a855f7"];
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 30; i++) {
       const cSeed = i * 17;
       const startX = (hash(i, 3) * W);
-      const speed = 60 + hash(i, 5) * 80;
+      const speed = 55 + hash(i, 5) * 75;
       const confY = ((sceneT * speed + hash(i, 7) * H) % (H + 40)) - 20;
-      const confX = startX + drift(sceneT + i, cSeed, { amp: 30, freq: 1.2 });
-      const confRot = sceneT * 4 + i;
+      const confX = startX + drift(sceneT + i, cSeed, { amp: 25, freq: 1.2 });
+      const confRot = sceneT * 3.5 + i;
       const col = confColors[i % confColors.length];
 
       ctx.save();
       ctx.translate(confX, confY);
       ctx.rotate(confRot);
       ctx.fillStyle = col;
-      ctx.fillRect(-5, -2.5, 10, 5);
+      ctx.fillRect(-4.5, -2, 9, 4);
       ctx.restore();
     }
-
-    // Top banner
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 15px system-ui, sans-serif";
-    ctx.textAlign = "center";
-    ctx.fillText(lang === "es" ? "🏆 ¡PODIO FINAL Y TABLA DE RÉCORDS GLOBALES!" : "🏆 FINAL PODIUM & GLOBAL LEADERBOARD!", W / 2, 40);
 
     // Final "¡A JUGAR!" celebration bounce at end of audio
     if (sceneT >= 3.8) {
       const popT = sceneT - 3.8;
       const bounce = spring(popT * 2.5, { freq: 3.2, damp: 0.55 });
       ctx.save();
-      ctx.translate(W / 2, groundY + 38);
+      ctx.translate(W / 2, groundY + 34);
       ctx.scale(bounce, bounce);
       ctx.fillStyle = "#22c55e";
-      ctx.fillRect(-110, -18, 220, 36);
+      ctx.fillRect(-105, -16, 210, 32);
       ctx.strokeStyle = "#ffffff";
-      ctx.lineWidth = 2.0;
-      wob(ctx, [[-110, -18], [110, -18], [110, 18], [-110, 18]], 1.2, 777, true);
+      ctx.lineWidth = 1.8;
+      wob(ctx, [[-105, -16], [105, -16], [105, 16], [-105, 16]], 1.2, 777, true);
       ctx.fillStyle = "#ffffff";
-      ctx.font = "900 16px system-ui, sans-serif";
+      ctx.font = "900 15px system-ui, sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText(lang === "es" ? "¡A JUGAR! 🚀" : "PLAY NOW! 🚀", 0, 6);
+      ctx.fillText(lang === "es" ? "¡A JUGAR! 🚀" : "PLAY NOW! 🚀", 0, 5);
       ctx.restore();
     }
   }

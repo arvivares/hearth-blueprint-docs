@@ -126,7 +126,7 @@ function Home() {
       {/* Luz ambiental sutil estilo Apple */}
       <div className="pointer-events-none fixed top-0 left-1/2 -translate-x-1/2 h-[500px] w-full max-w-4xl apple-glow opacity-80" />
 
-      <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 sm:py-14 space-y-10 sm:space-y-14">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-10 sm:space-y-12">
         {/* Barra Superior Minimalista */}
         <header className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
@@ -166,22 +166,31 @@ function Home() {
           </div>
         </header>
 
-        {/* Hero Minimalista estilo Apple */}
-        <div className="text-center space-y-3 pt-2">
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-white whitespace-pre-line leading-[1.08]">
-            {t.heroTitle}
-          </h1>
-          <p className="mx-auto max-w-lg text-base sm:text-lg text-zinc-400 font-normal leading-relaxed">
-            {t.heroSubtitle}
-          </p>
+        {/* Hero con Titular a la Izquierda y "Cómo se juega" a la Derecha */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center pt-2">
+          {/* Columna Izquierda: Adivina el logo / En tiempo real */}
+          <div className="lg:col-span-5 flex flex-col justify-center space-y-4 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 self-center lg:self-start rounded-full bg-white/[0.06] border border-white/[0.08] px-3.5 py-1 text-xs font-medium text-amber-300">
+              <Sparkles className="h-3.5 w-3.5 text-amber-400" />
+              <span>{lang === "es" ? "Multijugador en tiempo real" : "Real-time multiplayer"}</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black tracking-tight text-white whitespace-pre-line leading-[1.05]">
+              {t.heroTitle}
+            </h1>
+            <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed max-w-lg mx-auto lg:mx-0">
+              {t.heroSubtitle}
+            </p>
+          </div>
+
+          {/* Columna Derecha: Cómo se juega (PresenterAudio con Animación y Locución) */}
+          <div className="lg:col-span-7">
+            <section aria-label="Cómo se juega">
+              <PresenterAudio lang={lang} />
+            </section>
+          </div>
         </div>
 
         <ErrorBox>{error}</ErrorBox>
-
-        {/* Guía de Audio de la Presentadora con Visualizador Minimalista */}
-        <section aria-label="Guía de la presentadora">
-          <PresenterAudio lang={lang} />
-        </section>
 
         {/* Bloque Crear sala: Inicia el juego en esta pantalla */}
         <section
