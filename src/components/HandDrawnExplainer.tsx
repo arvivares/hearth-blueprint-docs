@@ -321,6 +321,7 @@ interface HandPhoneOptions {
   tapProgress?: number; // 0..1
   isPressed?: boolean;
   hapticWaves?: boolean;
+  targetPos?: { x: number; y: number };
   renderScreen: (scrX: number, scrY: number, scrW: number, scrH: number) => void;
 }
 
@@ -332,54 +333,15 @@ function drawHandHoldingPhone(
   phoneH: number,
   opt: HandPhoneOptions
 ) {
-  const { sceneT, thumbPose, tapProgress = 0, isPressed = false, hapticWaves = false, renderScreen } = opt;
+  const { sceneT, thumbPose, tapProgress = 0, isPressed = false, hapticWaves = false, targetPos, renderScreen } = opt;
 
   const skin = "#fed7aa";
-  const skinShade = "#f4a27e";
-  const skinDeep = "#ee9068";
-  const skinLight = "#fff7ed";
-  const ink = "#1e293b";
+  const ink = "#18181b";
 
   ctx.save();
 
   // ============================================================
-  // LAYER 1: FOREARM & PALM CRADLE (Symmetric, clean, balanced arm from below)
-  // ============================================================
-  ctx.save();
-  const armGrad = ctx.createLinearGradient(phoneX + 80, 450, phoneX + 180, phoneY + phoneH);
-  armGrad.addColorStop(0, skinShade);
-  armGrad.addColorStop(0.5, skin);
-  armGrad.addColorStop(1, skinLight);
-
-  ctx.fillStyle = armGrad;
-  ctx.strokeStyle = ink;
-  ctx.lineWidth = 2.2;
-
-  const armLeftX = phoneX + 85;
-  const armRightX = phoneX + 175;
-  const wristLeftX = phoneX + 95;
-  const wristRightX = phoneX + phoneW + 10;
-  const wristY = phoneY + phoneH;
-
-  ctx.beginPath();
-  ctx.moveTo(armLeftX, 450);
-  ctx.bezierCurveTo(armLeftX + 5, 410, wristLeftX - 5, wristY + 15, wristLeftX, wristY + 2);
-  ctx.lineTo(phoneX + phoneW - 10, wristY + 2);
-  ctx.bezierCurveTo(phoneX + phoneW + 8, wristY + 2, wristRightX + 5, wristY - 10, wristRightX, phoneY + 285);
-  ctx.bezierCurveTo(wristRightX + 8, 370, armRightX + 10, 410, armRightX, 450);
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
-
-  // Wrist fold line
-  ctx.strokeStyle = "rgba(194, 65, 12, 0.35)";
-  ctx.lineWidth = 1.3;
-  ctx.beginPath();
-  ctx.arc(phoneX + 130, wristY + 14, 20, 0.4, 1.3);
-  ctx.stroke();
-
-  // ============================================================
-  // LAYER 2: 4 COMPACT FINGERS BEHIND PHONE (Natural cartoon grouping)
+  // LAYER 1: 4 COMPACT FINGERS BEHIND PHONE (Left bezel)
   // ============================================================
   const fingerDefs = [
     { y: 86, reach: 24, h: 25, wrap: 13 },
@@ -403,14 +365,14 @@ function drawHandHoldingPhone(
   });
 
   // ============================================================
-  // LAYER 3: PHONE CHASSIS & SCREEN GLASS
+  // LAYER 2: PHONE CHASSIS & SCREEN GLASS
   // ============================================================
   ctx.fillStyle = "#161928";
   ctx.beginPath();
   ctx.roundRect(phoneX, phoneY, phoneW, phoneH, 26);
   ctx.fill();
 
-  ctx.strokeStyle = "#475569";
+  ctx.strokeStyle = "#334155";
   ctx.lineWidth = 2.4;
   ctx.stroke();
 
@@ -444,7 +406,7 @@ function drawHandHoldingPhone(
   ctx.restore();
 
   // ============================================================
-  // LAYER 4: CLEAN FINGERTIPS CURLING ONTO FRONT BEZEL
+  // LAYER 3: FINGERTIPS CURLING ONTO FRONT BEZEL
   // ============================================================
   fingerDefs.forEach((f) => {
     const fy = phoneY + f.y;
@@ -466,7 +428,7 @@ function drawHandHoldingPhone(
     ctx.closePath();
     ctx.fill();
 
-    // Stroke only the curved front contour (no back cut!)
+    // Stroke only the curved front contour
     ctx.strokeStyle = ink;
     ctx.lineWidth = 2.0;
     ctx.beginPath();
@@ -478,99 +440,138 @@ function drawHandHoldingPhone(
   });
 
   // ============================================================
-  // LAYER 5: THE THUMB (Natural animated cartoon thumb)
+  // LAYER 4: UNIFIED ORGANIC HAND, PALM & THUMB
+  // Smooth kinematic reach across the smartphone interface
   // ============================================================
-  const thumbBaseX = phoneX + phoneW;
-  const thumbBaseY = phoneY + 285;
-  const knuckleRestX = phoneX + phoneW + 14;
-  const knuckleRestY = phoneY + 255;
-  const tipRestX = phoneX + phoneW - 14;
-  const tipRestY = phoneY + 225;
+  const wristL = phoneX + 80;
+  const wristR = phoneX + 185;
+  const phoneBottom = phoneY + phoneH;
 
-  const targetX = scrX + scrW / 2;
-  const targetY = scrY + scrH - 58;
+  const targetX = targetPos?.x ?? (scrX + scrW / 2);
+  const targetY = targetPos?.y ?? (scrY + scrH - 46);
 
-  let kx = knuckleRestX;
-  let ky = knuckleRestY;
-  let tx = tipRestX;
-  let ty = tipRestY;
+  let p = 0;
   let pressed = false;
 
   if (thumbPose === "tap") {
-    const p = clamp(tapProgress, 0, 1);
-    const ease = p * p * (3 - 2 * p);
-    kx = lerp(knuckleRestX, phoneX + phoneW - 12, ease);
-    ky = lerp(knuckleRestY, targetY + 32, ease);
-    tx = lerp(tipRestX, targetX + 4, ease);
-    ty = lerp(tipRestY, targetY + 2, ease);
-    pressed = p >= 0.95;
+    p = clamp(tapProgress, 0, 1);
+    pressed = p >= 0.85;
   } else if (thumbPose === "buzzer") {
-    if (isPressed) {
-      kx = phoneX + phoneW - 14;
-      ky = targetY + 30;
-      tx = targetX + 4;
-      ty = targetY + 2;
-      pressed = true;
-    } else {
-      // Poised hovering near button
-      kx = phoneX + phoneW + 4;
-      ky = targetY + 40;
-      tx = targetX + 26;
-      ty = targetY + 16;
-    }
+    p = isPressed ? 1.0 : (opt.tapProgress ? clamp(opt.tapProgress, 0, 1) : 0);
+    pressed = isPressed || p >= 0.85;
   }
 
-  // Thumb drop shadow
-  ctx.fillStyle = "rgba(0, 0, 0, 0.32)";
-  ctx.beginPath();
-  ctx.ellipse(tx + 2, ty + 4, pressed ? 16 : 13, pressed ? 10 : 12, 0.2, 0, Math.PI * 2);
-  ctx.fill();
+  const ease = p * p * (3 - 2 * p);
 
+  // Resting coordinates along right bezel
+  const restKx = phoneX + phoneW + 6;
+  const restKy = phoneBottom - 65;
+  const restTx = phoneX + phoneW - 8;
+  const restTy = phoneBottom - 90;
+
+  // Pressing coordinates reaching to the button
+  const pressKx = phoneX + phoneW - 30;
+  const pressKy = targetY + 36;
+  const pressTx = targetX + 2;
+  const pressTy = targetY + (pressed ? 2 : -3);
+
+  const kx = restKx + (pressKx - restKx) * ease;
+  const ky = restKy + (pressKy - restKy) * ease;
+  const tx = restTx + (pressTx - restTx) * ease;
+  const ty = restTy + (pressTy - restTy) * ease;
+
+  // Touch ripple when pressed
+  if (pressed) {
+    ctx.save();
+    ctx.strokeStyle = "#22c55e";
+    ctx.lineWidth = 2.0;
+    ctx.beginPath();
+    ctx.arc(targetX, targetY, 18, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.strokeStyle = "rgba(34, 197, 94, 0.4)";
+    ctx.beginPath();
+    ctx.arc(targetX, targetY, 28, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // Soft drop shadow under the pressing thumb (only on screen)
+  if (p > 0.15) {
+    const shadowAlpha = Math.min(0.35, (p - 0.15) * 0.5);
+    ctx.fillStyle = `rgba(0, 0, 0, ${shadowAlpha})`;
+    ctx.beginPath();
+    ctx.ellipse(tx + 2, ty + 5, pressed ? 17 : 14, pressed ? 11 : 12, 0.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Draw unified forearm + palm + thumb as ONE solid organic shape
   ctx.fillStyle = skin;
   ctx.strokeStyle = ink;
   ctx.lineWidth = 2.2;
-
-  const isReaching = thumbPose === "tap" ? (tapProgress > 0.1) : (thumbPose === "buzzer" && isPressed);
-
   ctx.beginPath();
-  // Starts at outer palm right edge
-  ctx.moveTo(thumbBaseX + 6, thumbBaseY);
 
-  if (isReaching) {
-    // When reaching across: smooth organic arc to the button
-    const midX = (thumbBaseX + tx) / 2 + 10;
-    const midY = (thumbBaseY + ty) / 2 + 10;
-    ctx.quadraticCurveTo(thumbBaseX + 8, midY - 8, tx + 6, ty - 6);
-    ctx.arc(tx, ty + 3, pressed ? 12 : 11, -1.2, 1.2, true);
-    ctx.quadraticCurveTo(midX - 10, midY + 12, thumbBaseX - 2, thumbBaseY - 10);
-  } else {
-    // Resting along right bezel
-    ctx.bezierCurveTo(thumbBaseX + 14, ky + 15, kx + 8, ky, kx, ky - 8);
-    ctx.bezierCurveTo(knuckleRestX - 6, knuckleRestY - 18, tipRestX + 16, tipRestY - 14, tipRestX + 6, tipRestY - 6);
-    ctx.arc(tipRestX, tipRestY + 4, 11, -1.2, 1.2, true);
-    ctx.bezierCurveTo(tipRestX + 12, tipRestY + 18, thumbBaseX - 4, phoneY + 255, thumbBaseX - 4, thumbBaseY - 15);
-  }
-  ctx.bezierCurveTo(thumbBaseX - 4, thumbBaseY, thumbBaseX, thumbBaseY + 5, thumbBaseX + 6, thumbBaseY);
+  // 1. Start at bottom-left wrist
+  ctx.moveTo(wristL, 450);
+
+  // 2. Up left wrist edge, curving under the phone
+  ctx.lineTo(wristL + 6, phoneBottom - 5);
+  ctx.quadraticCurveTo(phoneX + 115, phoneBottom + 8, phoneX + 140, phoneBottom - 6);
+
+  // 3. Across inner palm to inner web of thumb
+  const webX = phoneX + phoneW - 32;
+  const webY = phoneBottom - 14;
+  ctx.quadraticCurveTo(phoneX + 160, phoneBottom - 12, webX, webY);
+
+  // 4. Inner thumb edge leading up to tip
+  const innerKnuckleX = kx - 12;
+  const innerKnuckleY = ky + 12;
+  ctx.quadraticCurveTo(innerKnuckleX, innerKnuckleY, tx - 8, ty + 6);
+
+  // 5. Rounded thumb tip
+  const tipRadius = pressed ? 13.5 : 12;
+  ctx.arc(tx, ty, tipRadius, Math.PI * 0.75, -Math.PI * 0.35, false);
+
+  // 6. Outer thumb edge down through outer knuckle
+  ctx.quadraticCurveTo(kx + 8, ky + 2, phoneX + phoneW + 2, phoneBottom - 30);
+
+  // 7. Fleshy thenar eminence / outer palm
+  ctx.quadraticCurveTo(phoneX + phoneW + 4, phoneBottom - 10, wristR - 4, phoneBottom + 10);
+
+  // 8. Down right wrist edge to bottom
+  ctx.lineTo(wristR, 450);
+
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
 
-  // Cute fingernail on thumb
+  // Thumb knuckle crease (only when flexed inward)
+  if (p > 0.3) {
+    ctx.strokeStyle = "rgba(217, 119, 87, 0.6)";
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.arc(kx, ky, 7, -1.0, 0.6);
+    ctx.stroke();
+  }
+
+  // Cute fingernail (oriented along thumb direction)
+  const thumbAngle = Math.atan2(ty - ky, tx - kx);
+  ctx.save();
+  ctx.translate(tx, ty);
+  ctx.rotate(thumbAngle);
   ctx.fillStyle = "#fff7ed";
   ctx.strokeStyle = "#d97757";
   ctx.lineWidth = 1.2;
   ctx.beginPath();
-  ctx.ellipse(tx + 2, ty - 2, 6, 4, 0.25, 0, Math.PI * 2);
+  ctx.ellipse(0, -3.5, 6, 4.5, 0, 0, Math.PI * 2);
   ctx.fill();
   ctx.stroke();
 
-  // Specular shine on nail
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+  // Specular nail shine
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.85)";
   ctx.lineWidth = 1.0;
   ctx.beginPath();
-  ctx.arc(tx + 2, ty - 3, 2.8, 0.4, 2.2);
+  ctx.arc(0, -4, 2.5, 0.5, 2.0);
   ctx.stroke();
-
   ctx.restore();
 
   // Haptic / Vibration waves
@@ -624,16 +625,16 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
   ctx.save();
   ctx.scale(canvas.width / W, canvas.height / H);
 
-  // Clear frame with deep chalkboard OLED dark background
-  ctx.fillStyle = "#0c0d14";
+  // Clear frame with pure OLED black matching site background
+  ctx.fillStyle = "#000000";
   ctx.fillRect(0, 0, W, H);
 
   // Subtle paper grain & framing vignette
-  grain(ctx, [0, 0, W, H], 300, "#ffffff", 0.035, 42);
+  grain(ctx, [0, 0, W, H], 260, "#ffffff", 0.025, 42);
 
-  // Background sketchbook border
-  ctx.strokeStyle = "rgba(255, 255, 255, 0.07)";
-  ctx.lineWidth = 1.2;
+  // Background sketchbook border - subtle whisper
+  ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
+  ctx.lineWidth = 1.0;
   wob(ctx, [[14, 14], [W - 14, 14], [W - 14, H - 14], [14, H - 14]], 1.5, 99, true);
 
   const { sceneIdx, sceneT } = getSceneForTime(t, lang);
@@ -927,14 +928,17 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
     const phoneX = 215;
     const phoneY = 64;
 
-    const isTapPhase = sceneT >= 5.0;
     const isCameraPhase = sceneT < 3.2;
-    const tapProg = clamp((sceneT - 5.0) / 0.5, 0, 1);
+    // Kinematic reach: thumb reaches between 4.4s and 5.0s, presses at 5.0s
+    const reachProg = clamp((sceneT - 4.4) / 0.6, 0, 1);
+    const isTapPhase = sceneT >= 5.0;
 
     drawHandHoldingPhone(ctx, phoneX, phoneY, phoneW, phoneH, {
       sceneT,
       thumbPose: "tap",
-      tapProgress: isTapPhase ? tapProg : 0,
+      tapProgress: reachProg,
+      isPressed: isTapPhase,
+      targetPos: { x: phoneX + phoneW / 2, y: phoneY + 28 + 152 + 20 },
       renderScreen: (pScrX, pScrY, pScrW, pScrH) => {
         // SCREEN PHASE A: SCANNING QR WITH CAMERA
         if (isCameraPhase) {
@@ -1267,11 +1271,19 @@ function drawExplainerFrame(canvas: HTMLCanvasElement, t: number, lang: Explaine
     const multVal = Math.max(1.5, 3.0 - cycleT * 0.4).toFixed(1);
     const isAnswered = cycleT >= 3.6;
 
+    // Kinematic reach: thumb glides to buzzer button at 3.0s, presses at 3.6s, releases at 4.8s
+    const reachProg = clamp((cycleT - 3.0) / 0.6, 0, 1);
+    const releaseProg = clamp((cycleT - 4.8) / 0.5, 0, 1);
+    const tapProg = reachProg * (1 - releaseProg);
+    const isPressed = cycleT >= 3.6 && cycleT < 4.8;
+
     drawHandHoldingPhone(ctx, phoneX, phoneY, phoneW, phoneH, {
       sceneT,
       thumbPose: "buzzer",
-      isPressed: isAnswered,
-      hapticWaves: isAnswered,
+      tapProgress: tapProg,
+      isPressed,
+      hapticWaves: isPressed,
+      targetPos: { x: phoneX + phoneW / 2, y: phoneY + 28 + 178 + 40 + 15 },
       renderScreen: (pScrX, pScrY, pScrW, pScrH) => {
         // iOS Header inside phone screen
         ctx.fillStyle = "#131625";
@@ -1700,7 +1712,7 @@ export function HandDrawnExplainer({
   return (
     <div
       className={cn(
-        "relative aspect-video w-full rounded-2xl overflow-hidden bg-[#0c0d14] border border-white/[0.08] cursor-pointer group shadow-2xl select-none",
+        "relative aspect-video w-full rounded-2xl overflow-hidden bg-[#000000] border border-white/[0.05] cursor-pointer group shadow-2xl select-none",
         className
       )}
       onClick={onTogglePlay}

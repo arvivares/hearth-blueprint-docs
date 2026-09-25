@@ -188,12 +188,43 @@ function TvPage() {
     try {
       let pSess = playerSession;
       if (!pSess) {
-        const p = await api.joinPlayer(c, "Jugador 1");
+        const savedAlias = (() => {
+          try {
+            return localStorage.getItem("peekrush_player_alias") || "";
+          } catch {
+            return "";
+          }
+        })();
+        const aliasToUse = (savedAlias || prompt("¿Cómo te llamas?", "Jugador 1") || "Jugador 1").trim();
+        try {
+          localStorage.setItem("peekrush_player_alias", aliasToUse);
+        } catch {}
+        const p = await api.joinPlayer(c, aliasToUse);
         pSess = { roomId: p.roomId, token: p.playerToken, alias: p.alias, playerId: p.playerId };
         saveSession("player", c, pSess);
         setPlayerSession(pSess);
       }
       hostRoom.send("host:start", {});
+    } catch (e) {
+      setError(errorText(e));
+    }
+  }
+
+  async function handleChangeSoloAlias(newAlias: string) {
+    const clean = newAlias.trim();
+    if (!clean) return;
+    setError(null);
+    try {
+      try {
+        localStorage.setItem("peekrush_player_alias", clean);
+      } catch {}
+      if (playerSession && hostRoom) {
+        hostRoom.send("host:kick", { playerId: playerSession.playerId });
+      }
+      const p = await api.joinPlayer(c, clean);
+      const newSess = { roomId: p.roomId, token: p.playerToken, alias: p.alias, playerId: p.playerId };
+      saveSession("player", c, newSess);
+      setPlayerSession(newSess);
     } catch (e) {
       setError(errorText(e));
     }
@@ -226,6 +257,7 @@ function TvPage() {
                 const attemptId = safeUUID();
                 playerRoom.send("player:attempt", { attemptId, roundId: room.state.roundId, text });
               },
+              onChangeAlias: handleChangeSoloAlias,
             }
           : undefined
       }

@@ -15,6 +15,7 @@ export interface SoloPlayerProps {
   pending: boolean;
   lastResult?: AttemptResult | null;
   onSubmit: (text: string) => void;
+  onChangeAlias?: (newAlias: string) => void;
 }
 
 export interface HostControls {
@@ -201,6 +202,30 @@ export function TvView({
                 </li>
               ))}
             </ul>
+
+            {/* Banner de Jugador Solo en esta pantalla */}
+            {soloPlayer && inLobby && (
+              <div className="flex items-center justify-between rounded-2xl bg-white/[0.05] border border-white/[0.08] px-[1.4vw] py-[1.2vh]">
+                <div className="flex items-center gap-2.5 text-[1.1vw] text-zinc-300">
+                  <User className="h-[1.2vw] w-[1.2vw] text-amber-400" />
+                  <span>Tu jugador en esta pantalla: <strong className="text-white font-semibold">{soloPlayer.alias}</strong></span>
+                </div>
+                {soloPlayer.onChangeAlias && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const next = prompt("Introduce tu nuevo alias:", soloPlayer.alias);
+                      if (next && next.trim() && next.trim() !== soloPlayer.alias) {
+                        soloPlayer.onChangeAlias?.(next.trim());
+                      }
+                    }}
+                    className="rounded-xl bg-white/[0.08] hover:bg-white/[0.15] border border-white/10 px-3.5 py-1.5 text-[0.9vw] font-semibold text-white transition active:scale-95"
+                  >
+                    Cambiar nombre
+                  </button>
+                )}
+              </div>
+            )}
 
             {/* Controles de anfitrión en la sala de espera */}
             {host && (

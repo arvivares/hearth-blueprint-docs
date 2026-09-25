@@ -69,6 +69,14 @@ function Home() {
   const [code, setCode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [showSoloModal, setShowSoloModal] = useState(false);
+  const [soloAlias, setSoloAlias] = useState(() => {
+    try {
+      return localStorage.getItem("peekrush_player_alias") || "";
+    } catch {
+      return "";
+    }
+  });
 
   useEffect(() => {
     try {
@@ -86,7 +94,7 @@ function Home() {
 
   const t = I18N[lang];
 
-  async function create(solo = false) {
+  async function create(solo = false, customAlias?: string) {
     setBusy(true);
     setError(null);
     try {
@@ -99,7 +107,11 @@ function Home() {
       saveSession("screen", r.roomCode, { roomId: r.roomId, token: screen.screenToken });
 
       if (solo) {
-        const p = await api.joinPlayer(r.roomCode, "Tú");
+        const chosenAlias = (customAlias || soloAlias).trim() || (lang === "es" ? "Jugador" : "Player");
+        try {
+          localStorage.setItem("peekrush_player_alias", chosenAlias);
+        } catch {}
+        const p = await api.joinPlayer(r.roomCode, chosenAlias);
         saveSession("player", r.roomCode, { roomId: r.roomId, token: p.playerToken, alias: p.alias, playerId: p.playerId });
       }
 
@@ -208,7 +220,7 @@ function Home() {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
             <button
               type="button"
-              onClick={() => create(true)}
+              onClick={() => setShowSoloModal(true)}
               disabled={busy}
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] px-6 py-4 font-semibold text-white text-sm transition-all active:scale-[0.98] disabled:opacity-40"
               title="Juega tú solo desde este navegador"
@@ -280,6 +292,60 @@ function Home() {
             </button>
           </form>
         </section>
+
+        {/* Modal de Alias para Partida en Solitario */}
+        {showSoloModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="w-full max-w-md rounded-3xl bg-[#0c0d12] border border-white/12 p-6 sm:p-8 space-y-6 shadow-2xl">
+              <div className="space-y-1.5">
+                <h3 className="text-xl font-bold tracking-tight text-white">
+                  {lang === "es" ? "Partida en solitario" : "Single-player Game"}
+                </h3>
+                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+                  {lang === "es"
+                    ? "Elige el nombre o alias que aparecerá en pantalla y en la tabla de récords:"
+                    : "Choose the nickname to show on screen and the leaderboard:"}
+                </p>
+              </div>
+
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setShowSoloModal(false);
+                  create(true, soloAlias);
+                }}
+                className="space-y-5"
+              >
+                <input
+                  type="text"
+                  autoFocus
+                  maxLength={16}
+                  placeholder={lang === "es" ? "Tu alias (ej. Alex)" : "Your nickname (e.g. Alex)"}
+                  value={soloAlias}
+                  onChange={(e) => setSoloAlias(e.target.value)}
+                  className="w-full rounded-2xl bg-white/[0.08] border border-white/15 px-4 py-3.5 text-base text-white placeholder:text-zinc-500 focus:outline-none focus:border-white/40 focus:ring-4 focus:ring-white/[0.05] transition"
+                />
+
+                <div className="flex items-center justify-end gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowSoloModal(false)}
+                    className="rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition"
+                  >
+                    {lang === "es" ? "Cancelar" : "Cancel"}
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={busy}
+                    className="rounded-xl bg-white text-black px-6 py-2.5 text-sm font-semibold hover:bg-zinc-200 transition shadow-md active:scale-95 disabled:opacity-40"
+                  >
+                    {busy ? (lang === "es" ? "Iniciando…" : "Starting…") : (lang === "es" ? "Empezar partida" : "Start game")}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* Footer Minimalista */}
         <footer className="pt-4 pb-8 text-center space-y-3">
