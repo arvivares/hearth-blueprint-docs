@@ -9,6 +9,7 @@ import * as repo from "./db/repo";
 import type { Question } from "./db/repo";
 import { dropRoundMedia, prepareRoundMedia } from "./content/media";
 import { calculateDynamicScore, computeRanking, pointsForStage, stageForElapsed } from "./rules/scoring";
+import { isCorrectAnswer, normalizeAnswer } from "./rules/normalize";
 import { scaled, settings } from "./settings";
 
 export class PlayerState extends Schema {
