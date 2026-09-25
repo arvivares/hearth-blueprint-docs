@@ -9,7 +9,10 @@ import {
   ChevronUp,
   Radio,
   Sparkles,
+  Film,
+  Activity,
 } from "lucide-react";
+import { HandDrawnExplainer } from "./HandDrawnExplainer";
 import { cn } from "@/lib/utils";
 
 export type Language = "es" | "en";
@@ -93,6 +96,7 @@ export function PresenterAudio({
   const [isMuted, setIsMuted] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
   const [audioError, setAudioError] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<"animation" | "waveform">("animation");
 
   // Configurar elemento de audio único y persistente
   useEffect(() => {
@@ -341,7 +345,7 @@ export function PresenterAudio({
     >
       <div className="relative z-10 flex flex-col gap-5">
         {/* Cabecera Minimalista */}
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white/[0.06] border border-white/[0.08] text-white">
               <Radio className={cn("h-4 w-4 transition-transform", isPlaying && "animate-pulse text-indigo-300")} />
@@ -349,10 +353,10 @@ export function PresenterAudio({
 
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-base font-semibold tracking-tight text-white">
+                <h3 className="text-base font-semibold tracking-tight text-white whitespace-nowrap">
                   {t.title}
                 </h3>
-                <span className="rounded-full bg-white/[0.08] px-2.5 py-0.5 text-[11px] font-medium text-zinc-300">
+                <span className="rounded-full bg-white/[0.08] px-2.5 py-0.5 text-[11px] font-medium text-zinc-300 whitespace-nowrap">
                   {t.badge}
                 </span>
               </div>
@@ -368,29 +372,74 @@ export function PresenterAudio({
             </div>
           </div>
 
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400">
-            <span
-              className={cn(
-                "h-2 w-2 rounded-full transition-colors",
-                isPlaying ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" : "bg-zinc-600",
-              )}
-            />
-            <span className="hidden sm:inline font-mono text-[11px] tracking-wide text-zinc-400">
-              {isPlaying ? "LIVE" : "STANDBY"}
-            </span>
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            {/* Selector de Modo: Animación Hand-Drawn Cartoon vs Onda de Voz */}
+            <div className="inline-flex rounded-full bg-white/[0.06] border border-white/[0.08] p-0.5 text-xs font-medium shrink-0">
+              <button
+                type="button"
+                onClick={() => setViewMode("animation")}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-all text-xs",
+                  viewMode === "animation"
+                    ? "bg-white text-black font-semibold shadow-sm"
+                    : "text-zinc-400 hover:text-white"
+                )}
+              >
+                <Film className="h-3 w-3" />
+                <span>{lang === "es" ? "Animación" : "Cartoon"}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode("waveform")}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-all text-xs",
+                  viewMode === "waveform"
+                    ? "bg-white text-black font-semibold shadow-sm"
+                    : "text-zinc-400 hover:text-white"
+                )}
+              >
+                <Activity className="h-3 w-3" />
+                <span>{lang === "es" ? "Onda" : "Wave"}</span>
+              </button>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-1.5 text-xs text-zinc-400">
+              <span
+                className={cn(
+                  "h-2 w-2 rounded-full transition-colors",
+                  isPlaying ? "bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]" : "bg-zinc-600",
+                )}
+              />
+              <span className="font-mono text-[11px] tracking-wide text-zinc-400">
+                {isPlaying ? "LIVE" : "STANDBY"}
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Visualizador de Frecuencia estilo Apple Voice Memos / Siri */}
-        <div className="relative flex items-center justify-center rounded-2xl bg-black/40 border border-white/[0.06] p-3 sm:p-4">
-          <canvas
-            ref={canvasRef}
-            width={580}
-            height={60}
-            className="w-full h-14 sm:h-16"
-            aria-label="Visualizador de frecuencia de audio"
+        {/* Visualizador Principal: Animación Hand-Drawn (Jackbox Style) u Onda de Voz */}
+        {viewMode === "animation" ? (
+          <HandDrawnExplainer
+            lang={lang}
+            externalTime={isPlaying ? currentTime : null}
+            onSceneChange={(sceneIdx) => {
+              const sceneChapterTimes = [0, 26, 35, 45];
+              if (isPlaying && sceneChapterTimes[sceneIdx] !== undefined) {
+                jumpToChapter(sceneChapterTimes[sceneIdx]);
+              }
+            }}
           />
-        </div>
+        ) : (
+          <div className="relative flex items-center justify-center rounded-2xl bg-black/40 border border-white/[0.06] p-3 sm:p-4">
+            <canvas
+              ref={canvasRef}
+              width={580}
+              height={60}
+              className="w-full h-14 sm:h-16"
+              aria-label="Visualizador de frecuencia de audio"
+            />
+          </div>
+        )}
 
         {/* Barra de progreso minimalista */}
         <div className="space-y-1.5">
