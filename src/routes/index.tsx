@@ -178,49 +178,6 @@ function Home() {
 
         <ErrorBox>{error}</ErrorBox>
 
-        {/* Entrada Rápida de Jugador (Estilo Apple Spotlight / Search) */}
-        <section
-          aria-label={t.playerTitle}
-          className="rounded-3xl apple-glass p-6 sm:p-8 space-y-4"
-        >
-          <div className="space-y-1">
-            <h2 className="text-lg font-semibold tracking-tight text-white">
-              {t.playerTitle}
-            </h2>
-            <p className="text-xs sm:text-sm text-zinc-400">
-              {t.playerDesc}
-            </p>
-          </div>
-
-          <form onSubmit={handleJoin} className="flex flex-col sm:flex-row gap-3 pt-1">
-            <div className="relative flex-1">
-              <input
-                aria-label={t.roomCodePlaceholder}
-                placeholder={t.roomCodePlaceholder}
-                value={code}
-                onChange={(e) => setCode(e.target.value.toUpperCase())}
-                maxLength={5}
-                autoComplete="off"
-                autoCorrect="off"
-                spellCheck="false"
-                className="w-full rounded-2xl bg-white/[0.04] border border-white/[0.1] px-5 py-4 font-mono text-xl uppercase tracking-widest text-white placeholder:text-zinc-600 placeholder:font-sans placeholder:tracking-normal placeholder:text-sm outline-none transition focus:border-white/30 focus:bg-white/[0.07] focus:ring-4 focus:ring-white/[0.04]"
-              />
-              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 font-mono text-xs text-zinc-500">
-                {code.length}/5
-              </span>
-            </div>
-
-            <button
-              type="submit"
-              disabled={!code.trim()}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 font-semibold text-black text-base transition-all hover:bg-zinc-200 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed shadow-md shadow-white/10 shrink-0"
-            >
-              <span>{t.joinBtn}</span>
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </form>
-        </section>
-
         {/* Guía de Audio de la Presentadora con Visualizador Minimalista */}
         <section aria-label="Guía de la presentadora">
           <PresenterAudio lang={lang} />
@@ -277,6 +234,49 @@ function Home() {
               )}
             </button>
           </div>
+        </section>
+
+        {/* Entrada Rápida de Jugador (Estilo Apple Spotlight / Search) */}
+        <section
+          aria-label={t.playerTitle}
+          className="rounded-3xl apple-glass p-6 sm:p-8 space-y-4"
+        >
+          <div className="space-y-1">
+            <h2 className="text-lg font-semibold tracking-tight text-white">
+              {t.playerTitle}
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-400">
+              {t.playerDesc}
+            </p>
+          </div>
+
+          <form onSubmit={handleJoin} className="flex flex-col sm:flex-row gap-3 pt-1">
+            <div className="relative flex-1">
+              <input
+                aria-label={t.roomCodePlaceholder}
+                placeholder={t.roomCodePlaceholder}
+                value={code}
+                onChange={(e) => setCode(e.target.value.toUpperCase())}
+                maxLength={5}
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck="false"
+                className="w-full rounded-2xl bg-white/[0.04] border border-white/[0.1] px-5 py-4 font-mono text-xl uppercase tracking-widest text-white placeholder:text-zinc-600 placeholder:font-sans placeholder:tracking-normal placeholder:text-sm outline-none transition focus:border-white/30 focus:bg-white/[0.07] focus:ring-4 focus:ring-white/[0.04]"
+              />
+              <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 font-mono text-xs text-zinc-500">
+                {code.length}/5
+              </span>
+            </div>
+
+            <button
+              type="submit"
+              disabled={!code.trim()}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-4 font-semibold text-black text-base transition-all hover:bg-zinc-200 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed shadow-md shadow-white/10 shrink-0"
+            >
+              <span>{t.joinBtn}</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </form>
         </section>
 
         {/* Footer Minimalista */}
