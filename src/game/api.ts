@@ -7,8 +7,7 @@ import {
 } from "../../packages/contracts/src/http";
 
 export const SERVER_URL: string =
-  (import.meta.env.VITE_GAME_SERVER_URL as string | undefined) ||
-  (typeof window !== "undefined" ? window.location.origin : "http://localhost:2567");
+  (import.meta.env['VITE_GAME_SERVER_URL'] as string | undefined) ?? "http://localhost:2567";
 
 export class ApiError extends Error {
   constructor(public code: string, public status: number) {
